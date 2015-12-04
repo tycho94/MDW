@@ -12,34 +12,47 @@ namespace GameService
     public interface IGamePlay
     {
         [OperationContract]
-        string GetData(int value);
-
+        string AssignClient();
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        void StartGame(string clientname);
+        [OperationContract]
+        void PauseGame(string clientname);
+        [OperationContract]
+        void FinishGame();
+        [OperationContract]
+        void LeaveGame(string clientname);
+        [OperationContract]
+        bool AnswerQuestion(string clientname, string answer);
+        [OperationContract]
+        void Message(string message);
 
         // TODO: Add your service operations here
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "GameService.ContractType".
+    
     [DataContract]
-    public class CompositeType
+    public class Question
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
+       public Question(string ques, string[] ans, string ranswer)
         {
-            get { return boolValue; }
-            set { boolValue = value; }
+            question = ques;
+            answers = ans;
+            rightanswer = ranswer;
+        }
+        public string question { get; set; }
+        [DataMember]
+        public string[] answers { get; set; }
+        [DataMember]
+        private string rightanswer { get; set; }
+        [OperationContract]
+        private void ShuffleAnswers()
+        {
+            //todo
         }
 
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+
+
     }
 }

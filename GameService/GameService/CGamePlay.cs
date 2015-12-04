@@ -10,22 +10,39 @@ namespace GameService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class CGamePlay : IGamePlay
     {
-        public string GetData(int value)
+        public bool AnswerQuestion(string clientname, string answer)
         {
-            return string.Format("You entered: {0}", value);
+            throw new NotImplementedException();
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public string AssignClient()
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            throw new NotImplementedException();
+        }
+
+        public void FinishGame()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LeaveGame(string clientname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Message(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PauseGame(string clientname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StartGame(string clientname)
+        {
+            throw new NotImplementedException();
         }
     }
 }
