@@ -1,1 +1,0 @@
-C:\Users\todor\Documents\GitHub\MDW\Application\TriviaClient\TriviaClient\bin\Debug\TriviaClient.exe.config
