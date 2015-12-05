@@ -91,25 +91,7 @@ namespace GameService
         }
 
 
-        public void FinishGame()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void LeaveGame(string clientname)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Message(string message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PauseGame(string clientname)
-        {
-            throw new NotImplementedException();
-        }
+        
 
 
 

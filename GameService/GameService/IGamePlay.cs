@@ -28,8 +28,7 @@ namespace GameService
         bool AnswerQuestion(string clientname, Question q, string answer);
         [OperationContract]
         void StartGame(string clientname);
-        [OperationContract]
-        void PauseGame(string clientname);
+       
         [OperationContract]
         void Message(string message);
 
