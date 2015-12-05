@@ -14,7 +14,7 @@ namespace GameService
 
         Timer countTimer;
         List<question> Questions;
-        client client1, client2;
+        client client1;//client2;
 
         question question1 = new question("where is the capital of Netherlands", "Amsterdam");
         question question2 = new question("where is the capital of France", "Pairs");
@@ -37,7 +37,7 @@ namespace GameService
             Questions.Add(question2);
 
             client1 = null;
-            client2 = null;
+           // client2 = null;
          }
 
 
@@ -48,12 +48,12 @@ namespace GameService
                 client1 = new client(clientname);
                 
             }
-            else
-            {
-                client2 = new client(clientname);
+            //else
+            //{
+               // client2 = new client(clientname);
 
 
-            }
+            //}
         }
 
         public void AssignClient() // not sure about does it very nescessary to have this fucntion
@@ -87,6 +87,42 @@ namespace GameService
             {
                 return false;
             }
+        }
+
+        public bool AnswerQuestion(string clientname, string answer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string AssignClient()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FinishGame()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LeaveGame(string clientname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Message(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PauseGame(string clientname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StartGame(string clientname)
+        {
+            throw new NotImplementedException();
+
         }
      
 
