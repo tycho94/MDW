@@ -11,11 +11,6 @@ namespace GameService
     [ServiceContract]
     public interface IGamePlay
     {
-
-
-        [OperationContract]
-        client StartGameclient(string clientname);
-
         [OperationContract]
         void AssignClient();
 
@@ -30,21 +25,11 @@ namespace GameService
         void LeaveGame(string clientname);
 
         [OperationContract]
-        bool AnswerQuestion(question q, string answer);
-
-
-
-        string AssignClient();
+        bool AnswerQuestion(string clientname, Question q, string answer);
         [OperationContract]
         void StartGame(string clientname);
         [OperationContract]
         void PauseGame(string clientname);
-        [OperationContract]
-        void FinishGame();
-        [OperationContract]
-        void LeaveGame(string clientname);
-        [OperationContract]
-        bool AnswerQuestion(string clientname, string answer);
         [OperationContract]
         void Message(string message);
 
@@ -56,37 +41,7 @@ namespace GameService
     // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "GameService.ContractType".
 
     [DataContract]
-
-    public class question
-    {
-        [DataMember]
-        public string Rightanswer { get; set; }
-
-        [DataMember]
-        public string Question { get; set; }
-
-        [DataMember]
-        public List<string> Answers
-        {
-            get;
-            set;
-        }
-
-
-        [DataMember]
-        public question(string question, string rightanswer)
-        {
-            this.Rightanswer = rightanswer;
-            this.Question = question;
-            this.Answers = new List<string>();
-        }
-
-
-    }
-
-
-    [DataContract]
-    public class client
+    public class Client
     {
         private int points;
 
@@ -94,45 +49,34 @@ namespace GameService
         [DataMember]
         public string Name { get; set; }
 
-
-
-
-        [DataMember]
-        public client(string name)
+        public Client(string name)
         {
             this.Name = name;
             this.points = 0;
         }
-
         public void incrementpoints()  //not part of contract
         {
             this.points++;
         }
+    }
 
-
-
-        public class Question
+    public class Question
+    {
+        public Question(string ques, List<string> ans, string ranswer)
         {
-            public Question(string ques, string[] ans, string ranswer)
-            {
-                question = ques;
-                answers = ans;
-                rightanswer = ranswer;
-            }
-            public string question { get; set; }
-            [DataMember]
-            public string[] answers { get; set; }
-            [DataMember]
-            private string rightanswer { get; set; }
-            [OperationContract]
-            private void ShuffleAnswers()
-            {
-                //todo
-            }
-
-
-
-
+            question = ques;
+            answers = ans;
+            rightAnswer = ranswer;
+        }
+        public string question { get; set; }
+        [DataMember]
+        public List<string> answers { get; set; }
+        [DataMember]
+        public string rightAnswer { get; set; }
+        [OperationContract]
+        private void ShuffleAnswers()
+        {
+            //todo
         }
     }
 }

@@ -13,22 +13,25 @@ namespace GameService
     {
 
         Timer countTimer;
-        List<question> Questions;
-        client client1;//client2;
+        List<Question> Questions;
+        Client client1;//client2;
 
-        question question1 = new question("where is the capital of Netherlands", "Amsterdam");
-        question question2 = new question("where is the capital of France", "Pairs");
-        
+        Question question1, question2;
+
 
         public CGamePlay()
         {
-            question1.Answers.Add("Pairs");
-            question1.Answers.Add("Berlin");
-            question1.Answers.Add(question1.Rightanswer);
+            List<string> Answers = new List<string>();
+            Answers.Add("Pairs");
+            Answers.Add("Berlin");
+            question1 = new Question("where is the capital of Netherlands", Answers, "Amsterdam");
+            question1.answers.Add(question1.rightAnswer);
 
-            question2.Answers.Add("Berlin");
-            question2.Answers.Add("Amsterdam");
-            question2.Answers.Add(question2.Rightanswer);
+            Answers.Clear();
+            Answers.Add("Berlin");
+            Answers.Add("Amsterdam");
+            question2 = new Question("where is the capital of France", Answers, "Pairs");
+
 
             countTimer = new Timer();
             countTimer.Interval = 10000;
@@ -37,20 +40,20 @@ namespace GameService
             Questions.Add(question2);
 
             client1 = null;
-           // client2 = null;
-         }
+            // client2 = null;
+        }
 
 
         public void StartGame(string clientname)
         {
             if (client1 == null)
             {
-                client1 = new client(clientname);
-                
+                client1 = new Client(clientname);
+
             }
             //else
             //{
-               // client2 = new client(clientname);
+            // client2 = new client(clientname);
 
 
             //}
@@ -75,12 +78,9 @@ namespace GameService
         {
         }
 
-
-
-
-        public bool Answerquestion(question q, string answer)
+        public bool AnswerQuestion(string clientname, Question q, string answer)
         {
-            if (q.Rightanswer == answer)
+            if (q.rightAnswer == answer)
             {
                 return true;
             }
@@ -90,15 +90,6 @@ namespace GameService
             }
         }
 
-        public bool AnswerQuestion(string clientname, string answer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string AssignClient()
-        {
-            throw new NotImplementedException();
-        }
 
         public void FinishGame()
         {
@@ -120,12 +111,6 @@ namespace GameService
             throw new NotImplementedException();
         }
 
-        public void StartGame(string clientname)
-        {
-            throw new NotImplementedException();
-
-        }
-     
 
 
     }
