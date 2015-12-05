@@ -11,11 +11,27 @@ namespace GameService
     [ServiceContract]
     public interface IGamePlay
     {
-        [OperationContract]
-        string GetData(int value);
+       
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        client StartGameclient(string clientname);
+        
+        [OperationContract]
+        void AssignClient();
+       
+        [OperationContract]
+        void PauseGame();
+
+        [OperationContract]
+        void FinishGame();
+
+        [OperationContract]
+        void LeaveGame(string clientname);
+        
+        [OperationContract]
+        bool AnswerQuestion(question q,string answer);
+
+
 
         // TODO: Add your service operations here
     }
@@ -23,23 +39,59 @@ namespace GameService
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "GameService.ContractType".
     [DataContract]
-    public class CompositeType
+    public class question
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        [DataMember]
+        public string Rightanswer { get; set; }
 
         [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
+        public string Question { get; set; }
 
         [DataMember]
-        public string StringValue
+        public List<string> Answers
         {
-            get { return stringValue; }
-            set { stringValue = value; }
+            get;
+            set;
         }
+
+
+        [DataMember]
+        public question(string question, string rightanswer)
+        {
+            this.Rightanswer = rightanswer;
+            this.Question = question;
+            this.Answers = new List<string>();
+        }
+
+        
+    }
+
+
+    [DataContract]
+    public class client
+    {
+        private int points;
+
+
+        [DataMember]
+        public string Name { get; set; }
+
+        
+
+
+        [DataMember]
+        public client(string name)
+        {
+            this.Name = name;
+            this.points = 0;
+        }
+
+        public void incrementpoints()  //not part of contract
+        {
+            this.points++;
+        }
+
+        
+
     }
 }
