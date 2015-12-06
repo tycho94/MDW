@@ -8,55 +8,53 @@ using System.Timers;
 
 namespace GameService
 {
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
+
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class CGamePlay : IGamePlay
     {
 
-        Timer countTimer;
+       // Timer countTimer;
         List<Question> Questions;
-        Client client1;//client2;
+        List<IGameplayCallback> clientsCallback;
+       // List<Question> RemainingQuestions;
+        List<Client> clients;
+        List<Answer> answers;
 
-        Question question1, question2;
-
-
+        
         public CGamePlay()
         {
-            List<string> Answers = new List<string>();
-            Answers.Add("Pairs");
-            Answers.Add("Berlin");
-            question1 = new Question("where is the capital of Netherlands", Answers, "Amsterdam");
-            question1.answers.Add(question1.rightAnswer);
-
-            Answers.Clear();
-            Answers.Add("Berlin");
-            Answers.Add("Amsterdam");
-            question2 = new Question("where is the capital of France", Answers, "Pairs");
-
-
-            countTimer = new Timer();
-            countTimer.Interval = 10000;
-
-            Questions.Add(question1);
-            Questions.Add(question2);
-
-            client1 = null;
-            // client2 = null;
+            Questions = new List<Question>();
+            clientsCallback = new List<IGameplayCallback>();
+            answers = new List<Answer>();
+            clients = new List<Client>();
+            Questions.Add(new Question(1, "What is the Capital of Netherlands", "Amsterdam", "Eindhoven", "Den Haag","Amsterdam"));
+            Questions.Add(new Question(2, "What is the Capital of France", "Nice", "Paris", "Lyon", "Paris"));
+            Questions.Add(new Question(3, "What is the Capital of United Kingdom", "Bristol", "Kent", "Llondon", "London"));
         }
 
 
         public void StartGame(string clientname)
         {
-            if (client1 == null)
+            var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
+
+            if (clientsCallback.Count == 0)
             {
-                client1 = new Client(clientname);
-
+                clientsCallback.Add(OperationContext.Current.GetCallbackChannel<IGameplayCallback>());
+                connection.Message("You are Player 1");
+                clients.Add(new Client("Player 1"));
             }
-            //else
-            //{
-            // client2 = new client(clientname);
-
-
-            //}
+            else if (clientsCallback.Count == 1)
+            {
+                clientsCallback.Add(OperationContext.Current.GetCallbackChannel<IGameplayCallback>());
+                connection.Message("You are Player 2");
+                clients.Add(new Client("Player 2"));
+                
+            }
+            else
+            {
+                connection.AddClient("full");
+            }
         }
 
         public void AssignClient() // not sure about does it very nescessary to have this fucntion
@@ -78,19 +76,77 @@ namespace GameService
         {
         }
 
-        public bool AnswerQuestion(string clientname, Question q, string answer)
+        public void AnswerQuestion(string clientname, Question q, string answer)
         {
-            if (q.rightAnswer == answer)
+            var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
+          
+           //add player answer to list
+            
+            foreach (Answer a in answers)
+
+            if (clientname=="Player 1" && a.Player1 == null)
             {
-                return true;
+              answers.Add(new Answer(q.Questionno, "Y", ""));
             }
-            else
+
+            else if (clientname == "Player 2" && a.Player2 == null)
             {
-                return false;
+                answers.Add(new Answer(q.Questionno, "", "Y"));
+            }
+
+            // check if second player has played. if not send a message to everybody to notify that someone has not played.
+           foreach (Answer a in answers)
+            {
+                if (a.Questionno == q.Questionno && a.Player1 == clientname && a.Player2==null)
+                {
+                    connection.Message("Player 2 has not played.");
+                }
+
+                else if (a.Questionno == q.Questionno && a.Player2 == clientname && a.Player1 == null)
+                {
+                    connection.Message("Player 1 has not played.");
+                }
+                
+                else check(clientname,  q,  answer);
             }
         }
+        
+
+            public void check(string clientname, Question q, string answer)
+            {
+
+            foreach (Question ques in Questions)
+            {
+                if (ques.Answer == answer)
+                {
+                    foreach (Client players in clients)
+                    {
+                        players.incrementpoints(clientname);
+                        foreach( IGameplayCallback igc in clientsCallback)
+                        {
+                            igc.AskQuestion(ShuffleQuestion(Questions));
+                        }
+                    }
+
+                }
+
+            }
 
 
+        }
+
+         
+        public Question ShuffleQuestion(List<Question> Qs)
+            {
+
+                Random random = new Random();
+                int nextquestion = random.Next() % Qs.Count;
+                Question c = Qs.ElementAt<Question>(nextquestion);
+                //Qs.Remove(c);
+                return c;
+                
+               
+           }
         
 
 

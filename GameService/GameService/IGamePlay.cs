@@ -8,7 +8,7 @@ using System.Text;
 namespace GameService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IGameplayCallback))]
     public interface IGamePlay
     {
         [OperationContract]
@@ -17,20 +17,24 @@ namespace GameService
         [OperationContract]
         void PauseGame();
 
-        [OperationContract]
+      //  [OperationContract]
 
-        void FinishGame();
+      //  void FinishGame();
+
+       // [OperationContract]
+      //  void LeaveGame(string clientname);
 
         [OperationContract]
-        void LeaveGame(string clientname);
+        void AnswerQuestion(string clientname, Question q, string answer);
 
         [OperationContract]
-        bool AnswerQuestion(string clientname, Question q, string answer);
+        Question ShuffleQuestion(List<Question> s);
+
+
         [OperationContract]
         void StartGame(string clientname);
        
-        [OperationContract]
-        void Message(string message);
+      
 
 
         // TODO: Add your service operations here
@@ -53,29 +57,70 @@ namespace GameService
             this.Name = name;
             this.points = 0;
         }
-        public void incrementpoints()  //not part of contract
+        public void incrementpoints(string c)  //not part of contract
         {
             this.points++;
         }
     }
 
+    [DataContract]
     public class Question
     {
-        public Question(string ques, List<string> ans, string ranswer)
+             
+
+        public Question(int questionno, string quest, string option1, string option2, string option3, string answer)
         {
-            question = ques;
-            answers = ans;
-            rightAnswer = ranswer;
+            Questionno = questionno;
+            Quest=quest;
+            Option1=option1;
+            Option2=option2;
+            Option3=option3;
+            Answer=answer;
+           
         }
-        public string question { get; set; }
         [DataMember]
-        public List<string> answers { get; set; }
+        public int Questionno { get; set; }
+        public string Quest { get; set; }
+        public string Option1 { get; set; }
+        public string Option2 { get; set; }
+        public string Option3 { get; set; }
+        public string Answer { get; set; }
+
+     
+     
+    }
+
+
+
+
+    [DataContract]
+    public class Answer
+    {
+        
+
+        public Answer(int questionno, string player1, string player2)
+        {
+            Questionno = questionno;
+            Player1 = player1;
+            Player2 = player2;
+
+        }
         [DataMember]
-        public string rightAnswer { get; set; }
+        public int Questionno { get; set; }
+        public string Player1 { get; set; }
+        public string Player2 { get; set; }
+    }
+
+
+    public interface IGameplayCallback
+    {
         [OperationContract]
-        private void ShuffleAnswers()
-        {
-            //todo
-        }
+        void AddClient(string s);
+
+        [OperationContract]
+        string Message(string m);
+
+        [OperationContract]
+        void AskQuestion(Question q);
     }
 }

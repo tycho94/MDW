@@ -9,18 +9,29 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ServiceModel;
 
+
 namespace GameClient
 {
     public partial class TriviaForm : Form
+
     {
+       private GameServiceReference.GamePlayClient gsr;
         public TriviaForm()
         {
             InitializeComponent();
+            gsr = new GameServiceReference.GamePlayClient();
+            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void TriviaForm_Load(object sender, EventArgs e)
+        {
+            gsr.
         }
     }
 }
