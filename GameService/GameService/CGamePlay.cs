@@ -29,12 +29,12 @@ namespace GameService
             answers = new List<Answer>();
             clients = new List<Client>();
             Questions.Add(new Question(1, "What is the Capital of Netherlands", "Amsterdam", "Eindhoven", "Den Haag","Amsterdam"));
-            Questions.Add(new Question(1, "What is the Capital of France", "Nice", "Paris", "Lyon", "Paris"));
-            Questions.Add(new Question(1, "What is the Capital of United Kingdom", "Bristol", "Kent", "Llondon", "London"));
+            Questions.Add(new Question(2, "What is the Capital of France", "Nice", "Paris", "Lyon", "Paris"));
+            Questions.Add(new Question(3, "What is the Capital of United Kingdom", "Bristol", "Kent", "Llondon", "London"));
         }
 
 
-        public void StartGame(string clientname)
+        public void StartGame()
         {
             var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
 
@@ -42,12 +42,14 @@ namespace GameService
             {
                 clientsCallback.Add(OperationContext.Current.GetCallbackChannel<IGameplayCallback>());
                 connection.Message("You are Player 1");
+                connection.AddClient("Player 1");
                 clients.Add(new Client("Player 1"));
             }
             else if (clientsCallback.Count == 1)
             {
                 clientsCallback.Add(OperationContext.Current.GetCallbackChannel<IGameplayCallback>());
                 connection.Message("You are Player 2");
+                connection.AddClient("Player 2");
                 clients.Add(new Client("Player 2"));
                 
             }

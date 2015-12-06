@@ -32,7 +32,7 @@ namespace GameService
 
 
         [OperationContract]
-        void StartGame(string clientname);
+        void StartGame();
        
       
 

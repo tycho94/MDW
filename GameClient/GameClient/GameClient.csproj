@@ -56,6 +56,11 @@
     <Compile Include="EndGameForm.Designer.cs">
       <DependentUpon>EndGameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service References\GameServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="TriviaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,11 +69,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\GameServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>

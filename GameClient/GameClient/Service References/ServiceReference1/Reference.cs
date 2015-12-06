@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GameClient.GameServiceReference {
+namespace GameClient.ServiceReference1 {
     using System.Runtime.Serialization;
     using System;
     
@@ -59,7 +59,7 @@ namespace GameClient.GameServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameServiceReference.IGamePlay", CallbackContract=typeof(GameClient.GameServiceReference.IGamePlayCallback))]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IGamePlay", CallbackContract=typeof(GameClient.ServiceReference1.IGamePlayCallback))]
     public interface IGamePlay {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AssignClient", ReplyAction="http://tempuri.org/IGamePlay/AssignClientResponse")]
@@ -75,22 +75,22 @@ namespace GameClient.GameServiceReference {
         System.Threading.Tasks.Task PauseGameAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AnswerQuestion", ReplyAction="http://tempuri.org/IGamePlay/AnswerQuestionResponse")]
-        void AnswerQuestion(string clientname, GameClient.GameServiceReference.Question q, string answer);
+        void AnswerQuestion(string clientname, GameClient.ServiceReference1.Question q, string answer);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AnswerQuestion", ReplyAction="http://tempuri.org/IGamePlay/AnswerQuestionResponse")]
-        System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, GameClient.GameServiceReference.Question q, string answer);
+        System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, GameClient.ServiceReference1.Question q, string answer);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/ShuffleQuestion", ReplyAction="http://tempuri.org/IGamePlay/ShuffleQuestionResponse")]
-        GameClient.GameServiceReference.Question ShuffleQuestion(GameClient.GameServiceReference.Question[] s);
+        GameClient.ServiceReference1.Question ShuffleQuestion(GameClient.ServiceReference1.Question[] s);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/ShuffleQuestion", ReplyAction="http://tempuri.org/IGamePlay/ShuffleQuestionResponse")]
-        System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> ShuffleQuestionAsync(GameClient.GameServiceReference.Question[] s);
+        System.Threading.Tasks.Task<GameClient.ServiceReference1.Question> ShuffleQuestionAsync(GameClient.ServiceReference1.Question[] s);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/StartGame", ReplyAction="http://tempuri.org/IGamePlay/StartGameResponse")]
-        void StartGame();
+        void StartGame(string clientname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/StartGame", ReplyAction="http://tempuri.org/IGamePlay/StartGameResponse")]
-        System.Threading.Tasks.Task StartGameAsync();
+        System.Threading.Tasks.Task StartGameAsync(string clientname);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -103,16 +103,16 @@ namespace GameClient.GameServiceReference {
         string Message(string m);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AskQuestion", ReplyAction="http://tempuri.org/IGamePlay/AskQuestionResponse")]
-        void AskQuestion(GameClient.GameServiceReference.Question q);
+        void AskQuestion(GameClient.ServiceReference1.Question q);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IGamePlayChannel : GameClient.GameServiceReference.IGamePlay, System.ServiceModel.IClientChannel {
+    public interface IGamePlayChannel : GameClient.ServiceReference1.IGamePlay, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GamePlayClient : System.ServiceModel.DuplexClientBase<GameClient.GameServiceReference.IGamePlay>, GameClient.GameServiceReference.IGamePlay {
+    public partial class GamePlayClient : System.ServiceModel.DuplexClientBase<GameClient.ServiceReference1.IGamePlay>, GameClient.ServiceReference1.IGamePlay {
         
         public GamePlayClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
@@ -150,28 +150,28 @@ namespace GameClient.GameServiceReference {
             return base.Channel.PauseGameAsync();
         }
         
-        public void AnswerQuestion(string clientname, GameClient.GameServiceReference.Question q, string answer) {
+        public void AnswerQuestion(string clientname, GameClient.ServiceReference1.Question q, string answer) {
             base.Channel.AnswerQuestion(clientname, q, answer);
         }
         
-        public System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, GameClient.GameServiceReference.Question q, string answer) {
+        public System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, GameClient.ServiceReference1.Question q, string answer) {
             return base.Channel.AnswerQuestionAsync(clientname, q, answer);
         }
         
-        public GameClient.GameServiceReference.Question ShuffleQuestion(GameClient.GameServiceReference.Question[] s) {
+        public GameClient.ServiceReference1.Question ShuffleQuestion(GameClient.ServiceReference1.Question[] s) {
             return base.Channel.ShuffleQuestion(s);
         }
         
-        public System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> ShuffleQuestionAsync(GameClient.GameServiceReference.Question[] s) {
+        public System.Threading.Tasks.Task<GameClient.ServiceReference1.Question> ShuffleQuestionAsync(GameClient.ServiceReference1.Question[] s) {
             return base.Channel.ShuffleQuestionAsync(s);
         }
         
-        public void StartGame() {
-            base.Channel.StartGame();
+        public void StartGame(string clientname) {
+            base.Channel.StartGame(clientname);
         }
         
-        public System.Threading.Tasks.Task StartGameAsync() {
-            return base.Channel.StartGameAsync();
+        public System.Threading.Tasks.Task StartGameAsync(string clientname) {
+            return base.Channel.StartGameAsync(clientname);
         }
     }
 }
