@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="pW4AKm1xQ0mSe2dRdeUOvCnrKGg=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="7FjYLUfoC04l3E3ZP8S4GdxvuvY=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="wsDualHttpBinding" name="WSDualHttpBinding_IGamePlay1">
       <properties>
@@ -97,10 +97,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSDualHttpBinding_IGamePlay1" contract="GameServiceReference.IGamePlay" bindingType="wsDualHttpBinding" address="http://localhost:8888/GameService/" bindingConfiguration="WSDualHttpBinding_IGamePlay1">
+    <endpoint name="WSDualHttpBinding_IGamePlay1" contract="GameServiceReference.IGamePlay" bindingType="wsDualHttpBinding" address="http://localhost:8888/GameService/IGamePlay" bindingConfiguration="WSDualHttpBinding_IGamePlay1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8888/GameService/</serializedValue>
+          <serializedValue>http://localhost:8888/GameService/IGamePlay</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

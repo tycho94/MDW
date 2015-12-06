@@ -139,50 +139,50 @@ namespace GameClient.GameServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameServiceReference.IGamePlay", CallbackContract=typeof(GameClient.GameServiceReference.IGamePlayCallback))]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="MyGamecontract", ConfigurationName="GameServiceReference.IGamePlay", CallbackContract=typeof(GameClient.GameServiceReference.IGamePlayCallback))]
     public interface IGamePlay {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AssignClient", ReplyAction="http://tempuri.org/IGamePlay/AssignClientResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/AssignClient", ReplyAction="MyGamecontract/IGamePlay/AssignClientResponse")]
         void AssignClient();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AssignClient", ReplyAction="http://tempuri.org/IGamePlay/AssignClientResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/AssignClient", ReplyAction="MyGamecontract/IGamePlay/AssignClientResponse")]
         System.Threading.Tasks.Task AssignClientAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/PauseGame", ReplyAction="http://tempuri.org/IGamePlay/PauseGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/PauseGame", ReplyAction="MyGamecontract/IGamePlay/PauseGameResponse")]
         void PauseGame();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/PauseGame", ReplyAction="http://tempuri.org/IGamePlay/PauseGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/PauseGame", ReplyAction="MyGamecontract/IGamePlay/PauseGameResponse")]
         System.Threading.Tasks.Task PauseGameAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AnswerQuestion", ReplyAction="http://tempuri.org/IGamePlay/AnswerQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/AnswerQuestion", ReplyAction="MyGamecontract/IGamePlay/AnswerQuestionResponse")]
         void AnswerQuestion(string clientname, GameClient.GameServiceReference.Question q, string answer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AnswerQuestion", ReplyAction="http://tempuri.org/IGamePlay/AnswerQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/AnswerQuestion", ReplyAction="MyGamecontract/IGamePlay/AnswerQuestionResponse")]
         System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, GameClient.GameServiceReference.Question q, string answer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/ShuffleQuestion", ReplyAction="http://tempuri.org/IGamePlay/ShuffleQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/ShuffleQuestion", ReplyAction="MyGamecontract/IGamePlay/ShuffleQuestionResponse")]
         GameClient.GameServiceReference.Question ShuffleQuestion();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/ShuffleQuestion", ReplyAction="http://tempuri.org/IGamePlay/ShuffleQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/ShuffleQuestion", ReplyAction="MyGamecontract/IGamePlay/ShuffleQuestionResponse")]
         System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> ShuffleQuestionAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/StartGame", ReplyAction="http://tempuri.org/IGamePlay/StartGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/StartGame", ReplyAction="MyGamecontract/IGamePlay/StartGameResponse")]
         void StartGame();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/StartGame", ReplyAction="http://tempuri.org/IGamePlay/StartGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/StartGame", ReplyAction="MyGamecontract/IGamePlay/StartGameResponse")]
         System.Threading.Tasks.Task StartGameAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IGamePlayCallback {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AddClient", ReplyAction="http://tempuri.org/IGamePlay/AddClientResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/AddClient", ReplyAction="MyGamecontract/IGamePlay/AddClientResponse")]
         void AddClient(string s);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/Message", ReplyAction="http://tempuri.org/IGamePlay/MessageResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/Message", ReplyAction="MyGamecontract/IGamePlay/MessageResponse")]
         string Message(string m);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AskQuestion", ReplyAction="http://tempuri.org/IGamePlay/AskQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="MyGamecontract/IGamePlay/AskQuestion", ReplyAction="MyGamecontract/IGamePlay/AskQuestionResponse")]
         void AskQuestion(GameClient.GameServiceReference.Question q);
     }
     

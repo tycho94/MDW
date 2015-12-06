@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CGamePlay" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="MyGamecontract" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CGamePlay" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsp:Policy wsu:Id="WSDualHttpBinding_IGamePlay_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -471,100 +471,13 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsdl:types>
-    <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import namespace="http://tempuri.org/" />
-      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/GameService" />
-    </xsd:schema>
-  </wsdl:types>
-  <wsdl:message name="IGamePlay_AssignClient_InputMessage">
-    <wsdl:part name="parameters" element="tns:AssignClient" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_AssignClient_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AssignClientResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_PauseGame_InputMessage">
-    <wsdl:part name="parameters" element="tns:PauseGame" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_PauseGame_OutputMessage">
-    <wsdl:part name="parameters" element="tns:PauseGameResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_AnswerQuestion_InputMessage">
-    <wsdl:part name="parameters" element="tns:AnswerQuestion" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_AnswerQuestion_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AnswerQuestionResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_ShuffleQuestion_InputMessage">
-    <wsdl:part name="parameters" element="tns:ShuffleQuestion" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_ShuffleQuestion_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ShuffleQuestionResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_StartGame_InputMessage">
-    <wsdl:part name="parameters" element="tns:StartGame" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_StartGame_OutputMessage">
-    <wsdl:part name="parameters" element="tns:StartGameResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_AddClient_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:AddClient" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_AddClient_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:AddClientResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_Message_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:Message" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_Message_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:MessageResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_AskQuestion_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:AskQuestion" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_AskQuestion_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:AskQuestionResponse" />
-  </wsdl:message>
-  <wsdl:portType name="IGamePlay">
-    <wsdl:operation name="AssignClient">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGamePlay/AssignClient" message="tns:IGamePlay_AssignClient_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGamePlay/AssignClientResponse" message="tns:IGamePlay_AssignClient_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="PauseGame">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGamePlay/PauseGame" message="tns:IGamePlay_PauseGame_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGamePlay/PauseGameResponse" message="tns:IGamePlay_PauseGame_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AnswerQuestion">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGamePlay/AnswerQuestion" message="tns:IGamePlay_AnswerQuestion_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGamePlay/AnswerQuestionResponse" message="tns:IGamePlay_AnswerQuestion_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ShuffleQuestion">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGamePlay/ShuffleQuestion" message="tns:IGamePlay_ShuffleQuestion_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGamePlay/ShuffleQuestionResponse" message="tns:IGamePlay_ShuffleQuestion_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="StartGame">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGamePlay/StartGame" message="tns:IGamePlay_StartGame_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGamePlay/StartGameResponse" message="tns:IGamePlay_StartGame_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddClient">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGamePlay/AddClient" message="tns:IGamePlay_AddClient_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IGamePlay/AddClientResponse" message="tns:IGamePlay_AddClient_InputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Message">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGamePlay/Message" message="tns:IGamePlay_Message_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IGamePlay/MessageResponse" message="tns:IGamePlay_Message_InputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AskQuestion">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGamePlay/AskQuestion" message="tns:IGamePlay_AskQuestion_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IGamePlay/AskQuestionResponse" message="tns:IGamePlay_AskQuestion_InputCallbackMessage" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="WSDualHttpBinding_IGamePlay" type="tns:IGamePlay">
+  <wsdl:import namespace="MyGamecontract" location="" />
+  <wsdl:types />
+  <wsdl:binding name="WSDualHttpBinding_IGamePlay" type="i0:IGamePlay">
     <wsp:PolicyReference URI="#WSDualHttpBinding_IGamePlay_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="AssignClient">
-      <soap12:operation soapAction="http://tempuri.org/IGamePlay/AssignClient" style="document" />
+      <soap12:operation soapAction="MyGamecontract/IGamePlay/AssignClient" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IGamePlay_AssignClient_Input_policy" />
         <soap12:body use="literal" />
@@ -575,7 +488,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="PauseGame">
-      <soap12:operation soapAction="http://tempuri.org/IGamePlay/PauseGame" style="document" />
+      <soap12:operation soapAction="MyGamecontract/IGamePlay/PauseGame" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IGamePlay_PauseGame_Input_policy" />
         <soap12:body use="literal" />
@@ -586,7 +499,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AnswerQuestion">
-      <soap12:operation soapAction="http://tempuri.org/IGamePlay/AnswerQuestion" style="document" />
+      <soap12:operation soapAction="MyGamecontract/IGamePlay/AnswerQuestion" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IGamePlay_AnswerQuestion_Input_policy" />
         <soap12:body use="literal" />
@@ -597,7 +510,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ShuffleQuestion">
-      <soap12:operation soapAction="http://tempuri.org/IGamePlay/ShuffleQuestion" style="document" />
+      <soap12:operation soapAction="MyGamecontract/IGamePlay/ShuffleQuestion" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IGamePlay_ShuffleQuestion_Input_policy" />
         <soap12:body use="literal" />
@@ -608,7 +521,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="StartGame">
-      <soap12:operation soapAction="http://tempuri.org/IGamePlay/StartGame" style="document" />
+      <soap12:operation soapAction="MyGamecontract/IGamePlay/StartGame" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IGamePlay_StartGame_Input_policy" />
         <soap12:body use="literal" />
@@ -619,7 +532,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AddClient">
-      <soap12:operation soapAction="http://tempuri.org/IGamePlay/AddClient" style="document" />
+      <soap12:operation soapAction="MyGamecontract/IGamePlay/AddClient" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IGamePlay_AddClient_Input_policy" />
         <soap12:body use="literal" />
@@ -630,7 +543,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Message">
-      <soap12:operation soapAction="http://tempuri.org/IGamePlay/Message" style="document" />
+      <soap12:operation soapAction="MyGamecontract/IGamePlay/Message" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IGamePlay_Message_Input_policy" />
         <soap12:body use="literal" />
@@ -641,7 +554,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AskQuestion">
-      <soap12:operation soapAction="http://tempuri.org/IGamePlay/AskQuestion" style="document" />
+      <soap12:operation soapAction="MyGamecontract/IGamePlay/AskQuestion" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IGamePlay_AskQuestion_Input_policy" />
         <soap12:body use="literal" />
@@ -654,9 +567,9 @@
   </wsdl:binding>
   <wsdl:service name="CGamePlay">
     <wsdl:port name="WSDualHttpBinding_IGamePlay" binding="tns:WSDualHttpBinding_IGamePlay">
-      <soap12:address location="http://localhost:8888/GameService/" />
+      <soap12:address location="http://localhost:8888/GameService/IGamePlay" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost:8888/GameService/</wsa10:Address>
+        <wsa10:Address>http://localhost:8888/GameService/IGamePlay</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Dns>localhost</Dns>
         </Identity>

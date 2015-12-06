@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="501dfc98-f732-46ba-a5a9-ac2f36d1d0c3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e986f169-bc34-4a74-a23e-e5b094bebb17" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,13 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8888/GameService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8888/GameService/IGamePlay/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ce04c675-d7d6-4941-916b-b903855156b9" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="a32cda1a-74a2-4e05-9bc0-9b60b31229c4" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="2ce36d51-c535-403e-b544-6109ff566bf0" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
-    <MetadataFile FileName="GameService.xsd" MetadataType="Schema" ID="958758a1-255e-43c9-9249-2b2810f27a5a" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="MyGamecontract.wsdl" MetadataType="Wsdl" ID="d65029bb-3bd3-4a66-8197-10428357dfef" SourceId="1" SourceUrl="http://localhost:8888/GameService/IGamePlay/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="9d54018a-6dbf-4d4b-9fba-451b2ac3555f" SourceId="1" SourceUrl="http://localhost:8888/GameService/IGamePlay/mex" />
+    <MetadataFile FileName="MyGamecontract.xsd" MetadataType="Schema" ID="3dc94e15-54ea-4d74-a3ad-33d7e216f018" SourceId="1" SourceUrl="http://localhost:8888/GameService/IGamePlay/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="97e0da5d-abf6-4f8f-8dd6-2838f9b692be" SourceId="1" SourceUrl="http://localhost:8888/GameService/IGamePlay/mex" />
+    <MetadataFile FileName="GameService.xsd" MetadataType="Schema" ID="a78f9155-ee7d-4d3e-9368-03a206243630" SourceId="1" SourceUrl="http://localhost:8888/GameService/IGamePlay/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -108,11 +108,12 @@
     <None Include="Service References\GameServiceReference\GameService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameServiceReference\service.wsdl" />
-    <None Include="Service References\GameServiceReference\service.xsd">
+    <None Include="Service References\GameServiceReference\MyGamecontract.wsdl" />
+    <None Include="Service References\GameServiceReference\MyGamecontract.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameServiceReference\service1.xsd">
+    <None Include="Service References\GameServiceReference\service.wsdl" />
+    <None Include="Service References\GameServiceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

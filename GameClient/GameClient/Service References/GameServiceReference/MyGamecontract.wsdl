@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="MyGamecontract" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="MyGamecontract" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="MyGamecontract/Imports">
+      <xsd:import namespace="MyGamecontract" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/GameService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGamePlay_AssignClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssignClient" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AssignClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssignClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_PauseGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:PauseGame" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_PauseGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PauseGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AnswerQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AnswerQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AnswerQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AnswerQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_ShuffleQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ShuffleQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_ShuffleQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ShuffleQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_StartGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartGame" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_StartGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AddClient_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:AddClient" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AddClient_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:AddClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_Message_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Message" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_Message_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AskQuestion_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:AskQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AskQuestion_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:AskQuestionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IGamePlay">
+    <wsdl:operation name="AssignClient">
+      <wsdl:input wsaw:Action="MyGamecontract/IGamePlay/AssignClient" message="tns:IGamePlay_AssignClient_InputMessage" />
+      <wsdl:output wsaw:Action="MyGamecontract/IGamePlay/AssignClientResponse" message="tns:IGamePlay_AssignClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PauseGame">
+      <wsdl:input wsaw:Action="MyGamecontract/IGamePlay/PauseGame" message="tns:IGamePlay_PauseGame_InputMessage" />
+      <wsdl:output wsaw:Action="MyGamecontract/IGamePlay/PauseGameResponse" message="tns:IGamePlay_PauseGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AnswerQuestion">
+      <wsdl:input wsaw:Action="MyGamecontract/IGamePlay/AnswerQuestion" message="tns:IGamePlay_AnswerQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="MyGamecontract/IGamePlay/AnswerQuestionResponse" message="tns:IGamePlay_AnswerQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShuffleQuestion">
+      <wsdl:input wsaw:Action="MyGamecontract/IGamePlay/ShuffleQuestion" message="tns:IGamePlay_ShuffleQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="MyGamecontract/IGamePlay/ShuffleQuestionResponse" message="tns:IGamePlay_ShuffleQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <wsdl:input wsaw:Action="MyGamecontract/IGamePlay/StartGame" message="tns:IGamePlay_StartGame_InputMessage" />
+      <wsdl:output wsaw:Action="MyGamecontract/IGamePlay/StartGameResponse" message="tns:IGamePlay_StartGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddClient">
+      <wsdl:output wsaw:Action="MyGamecontract/IGamePlay/AddClient" message="tns:IGamePlay_AddClient_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="MyGamecontract/IGamePlay/AddClientResponse" message="tns:IGamePlay_AddClient_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Message">
+      <wsdl:output wsaw:Action="MyGamecontract/IGamePlay/Message" message="tns:IGamePlay_Message_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="MyGamecontract/IGamePlay/MessageResponse" message="tns:IGamePlay_Message_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AskQuestion">
+      <wsdl:output wsaw:Action="MyGamecontract/IGamePlay/AskQuestion" message="tns:IGamePlay_AskQuestion_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="MyGamecontract/IGamePlay/AskQuestionResponse" message="tns:IGamePlay_AskQuestion_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
