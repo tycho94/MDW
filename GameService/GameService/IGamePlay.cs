@@ -28,7 +28,7 @@ namespace GameService
         void AnswerQuestion(string clientname, Question q, string answer);
 
         [OperationContract]
-        Question ShuffleQuestion(List<Question> s);
+        Question ShuffleQuestion();
 
 
         [OperationContract]
@@ -80,10 +80,15 @@ namespace GameService
         }
         [DataMember]
         public int Questionno { get; set; }
+         [DataMember]
         public string Quest { get; set; }
+         [DataMember]
         public string Option1 { get; set; }
+         [DataMember]
         public string Option2 { get; set; }
+         [DataMember]
         public string Option3 { get; set; }
+         [DataMember]
         public string Answer { get; set; }
 
      

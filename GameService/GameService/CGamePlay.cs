@@ -126,7 +126,7 @@ namespace GameService
                         players.incrementpoints(clientname);
                         foreach( IGameplayCallback igc in clientsCallback)
                         {
-                            igc.AskQuestion(ShuffleQuestion(Questions));
+                            igc.AskQuestion(ShuffleQuestion());
                         }
                     }
 
@@ -138,12 +138,12 @@ namespace GameService
         }
 
          
-        public Question ShuffleQuestion(List<Question> Qs)
+        public Question ShuffleQuestion()
             {
 
                 Random random = new Random();
-                int nextquestion = random.Next() % Qs.Count;
-                Question c = Qs.ElementAt<Question>(nextquestion);
+                int nextquestion = random.Next() % Questions.Count;
+                Question c = Questions.ElementAt<Question>(nextquestion);
                 //Qs.Remove(c);
                 return c;
                 

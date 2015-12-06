@@ -38,6 +38,7 @@ namespace GameClient
         private void TriviaForm_Load(object sender, EventArgs e)
         {
             gsr.StartGame();
+            label1.Text=gsr.ShuffleQuestion().Quest;
 
         }
 
