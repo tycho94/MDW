@@ -102,7 +102,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\GameServiceReference\GameClient.GameServiceReference.CompositeType.datasource">
+    <None Include="Service References\GameServiceReference\GameClient.GameServiceReference.Question.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GameServiceReference\GameService.xsd">

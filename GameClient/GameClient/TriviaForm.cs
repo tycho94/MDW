@@ -8,19 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ServiceModel;
-
+using GameClient.GameServiceReference;
 
 namespace GameClient
 {
     public partial class TriviaForm : Form
 
     {
-       private GameServiceReference.GamePlayClient gsr;
+       GamePlayClient gsr;
         public TriviaForm()
         {
             InitializeComponent();
-            gsr = new GameServiceReference.GamePlayClient();
-            
+            InstanceContext cont = new InstanceContext(this);
+            gsr = new GamePlayClient(cont);
+            gsr.Open();
+
+            gsr.AssignClient();
 
         }
 
@@ -31,7 +34,12 @@ namespace GameClient
 
         private void TriviaForm_Load(object sender, EventArgs e)
         {
-            gsr.
+            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
