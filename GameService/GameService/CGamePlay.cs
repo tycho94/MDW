@@ -29,8 +29,8 @@ namespace GameService
             answers = new List<Answer>();
             clients = new List<Client>();
             Questions.Add(new Question(1, "What is the Capital of Netherlands", "Amsterdam", "Eindhoven", "Den Haag","Amsterdam"));
-            Questions.Add(new Question(2, "What is the Capital of France", "Nice", "Paris", "Lyon", "Paris"));
-            Questions.Add(new Question(3, "What is the Capital of United Kingdom", "Bristol", "Kent", "Llondon", "London"));
+            Questions.Add(new Question(1, "What is the Capital of France", "Nice", "Paris", "Lyon", "Paris"));
+            Questions.Add(new Question(1, "What is the Capital of United Kingdom", "Bristol", "Kent", "Llondon", "London"));
         }
 
 
