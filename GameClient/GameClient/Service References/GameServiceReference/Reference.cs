@@ -23,22 +23,13 @@ namespace GameClient.GameServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AnswerField;
+        private string[] answersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Option1Field;
+        private string questionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Option2Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Option3Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string QuestField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int QuestionnoField;
+        private string rightAnswerField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -51,79 +42,40 @@ namespace GameClient.GameServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Answer {
+        public string[] answers {
             get {
-                return this.AnswerField;
+                return this.answersField;
             }
             set {
-                if ((object.ReferenceEquals(this.AnswerField, value) != true)) {
-                    this.AnswerField = value;
-                    this.RaisePropertyChanged("Answer");
+                if ((object.ReferenceEquals(this.answersField, value) != true)) {
+                    this.answersField = value;
+                    this.RaisePropertyChanged("answers");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Option1 {
+        public string question {
             get {
-                return this.Option1Field;
+                return this.questionField;
             }
             set {
-                if ((object.ReferenceEquals(this.Option1Field, value) != true)) {
-                    this.Option1Field = value;
-                    this.RaisePropertyChanged("Option1");
+                if ((object.ReferenceEquals(this.questionField, value) != true)) {
+                    this.questionField = value;
+                    this.RaisePropertyChanged("question");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Option2 {
+        public string rightAnswer {
             get {
-                return this.Option2Field;
+                return this.rightAnswerField;
             }
             set {
-                if ((object.ReferenceEquals(this.Option2Field, value) != true)) {
-                    this.Option2Field = value;
-                    this.RaisePropertyChanged("Option2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Option3 {
-            get {
-                return this.Option3Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Option3Field, value) != true)) {
-                    this.Option3Field = value;
-                    this.RaisePropertyChanged("Option3");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Quest {
-            get {
-                return this.QuestField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.QuestField, value) != true)) {
-                    this.QuestField = value;
-                    this.RaisePropertyChanged("Quest");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Questionno {
-            get {
-                return this.QuestionnoField;
-            }
-            set {
-                if ((this.QuestionnoField.Equals(value) != true)) {
-                    this.QuestionnoField = value;
-                    this.RaisePropertyChanged("Questionno");
+                if ((object.ReferenceEquals(this.rightAnswerField, value) != true)) {
+                    this.rightAnswerField = value;
+                    this.RaisePropertyChanged("rightAnswer");
                 }
             }
         }
@@ -153,6 +105,12 @@ namespace GameClient.GameServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/PauseGame", ReplyAction="http://tempuri.org/IGamePlay/PauseGameResponse")]
         System.Threading.Tasks.Task PauseGameAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/GetQuestion", ReplyAction="http://tempuri.org/IGamePlay/GetQuestionResponse")]
+        GameClient.GameServiceReference.Question GetQuestion();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/GetQuestion", ReplyAction="http://tempuri.org/IGamePlay/GetQuestionResponse")]
+        System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> GetQuestionAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AnswerQuestion", ReplyAction="http://tempuri.org/IGamePlay/AnswerQuestionResponse")]
         void AnswerQuestion(string clientname, GameClient.GameServiceReference.Question q, string answer);
@@ -214,6 +172,14 @@ namespace GameClient.GameServiceReference {
         
         public System.Threading.Tasks.Task PauseGameAsync() {
             return base.Channel.PauseGameAsync();
+        }
+        
+        public GameClient.GameServiceReference.Question GetQuestion() {
+            return base.Channel.GetQuestion();
+        }
+        
+        public System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> GetQuestionAsync() {
+            return base.Channel.GetQuestionAsync();
         }
         
         public void AnswerQuestion(string clientname, GameClient.GameServiceReference.Question q, string answer) {

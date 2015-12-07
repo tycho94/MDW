@@ -26,6 +26,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="2603a878-2175-4d86-af42-e4bca82c3847" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="4168d685-fc17-485b-bd1f-72473c49cab1" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
     <MetadataFile FileName="GameService.xsd" MetadataType="Schema" ID="43ea7b2d-0733-4dd3-aa07-86f43ad9ffcf" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="b74195d0-f7ef-49fe-a2d2-e38607140edb" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

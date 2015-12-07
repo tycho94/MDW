@@ -14,27 +14,40 @@ namespace GameService
     public class CGamePlay : IGamePlay
     {
 
-       // Timer countTimer;
+        // Timer countTimer;
         List<Question> Questions;
         List<IGameplayCallback> clientsCallback;
-       // List<Question> RemainingQuestions;
+        // List<Question> RemainingQuestions;
         List<Client> clients;
-        List<Answer> answers;
+        int questionindex;
 
-        
         public CGamePlay()
         {
             Questions = new List<Question>();
             clientsCallback = new List<IGameplayCallback>();
-            answers = new List<Answer>();
+            List<string> tempans = new List<string>();
+            tempans.Add("Wrong");
+            tempans.Add("Wrong2");
             clients = new List<Client>();
-            Questions.Add(new Question(1, "What is the Capital of Netherlands", "Amsterdam", "Eindhoven", "Den Haag","Amsterdam"));
-            Questions.Add(new Question(2, "What is the Capital of France", "Nice", "Paris", "Lyon", "Paris"));
-            Questions.Add(new Question(3, "What is the Capital of United Kingdom", "Bristol", "Kent", "Llondon", "London"));
+            Questions.Add(new Question( "What is the Capital of Netherlands", tempans, "Amsterdam"));
+            tempans.Clear();
+            tempans.Add("Wrong");
+            tempans.Add("Wrong2");
+            Questions.Add(new Question( "What is the Capital of France", tempans, "Paris"));
+            tempans.Clear();
+            tempans.Add("Wrong");
+            tempans.Add("Wrong2");
+            Questions.Add(new Question( "What is the Capital of United Kingdom", tempans, "London"));
+            questionindex = 0;
         }
-        
+
         public void StartGame()
-        {/*
+        {
+            if ((questionindex < 2))
+                questionindex++;
+            else
+                questionindex = 0;
+            /*
             var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
 
             if (clientsCallback.Count == 0)
@@ -80,25 +93,29 @@ namespace GameService
         public void AnswerQuestion(string clientname, Question q, string answer)
         {
             var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
-          
-           //add player answer to list
-            
-            foreach (Answer a in answers)
 
-            if (clientname=="Player 1" && a.Player1 == null)
-            {
-              answers.Add(new Answer(q.Questionno, "Y", ""));
-            }
+            //add player answer to list
 
-            else if (clientname == "Player 2" && a.Player2 == null)
-            {
-                answers.Add(new Answer(q.Questionno, "", "Y"));
-            }
+                if (clientname == "Player 1")
+                {
+                    if(answer == q.GetRightAnswer())
+                    {
+                        
+                    }
+                }
+
+                else if (clientname == "Player 2")
+                {
+                    if (answer == q.GetRightAnswer())
+                    {
+
+                    }
+                }
 
             // check if second player has played. if not send a message to everybody to notify that someone has not played.
-           foreach (Answer a in answers)
+            /*foreach (Answer a in answers)
             {
-                if (a.Questionno == q.Questionno && a.Player1 == clientname && a.Player2==null)
+                if (a.Questionno == q.Questionno && a.Player1 == clientname && a.Player2 == null)
                 {
                     connection.Message("Player 2 has not played.");
                 }
@@ -107,15 +124,14 @@ namespace GameService
                 {
                     connection.Message("Player 1 has not played.");
                 }
-                
-                else check(clientname,  q,  answer);
-            }
+
+                else check(clientname, q, answer);
+            }*/
         }
-        
 
-            public void check(string clientname, Question q, string answer)
-            {
 
+        public void check(string clientname, Question q, string answer)
+        {/*
             foreach (Question ques in Questions)
             {
                 if (ques.Answer == answer)
@@ -123,34 +139,31 @@ namespace GameService
                     foreach (Client players in clients)
                     {
                         players.incrementpoints(clientname);
-                        foreach( IGameplayCallback igc in clientsCallback)
+                        foreach (IGameplayCallback igc in clientsCallback)
                         {
                             igc.AskQuestion(ShuffleQuestion());
                         }
                     }
-
                 }
+            }*/
+        }
 
-            }
+
+        public Question ShuffleQuestion()
+        {
+
+            Random random = new Random();
+            int nextquestion = random.Next() % Questions.Count;
+            Question c = Questions.ElementAt<Question>(nextquestion);
+            //Qs.Remove(c);
+            return c;
 
 
         }
 
-         
-        public Question ShuffleQuestion()
-            {
-
-                Random random = new Random();
-                int nextquestion = random.Next() % Questions.Count;
-                Question c = Questions.ElementAt<Question>(nextquestion);
-                //Qs.Remove(c);
-                return c;
-                
-               
-           }
-        
-
-
-
+        public Question GetQuestion()
+        {
+            return Questions[questionindex];
+        }
     }
 }

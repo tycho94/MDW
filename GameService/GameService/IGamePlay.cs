@@ -13,27 +13,24 @@ namespace GameService
     {
         [OperationContract]
         void AssignClient();
-
         [OperationContract]
         void PauseGame();
+        [OperationContract]
+        Question GetQuestion();
 
-      //  [OperationContract]
+        //  [OperationContract]
 
-      //  void FinishGame();
+        //  void FinishGame();
 
-       // [OperationContract]
-      //  void LeaveGame(string clientname);
-
+        // [OperationContract]
+        //  void LeaveGame(string clientname);
         [OperationContract]
         void AnswerQuestion(string clientname, Question q, string answer);
-
         [OperationContract]
         Question ShuffleQuestion();
-
-
         [OperationContract]
         void StartGame();
-       
+
         // TODO: Add your service operations here
     }
 
@@ -44,47 +41,41 @@ namespace GameService
     public class Client
     {
         private int points;
-
         [DataMember]
-        public string Name { get; set; }
-
+        public string name { get; set; }
         public Client(string name)
         {
-            this.Name = name;
-            this.points = 0;
+            this.name = name;
+            points = 0;
         }
         public void incrementpoints(string c)  //not part of contract
         {
-            this.points++;
+            points++;
         }
     }
     [DataContract]
     public class Question
     {
-        public Question(int questionno, string quest, string option1, string option2, string option3, string answer)
+        public Question(string qst, List<string> answ, string rAnswer)
         {
-            Questionno = questionno;
-            Quest=quest;
-            Option1=option1;
-            Option2=option2;
-            Option3=option3;
-            Answer=answer;
+            question = qst;
+            answers = answ;
+            rightAnswer = rAnswer;
+            answers.Add(rightAnswer);
         }
-
         [DataMember]
-        public int Questionno { get; set; }
-         [DataMember]
-        public string Quest { get; set; }
-         [DataMember]
-        public string Option1 { get; set; }
-         [DataMember]
-        public string Option2 { get; set; }
-         [DataMember]
-        public string Option3 { get; set; }
-         [DataMember]
-        public string Answer { get; set; }
+        public string question { get; set; }
+        [DataMember]
+        public List<string> answers { get; set; }
+        [DataMember]
+        private string rightAnswer { get; set; }
+        [OperationContract]
+        public string GetRightAnswer()
+        {
+            return rightAnswer;
+        }
     }
-
+    /*
     [DataContract]
     public class Answer
     {
@@ -99,7 +90,7 @@ namespace GameService
         public string Player1 { get; set; }
         public string Player2 { get; set; }
     }
-
+    */
     public interface IGameplayCallback
     {
         [OperationContract]
