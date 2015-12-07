@@ -93,6 +93,7 @@
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -108,17 +109,13 @@
     <None Include="Service References\GameServiceReference\GameService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameServiceReference\MyGamecontract.wsdl" />
-    <None Include="Service References\GameServiceReference\MyGamecontract.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\GameServiceReference\service.wsdl" />
     <None Include="Service References\GameServiceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Service References\GameServiceReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

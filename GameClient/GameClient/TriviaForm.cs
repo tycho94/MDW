@@ -12,21 +12,18 @@ using GameClient.GameServiceReference;
 
 namespace GameClient
 {
-    public partial class TriviaForm : Form
+    public partial class TriviaForm : Form, IGamePlayCallback
 
     {
        GamePlayClient gsr;
        string clientname;
+        Callbacks c;
         public TriviaForm()
         {
             InitializeComponent();
             InstanceContext cont = new InstanceContext(this);
             gsr = new GamePlayClient(cont);
-           
-
-            
-            
-
+            c = new Callbacks();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -56,6 +53,21 @@ namespace GameClient
         {
             clientname = c;
 
+        }
+
+        public void AddClient(string s)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Message(string m)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AskQuestion(Question q)
+        {
+            throw new NotImplementedException();
         }
     }
 }

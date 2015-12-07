@@ -34,9 +34,6 @@ namespace GameService
         [OperationContract]
         void StartGame();
        
-      
-
-
         // TODO: Add your service operations here
     }
 
@@ -47,7 +44,6 @@ namespace GameService
     public class Client
     {
         private int points;
-
 
         [DataMember]
         public string Name { get; set; }
@@ -62,12 +58,9 @@ namespace GameService
             this.points++;
         }
     }
-
     [DataContract]
     public class Question
     {
-             
-
         public Question(int questionno, string quest, string option1, string option2, string option3, string answer)
         {
             Questionno = questionno;
@@ -76,8 +69,8 @@ namespace GameService
             Option2=option2;
             Option3=option3;
             Answer=answer;
-           
         }
+
         [DataMember]
         public int Questionno { get; set; }
          [DataMember]
@@ -90,32 +83,22 @@ namespace GameService
         public string Option3 { get; set; }
          [DataMember]
         public string Answer { get; set; }
-
-     
-     
     }
-
-
-
 
     [DataContract]
     public class Answer
     {
-        
-
         public Answer(int questionno, string player1, string player2)
         {
             Questionno = questionno;
             Player1 = player1;
             Player2 = player2;
-
         }
         [DataMember]
         public int Questionno { get; set; }
         public string Player1 { get; set; }
         public string Player2 { get; set; }
     }
-
 
     public interface IGameplayCallback
     {

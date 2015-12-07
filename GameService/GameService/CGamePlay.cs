@@ -32,8 +32,7 @@ namespace GameService
             Questions.Add(new Question(2, "What is the Capital of France", "Nice", "Paris", "Lyon", "Paris"));
             Questions.Add(new Question(3, "What is the Capital of United Kingdom", "Bristol", "Kent", "Llondon", "London"));
         }
-
-
+        
         public void StartGame()
         {
             var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
