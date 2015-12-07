@@ -8,7 +8,7 @@ using GameClient.GameServiceReference;
 
 namespace GameClient
 {
-    class Callbacks : IGamePlayCallback
+    class Callbacks
     {
         public void AddClient(string s)
         {

@@ -34,7 +34,7 @@ namespace GameService
         }
         
         public void StartGame()
-        {
+        {/*
             var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
 
             if (clientsCallback.Count == 0)
@@ -55,7 +55,7 @@ namespace GameService
             else
             {
                 connection.AddClient("full");
-            }
+            }*/
         }
 
         public void AssignClient() // not sure about does it very nescessary to have this fucntion

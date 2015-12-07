@@ -12,7 +12,7 @@ using GameClient.GameServiceReference;
 
 namespace GameClient
 {
-    public partial class TriviaForm : Form, IGamePlayCallback
+    public partial class TriviaForm : Form
 
     {
        GamePlayClient gsr;
@@ -21,8 +21,7 @@ namespace GameClient
         public TriviaForm()
         {
             InitializeComponent();
-            InstanceContext cont = new InstanceContext(this);
-            gsr = new GamePlayClient(cont);
+            gsr = new GamePlayClient();
             c = new Callbacks();
         }
 

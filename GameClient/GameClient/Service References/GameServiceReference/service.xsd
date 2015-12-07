@@ -57,40 +57,4 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddClient">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="s" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddClientResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Message">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="m" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="MessageResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AskQuestion">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="q" nillable="true" type="q3:Question" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AskQuestionResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
 </xs:schema>
