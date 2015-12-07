@@ -17,34 +17,6 @@ namespace GameService
         [OperationContract]
         void PauseGame();
 
-<<<<<<< HEAD
-        [OperationContract]
-<<<<<<< HEAD
-        void FinishGame();
-
-        [OperationContract]
-        void LeaveGame(string clientname);
-        
-        [OperationContract]
-        bool AnswerQuestion(question q,string answer);
-
-
-=======
-        string AssignClient();
-        [OperationContract]
-        void StartGame(string clientname);
-        [OperationContract]
-        void PauseGame(string clientname);
-        [OperationContract]
-        void FinishGame();
-        [OperationContract]
-        void LeaveGame(string clientname);
-        [OperationContract]
-        bool AnswerQuestion(string clientname, string answer);
-        [OperationContract]
-        void Message(string message);
->>>>>>> origin/master
-=======
       //  [OperationContract]
 
       //  void FinishGame();
@@ -58,7 +30,6 @@ namespace GameService
         [OperationContract]
         Question ShuffleQuestion();
 
->>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
 
         [OperationContract]
         void StartGame();
@@ -68,16 +39,9 @@ namespace GameService
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "GameService.ContractType".
-<<<<<<< HEAD
-    
-    [DataContract]
-<<<<<<< HEAD
-    public class question
-=======
 
     [DataContract]
     public class Client
->>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
     {
         private int points;
 
@@ -141,34 +105,8 @@ namespace GameService
         [OperationContract]
         void AddClient(string s);
 
-<<<<<<< HEAD
-        
-=======
-    public class Question
-    {
-       public Question(string ques, string[] ans, string ranswer)
-        {
-            question = ques;
-            answers = ans;
-            rightanswer = ranswer;
-        }
-        public string question { get; set; }
-        [DataMember]
-        public string[] answers { get; set; }
-        [DataMember]
-        private string rightanswer { get; set; }
         [OperationContract]
-        private void ShuffleAnswers()
-        {
-            //todo
-        }
-
-
->>>>>>> origin/master
-=======
-        [OperationContract]
-        string Message(string m);
->>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
+        void Message(string m);
 
         [OperationContract]
         void AskQuestion(Question q);

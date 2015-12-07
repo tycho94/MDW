@@ -20,7 +20,7 @@ namespace GameClient
             throw new NotImplementedException();
         }
 
-        public string Message(string m)
+        public void Message(string m)
         {
             throw new NotImplementedException();
         }

@@ -13,16 +13,6 @@ namespace GameService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class CGamePlay : IGamePlay
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-        Timer countTimer;
-        List<question> Questions;
-        client client1;//client2;
-
-        question question1 = new question("where is the capital of Netherlands", "Amsterdam");
-        question question2 = new question("where is the capital of France", "Pairs");
-=======
 
        // Timer countTimer;
         List<Question> Questions;
@@ -42,24 +32,12 @@ namespace GameService
             Questions.Add(new Question(2, "What is the Capital of France", "Nice", "Paris", "Lyon", "Paris"));
             Questions.Add(new Question(3, "What is the Capital of United Kingdom", "Bristol", "Kent", "Llondon", "London"));
         }
->>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
         
         public void StartGame()
         {
             var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
 
-<<<<<<< HEAD
-            client1 = null;
-           // client2 = null;
-         }
-
-
-        public void StartGame(string clientname)
-        {
-            if (client1 == null)
-=======
             if (clientsCallback.Count == 0)
->>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
             {
                 clientsCallback.Add(OperationContext.Current.GetCallbackChannel<IGameplayCallback>());
                 connection.Message("You are Player 1");
@@ -74,19 +52,10 @@ namespace GameService
                 clients.Add(new Client("Player 2"));
                 
             }
-<<<<<<< HEAD
-            //else
-            //{
-               // client2 = new client(clientname);
-
-
-            //}
-=======
             else
             {
                 connection.AddClient("full");
             }
->>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
         }
 
         public void AssignClient() // not sure about does it very nescessary to have this fucntion
@@ -163,46 +132,8 @@ namespace GameService
                 }
 
             }
-<<<<<<< HEAD
-=======
-        public bool AnswerQuestion(string clientname, string answer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string AssignClient()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FinishGame()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void LeaveGame(string clientname)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Message(string message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PauseGame(string clientname)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void StartGame(string clientname)
-        {
-            throw new NotImplementedException();
->>>>>>> origin/master
-=======
 
 
->>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
         }
 
          

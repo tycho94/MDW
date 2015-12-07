@@ -60,9 +60,9 @@ namespace GameClient
             throw new NotImplementedException();
         }
 
-        public string Message(string m)
+        public void Message(string m)
         {
-            throw new NotImplementedException();
+            lb_chat.Items.Add(m);
         }
 
         public void AskQuestion(Question q)
