@@ -42,6 +42,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Leave Game";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -51,6 +52,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Restart Game";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 
@@ -59,6 +61,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(145, 98);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // EndGameForm
             // 

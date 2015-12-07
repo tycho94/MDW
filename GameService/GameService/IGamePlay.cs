@@ -23,6 +23,7 @@ namespace GameService
         void PauseGame();
 
         [OperationContract]
+<<<<<<< HEAD
         void FinishGame();
 
         [OperationContract]
@@ -32,13 +33,30 @@ namespace GameService
         bool AnswerQuestion(question q,string answer);
 
 
+=======
+        string AssignClient();
+        [OperationContract]
+        void StartGame(string clientname);
+        [OperationContract]
+        void PauseGame(string clientname);
+        [OperationContract]
+        void FinishGame();
+        [OperationContract]
+        void LeaveGame(string clientname);
+        [OperationContract]
+        bool AnswerQuestion(string clientname, string answer);
+        [OperationContract]
+        void Message(string message);
+>>>>>>> origin/master
 
         // TODO: Add your service operations here
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "GameService.ContractType".
+    
     [DataContract]
+<<<<<<< HEAD
     public class question
     {
         [DataMember]
@@ -92,6 +110,28 @@ namespace GameService
         }
 
         
+=======
+    public class Question
+    {
+       public Question(string ques, string[] ans, string ranswer)
+        {
+            question = ques;
+            answers = ans;
+            rightanswer = ranswer;
+        }
+        public string question { get; set; }
+        [DataMember]
+        public string[] answers { get; set; }
+        [DataMember]
+        private string rightanswer { get; set; }
+        [OperationContract]
+        private void ShuffleAnswers()
+        {
+            //todo
+        }
+
+
+>>>>>>> origin/master
 
     }
 }

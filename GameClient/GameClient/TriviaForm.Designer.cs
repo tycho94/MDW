@@ -1,6 +1,6 @@
 ﻿namespace GameClient
 {
-    partial class Form1
+    partial class TriviaForm
     {
         /// <summary>
         /// Required designer variable.
@@ -56,6 +56,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -166,7 +167,7 @@
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
-            // Form1
+            // TriviaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -180,7 +181,7 @@
             this.Controls.Add(this.lb_chat);
             this.Controls.Add(this.Timer);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form1";
+            this.Name = "TriviaForm";
             this.Text = "Form1";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
