@@ -37,19 +37,23 @@
   </xs:element>
   <xs:element name="ShuffleQuestion">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="s" nillable="true" type="q2:ArrayOfQuestion" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ShuffleQuestionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="ShuffleQuestionResult" nillable="true" type="q2:Question" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="ShuffleQuestionResult" nillable="true" type="q3:Question" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="StartGame">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="clientname" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="StartGameResponse">
@@ -86,7 +90,7 @@
   <xs:element name="AskQuestion">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="q" nillable="true" type="q3:Question" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="q" nillable="true" type="q4:Question" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

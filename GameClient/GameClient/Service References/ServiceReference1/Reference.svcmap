@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6056b5ff-498f-42dc-ae6c-8f5316143b84" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="54946a5c-0395-4805-95c8-694b29fe4191" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,10 +22,10 @@
     <MetadataSource Address="http://localhost:8888/GameService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="99cb831a-4d31-49bd-a7ee-94740c4edbe2" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="2603a878-2175-4d86-af42-e4bca82c3847" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="4168d685-fc17-485b-bd1f-72473c49cab1" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
-    <MetadataFile FileName="GameService.xsd" MetadataType="Schema" ID="43ea7b2d-0733-4dd3-aa07-86f43ad9ffcf" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="edf8d420-cdb1-4ea1-9f44-d68aa6333b22" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="a8329919-4e6e-4643-bdb1-615727200259" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="d951e5a0-36d7-4844-bd86-c4bcd6f14797" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="GameService.xsd" MetadataType="Schema" ID="ec158bf6-7da9-4b08-affc-1543323b9326" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

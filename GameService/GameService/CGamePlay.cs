@@ -8,9 +8,12 @@ using System.Timers;
 
 namespace GameService
 {
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
+
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class CGamePlay : IGamePlay
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         Timer countTimer;
@@ -19,24 +22,33 @@ namespace GameService
 
         question question1 = new question("where is the capital of Netherlands", "Amsterdam");
         question question2 = new question("where is the capital of France", "Pairs");
-        
+=======
 
+       // Timer countTimer;
+        List<Question> Questions;
+        List<IGameplayCallback> clientsCallback;
+       // List<Question> RemainingQuestions;
+        List<Client> clients;
+        List<Answer> answers;
+
+        
         public CGamePlay()
         {
-            question1.Answers.Add("Pairs");
-            question1.Answers.Add("Berlin");
-            question1.Answers.Add(question1.Rightanswer);
+            Questions = new List<Question>();
+            clientsCallback = new List<IGameplayCallback>();
+            answers = new List<Answer>();
+            clients = new List<Client>();
+            Questions.Add(new Question(1, "What is the Capital of Netherlands", "Amsterdam", "Eindhoven", "Den Haag","Amsterdam"));
+            Questions.Add(new Question(2, "What is the Capital of France", "Nice", "Paris", "Lyon", "Paris"));
+            Questions.Add(new Question(3, "What is the Capital of United Kingdom", "Bristol", "Kent", "Llondon", "London"));
+        }
+>>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
+        
+        public void StartGame()
+        {
+            var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
 
-            question2.Answers.Add("Berlin");
-            question2.Answers.Add("Amsterdam");
-            question2.Answers.Add(question2.Rightanswer);
-
-            countTimer = new Timer();
-            countTimer.Interval = 10000;
-
-            Questions.Add(question1);
-            Questions.Add(question2);
-
+<<<<<<< HEAD
             client1 = null;
            // client2 = null;
          }
@@ -45,16 +57,36 @@ namespace GameService
         public void StartGame(string clientname)
         {
             if (client1 == null)
+=======
+            if (clientsCallback.Count == 0)
+>>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
             {
-                client1 = new client(clientname);
+                clientsCallback.Add(OperationContext.Current.GetCallbackChannel<IGameplayCallback>());
+                connection.Message("You are Player 1");
+                connection.AddClient("Player 1");
+                clients.Add(new Client("Player 1"));
+            }
+            else if (clientsCallback.Count == 1)
+            {
+                clientsCallback.Add(OperationContext.Current.GetCallbackChannel<IGameplayCallback>());
+                connection.Message("You are Player 2");
+                connection.AddClient("Player 2");
+                clients.Add(new Client("Player 2"));
                 
             }
+<<<<<<< HEAD
             //else
             //{
                // client2 = new client(clientname);
 
 
             //}
+=======
+            else
+            {
+                connection.AddClient("full");
+            }
+>>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
         }
 
         public void AssignClient() // not sure about does it very nescessary to have this fucntion
@@ -69,25 +101,69 @@ namespace GameService
 
         public void finishGame()
         {
+
         }
 
         public void LeaveGame()
         {
         }
 
-
-
-
-        public bool Answerquestion(question q, string answer)
+        public void AnswerQuestion(string clientname, Question q, string answer)
         {
-            if (q.Rightanswer == answer)
+            var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
+          
+           //add player answer to list
+            
+            foreach (Answer a in answers)
+
+            if (clientname=="Player 1" && a.Player1 == null)
             {
-                return true;
+              answers.Add(new Answer(q.Questionno, "Y", ""));
             }
-            else
+
+            else if (clientname == "Player 2" && a.Player2 == null)
             {
-                return false;
+                answers.Add(new Answer(q.Questionno, "", "Y"));
             }
+
+            // check if second player has played. if not send a message to everybody to notify that someone has not played.
+           foreach (Answer a in answers)
+            {
+                if (a.Questionno == q.Questionno && a.Player1 == clientname && a.Player2==null)
+                {
+                    connection.Message("Player 2 has not played.");
+                }
+
+                else if (a.Questionno == q.Questionno && a.Player2 == clientname && a.Player1 == null)
+                {
+                    connection.Message("Player 1 has not played.");
+                }
+                
+                else check(clientname,  q,  answer);
+            }
+        }
+        
+
+            public void check(string clientname, Question q, string answer)
+            {
+
+            foreach (Question ques in Questions)
+            {
+                if (ques.Answer == answer)
+                {
+                    foreach (Client players in clients)
+                    {
+                        players.incrementpoints(clientname);
+                        foreach( IGameplayCallback igc in clientsCallback)
+                        {
+                            igc.AskQuestion(ShuffleQuestion());
+                        }
+                    }
+
+                }
+
+            }
+<<<<<<< HEAD
 =======
         public bool AnswerQuestion(string clientname, string answer)
         {
@@ -123,8 +199,26 @@ namespace GameService
         {
             throw new NotImplementedException();
 >>>>>>> origin/master
+=======
+
+
+>>>>>>> f9c0740cb40a611fa56dcd39514177b1a9c34543
         }
-     
+
+         
+        public Question ShuffleQuestion()
+            {
+
+                Random random = new Random();
+                int nextquestion = random.Next() % Questions.Count;
+                Question c = Questions.ElementAt<Question>(nextquestion);
+                //Qs.Remove(c);
+                return c;
+                
+               
+           }
+        
+
 
 
     }
