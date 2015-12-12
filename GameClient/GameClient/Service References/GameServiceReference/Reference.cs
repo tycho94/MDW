@@ -28,9 +28,6 @@ namespace GameClient.GameServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string questionField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string rightAnswerField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -67,19 +64,6 @@ namespace GameClient.GameServiceReference {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string rightAnswer {
-            get {
-                return this.rightAnswerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.rightAnswerField, value) != true)) {
-                    this.rightAnswerField = value;
-                    this.RaisePropertyChanged("rightAnswer");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -91,44 +75,69 @@ namespace GameClient.GameServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameServiceReference.IGamePlay")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="GameService", ConfigurationName="GameServiceReference.IGamePlay", CallbackContract=typeof(GameClient.GameServiceReference.IGamePlayCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IGamePlay {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AssignClient", ReplyAction="http://tempuri.org/IGamePlay/AssignClientResponse")]
-        void AssignClient();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/Connect")]
+        void Connect(string clientname);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AssignClient", ReplyAction="http://tempuri.org/IGamePlay/AssignClientResponse")]
-        System.Threading.Tasks.Task AssignClientAsync();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/Connect")]
+        System.Threading.Tasks.Task ConnectAsync(string clientname);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/PauseGame", ReplyAction="http://tempuri.org/IGamePlay/PauseGameResponse")]
-        void PauseGame();
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/StartGame", ReplyAction="GameService/IGamePlay/StartGameResponse")]
+        void StartGame(string clientname);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/PauseGame", ReplyAction="http://tempuri.org/IGamePlay/PauseGameResponse")]
-        System.Threading.Tasks.Task PauseGameAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/StartGame", ReplyAction="GameService/IGamePlay/StartGameResponse")]
+        System.Threading.Tasks.Task StartGameAsync(string clientname);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/GetQuestion", ReplyAction="http://tempuri.org/IGamePlay/GetQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/PauseGame", ReplyAction="GameService/IGamePlay/PauseGameResponse")]
+        void PauseGame(string clientname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/PauseGame", ReplyAction="GameService/IGamePlay/PauseGameResponse")]
+        System.Threading.Tasks.Task PauseGameAsync(string clientname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/FinishGame", ReplyAction="GameService/IGamePlay/FinishGameResponse")]
+        void FinishGame();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/FinishGame", ReplyAction="GameService/IGamePlay/FinishGameResponse")]
+        System.Threading.Tasks.Task FinishGameAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/GetQuestion", ReplyAction="GameService/IGamePlay/GetQuestionResponse")]
         GameClient.GameServiceReference.Question GetQuestion();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/GetQuestion", ReplyAction="http://tempuri.org/IGamePlay/GetQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/GetQuestion", ReplyAction="GameService/IGamePlay/GetQuestionResponse")]
         System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> GetQuestionAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AnswerQuestion", ReplyAction="http://tempuri.org/IGamePlay/AnswerQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AnswerQuestion", ReplyAction="GameService/IGamePlay/AnswerQuestionResponse")]
         void AnswerQuestion(string clientname, GameClient.GameServiceReference.Question q, string answer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/AnswerQuestion", ReplyAction="http://tempuri.org/IGamePlay/AnswerQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AnswerQuestion", ReplyAction="GameService/IGamePlay/AnswerQuestionResponse")]
         System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, GameClient.GameServiceReference.Question q, string answer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/ShuffleQuestion", ReplyAction="http://tempuri.org/IGamePlay/ShuffleQuestionResponse")]
-        GameClient.GameServiceReference.Question ShuffleQuestion();
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/SendMessage", ReplyAction="GameService/IGamePlay/SendMessageResponse")]
+        void SendMessage(string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/ShuffleQuestion", ReplyAction="http://tempuri.org/IGamePlay/ShuffleQuestionResponse")]
-        System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> ShuffleQuestionAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/SendMessage", ReplyAction="GameService/IGamePlay/SendMessageResponse")]
+        System.Threading.Tasks.Task SendMessageAsync(string message);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IGamePlayCallback {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/StartGame", ReplyAction="http://tempuri.org/IGamePlay/StartGameResponse")]
-        void StartGame();
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/StartNotify", ReplyAction="GameService/IGamePlay/StartNotifyResponse")]
+        void StartNotify();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGamePlay/StartGame", ReplyAction="http://tempuri.org/IGamePlay/StartGameResponse")]
-        System.Threading.Tasks.Task StartGameAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/PauseNotify", ReplyAction="GameService/IGamePlay/PauseNotifyResponse")]
+        void PauseNotify();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/LeaveNotify", ReplyAction="GameService/IGamePlay/LeaveNotifyResponse")]
+        void LeaveNotify();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AskQuestion", ReplyAction="GameService/IGamePlay/AskQuestionResponse")]
+        void AskQuestion(GameClient.GameServiceReference.Question q);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/ReceiveMessage", ReplyAction="GameService/IGamePlay/ReceiveMessageResponse")]
+        void ReceiveMessage(string m);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -137,41 +146,58 @@ namespace GameClient.GameServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GamePlayClient : System.ServiceModel.ClientBase<GameClient.GameServiceReference.IGamePlay>, GameClient.GameServiceReference.IGamePlay {
+    public partial class GamePlayClient : System.ServiceModel.DuplexClientBase<GameClient.GameServiceReference.IGamePlay>, GameClient.GameServiceReference.IGamePlay {
         
-        public GamePlayClient() {
+        public GamePlayClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public GamePlayClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public GamePlayClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public GamePlayClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public GamePlayClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public GamePlayClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public GamePlayClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public GamePlayClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public GamePlayClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void AssignClient() {
-            base.Channel.AssignClient();
+        public void Connect(string clientname) {
+            base.Channel.Connect(clientname);
         }
         
-        public System.Threading.Tasks.Task AssignClientAsync() {
-            return base.Channel.AssignClientAsync();
+        public System.Threading.Tasks.Task ConnectAsync(string clientname) {
+            return base.Channel.ConnectAsync(clientname);
         }
         
-        public void PauseGame() {
-            base.Channel.PauseGame();
+        public void StartGame(string clientname) {
+            base.Channel.StartGame(clientname);
         }
         
-        public System.Threading.Tasks.Task PauseGameAsync() {
-            return base.Channel.PauseGameAsync();
+        public System.Threading.Tasks.Task StartGameAsync(string clientname) {
+            return base.Channel.StartGameAsync(clientname);
+        }
+        
+        public void PauseGame(string clientname) {
+            base.Channel.PauseGame(clientname);
+        }
+        
+        public System.Threading.Tasks.Task PauseGameAsync(string clientname) {
+            return base.Channel.PauseGameAsync(clientname);
+        }
+        
+        public void FinishGame() {
+            base.Channel.FinishGame();
+        }
+        
+        public System.Threading.Tasks.Task FinishGameAsync() {
+            return base.Channel.FinishGameAsync();
         }
         
         public GameClient.GameServiceReference.Question GetQuestion() {
@@ -190,20 +216,12 @@ namespace GameClient.GameServiceReference {
             return base.Channel.AnswerQuestionAsync(clientname, q, answer);
         }
         
-        public GameClient.GameServiceReference.Question ShuffleQuestion() {
-            return base.Channel.ShuffleQuestion();
+        public void SendMessage(string message) {
+            base.Channel.SendMessage(message);
         }
         
-        public System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> ShuffleQuestionAsync() {
-            return base.Channel.ShuffleQuestionAsync();
-        }
-        
-        public void StartGame() {
-            base.Channel.StartGame();
-        }
-        
-        public System.Threading.Tasks.Task StartGameAsync() {
-            return base.Channel.StartGameAsync();
+        public System.Threading.Tasks.Task SendMessageAsync(string message) {
+            return base.Channel.SendMessageAsync(message);
         }
     }
 }

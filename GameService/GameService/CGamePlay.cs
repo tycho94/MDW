@@ -8,93 +8,47 @@ using System.Timers;
 
 namespace GameService
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single)]
 
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class CGamePlay : IGamePlay
     {
-
-        // Timer countTimer;
-        List<Question> Questions;
+        Timer t;
+        List<Question> questions;
         List<IGameplayCallback> clientsCallback;
-        // List<Question> RemainingQuestions;
-        List<Client> clients;
+        Client client1, client2;
         int questionindex;
 
         public CGamePlay()
         {
-            Questions = new List<Question>();
+            questions = new List<Question>();
             clientsCallback = new List<IGameplayCallback>();
             List<string> tempans = new List<string>();
             tempans.Add("Wrong");
             tempans.Add("Wrong2");
-            clients = new List<Client>();
-            Questions.Add(new Question( "What is the Capital of Netherlands", tempans, "Amsterdam"));
+            questions.Add(new Question( "What is the Capital of Netherlands", tempans, "Amsterdam"));
             tempans.Clear();
             tempans.Add("Wrong");
             tempans.Add("Wrong2");
-            Questions.Add(new Question( "What is the Capital of France", tempans, "Paris"));
+            questions.Add(new Question( "What is the Capital of France", tempans, "Paris"));
             tempans.Clear();
             tempans.Add("Wrong");
             tempans.Add("Wrong2");
-            Questions.Add(new Question( "What is the Capital of United Kingdom", tempans, "London"));
+            questions.Add(new Question( "What is the Capital of United Kingdom", tempans, "London"));
             questionindex = 0;
         }
 
-        public void StartGame()
+        public void StartGame(string clientname)
         {
-            if ((questionindex < 2))
-                questionindex++;
-            else
-                questionindex = 0;
-            /*
-            var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
-
-            if (clientsCallback.Count == 0)
+            if(client1.name == clientname && client2.ready)
             {
-                clientsCallback.Add(OperationContext.Current.GetCallbackChannel<IGameplayCallback>());
-                connection.Message("You are Player 1");
-                connection.AddClient("Player 1");
-                clients.Add(new Client("Player 1"));
+
             }
-            else if (clientsCallback.Count == 1)
-            {
-                clientsCallback.Add(OperationContext.Current.GetCallbackChannel<IGameplayCallback>());
-                connection.Message("You are Player 2");
-                connection.AddClient("Player 2");
-                clients.Add(new Client("Player 2"));
-                
-            }
-            else
-            {
-                connection.AddClient("full");
-            }*/
-        }
-
-        public void AssignClient() // not sure about does it very nescessary to have this fucntion
-        {
-
-        }
-
-        public void PauseGame()
-        {
-
-        }
-
-        public void finishGame()
-        {
-
-        }
-
-        public void LeaveGame()
-        {
         }
 
         public void AnswerQuestion(string clientname, Question q, string answer)
         {
             var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
-
-            //add player answer to list
 
                 if (clientname == "Player 1")
                 {
@@ -111,59 +65,43 @@ namespace GameService
 
                     }
                 }
-
-            // check if second player has played. if not send a message to everybody to notify that someone has not played.
-            /*foreach (Answer a in answers)
-            {
-                if (a.Questionno == q.Questionno && a.Player1 == clientname && a.Player2 == null)
-                {
-                    connection.Message("Player 2 has not played.");
-                }
-
-                else if (a.Questionno == q.Questionno && a.Player2 == clientname && a.Player1 == null)
-                {
-                    connection.Message("Player 1 has not played.");
-                }
-
-                else check(clientname, q, answer);
-            }*/
         }
 
-
-        public void check(string clientname, Question q, string answer)
-        {/*
-            foreach (Question ques in Questions)
-            {
-                if (ques.Answer == answer)
-                {
-                    foreach (Client players in clients)
-                    {
-                        players.incrementpoints(clientname);
-                        foreach (IGameplayCallback igc in clientsCallback)
-                        {
-                            igc.AskQuestion(ShuffleQuestion());
-                        }
-                    }
-                }
-            }*/
-        }
-
-
-        public Question ShuffleQuestion()
+        public void ShuffleQuestions()
         {
-
             Random random = new Random();
-            int nextquestion = random.Next() % Questions.Count;
-            Question c = Questions.ElementAt<Question>(nextquestion);
-            //Qs.Remove(c);
-            return c;
-
-
+            for(int i = questions.Count-1; i > 1; i--)
+            {
+                int k = random.Next(i + 1);
+                Question q = questions[k];
+                questions[k] = questions[i];
+                questions[i] = q;
+            }
         }
 
         public Question GetQuestion()
         {
-            return Questions[questionindex];
+            return questions[questionindex];
+        }
+
+        public void Connect(string clientname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PauseGame(string clientname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FinishGame()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SendMessage(string message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

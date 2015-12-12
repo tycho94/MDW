@@ -8,13 +8,20 @@ using GameClient.GameServiceReference;
 
 namespace GameClient
 {
-    class Callbacks
+    public class Callbacks
     {
-        public void AddClient(string s)
+        private GamePlayClient proxy;
+         
+
+        public Callbacks()
         {
-            throw new NotImplementedException();
+            InstanceContext GameClientCallbackInstance = new InstanceContext(this);
+            proxy = new GamePlayClient(GameClientCallbackInstance);
         }
 
+        public GamePlayClient GetProxy() {
+            return proxy;
+        }
         public void AskQuestion(Question q)
         {
             throw new NotImplementedException();

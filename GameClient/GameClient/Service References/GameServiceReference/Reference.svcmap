@@ -22,8 +22,9 @@
     <MetadataSource Address="http://localhost:8888/GameService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="GameService.wsdl" MetadataType="Wsdl" ID="1cf91613-ac1a-4f32-bf11-8ba571a8dbab" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="99cb831a-4d31-49bd-a7ee-94740c4edbe2" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="2603a878-2175-4d86-af42-e4bca82c3847" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="GameService1.xsd" MetadataType="Schema" ID="c5401971-2bed-48f7-8d35-318c541fa97f" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="4168d685-fc17-485b-bd1f-72473c49cab1" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
     <MetadataFile FileName="GameService.xsd" MetadataType="Schema" ID="43ea7b2d-0733-4dd3-aa07-86f43ad9ffcf" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
     <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="b74195d0-f7ef-49fe-a2d2-e38607140edb" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />

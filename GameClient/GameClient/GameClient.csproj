@@ -111,13 +111,14 @@
     <None Include="Service References\GameServiceReference\GameClient.GameServiceReference.Question.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\GameServiceReference\GameService.wsdl" />
     <None Include="Service References\GameServiceReference\GameService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameServiceReference\service.wsdl" />
-    <None Include="Service References\GameServiceReference\service.xsd">
+    <None Include="Service References\GameServiceReference\GameService1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\GameServiceReference\service.wsdl" />
     <None Include="Service References\GameServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>

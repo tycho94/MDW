@@ -15,13 +15,11 @@ namespace GameClient
     public partial class TriviaForm : Form
 
     {
-        GamePlayClient gsr;
         string clientname;
-        Callbacks c;
+        static public Callbacks c;
         public TriviaForm()
         {
             InitializeComponent();
-            gsr = new GamePlayClient();
             c = new Callbacks();
         }
 
@@ -32,21 +30,7 @@ namespace GameClient
 
         }
 
-        void Addclient(string c)
-        {
-            clientname = c;
 
-        }
-
-        public void AddClient(string s)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Message(string m)
-        {
-            lb_chat.Items.Add(m);
-        }
 
         public void AskQuestion(Question q)
         {
@@ -55,11 +39,10 @@ namespace GameClient
 
         private void btnAns1_Click(object sender, EventArgs e)
         {
-            gsr.StartGame();
-            label1.Text = gsr.GetQuestion().question;
-            btnAns1.Text = gsr.GetQuestion().answers[0];
-            btnAns2.Text = gsr.GetQuestion().answers[1];
-            btnAns3.Text = gsr.GetQuestion().answers[2];
+            label1.Text = c.GetProxy().GetQuestion().question;
+            btnAns1.Text = c.GetProxy().GetQuestion().answers[0];
+            btnAns2.Text = c.GetProxy().GetQuestion().answers[1];
+            btnAns3.Text = c.GetProxy().GetQuestion().answers[2];
 
         }
 
@@ -69,6 +52,11 @@ namespace GameClient
         }
 
         private void btnAns3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSendMsg_Click(object sender, EventArgs e)
         {
 
         }

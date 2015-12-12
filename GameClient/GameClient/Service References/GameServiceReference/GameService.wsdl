@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="GameService" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="GameService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="GameService/Imports">
+      <xsd:import namespace="GameService" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/GameService" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGamePlay_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_StartGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartGame" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_StartGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_PauseGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:PauseGame" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_PauseGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PauseGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_FinishGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinishGame" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_FinishGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FinishGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_GetQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_GetQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AnswerQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AnswerQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AnswerQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AnswerQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_SendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_StartNotify_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StartNotify" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_StartNotify_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StartNotifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_PauseNotify_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PauseNotify" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_PauseNotify_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PauseNotifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_LeaveNotify_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:LeaveNotify" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_LeaveNotify_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:LeaveNotifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AskQuestion_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:AskQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_AskQuestion_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:AskQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_ReceiveMessage_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveMessage" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_ReceiveMessage_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveMessageResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IGamePlay">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Connect">
+      <wsdl:input wsaw:Action="GameService/IGamePlay/Connect" message="tns:IGamePlay_Connect_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartGame">
+      <wsdl:input wsaw:Action="GameService/IGamePlay/StartGame" message="tns:IGamePlay_StartGame_InputMessage" />
+      <wsdl:output wsaw:Action="GameService/IGamePlay/StartGameResponse" message="tns:IGamePlay_StartGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PauseGame">
+      <wsdl:input wsaw:Action="GameService/IGamePlay/PauseGame" message="tns:IGamePlay_PauseGame_InputMessage" />
+      <wsdl:output wsaw:Action="GameService/IGamePlay/PauseGameResponse" message="tns:IGamePlay_PauseGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FinishGame">
+      <wsdl:input wsaw:Action="GameService/IGamePlay/FinishGame" message="tns:IGamePlay_FinishGame_InputMessage" />
+      <wsdl:output wsaw:Action="GameService/IGamePlay/FinishGameResponse" message="tns:IGamePlay_FinishGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetQuestion">
+      <wsdl:input wsaw:Action="GameService/IGamePlay/GetQuestion" message="tns:IGamePlay_GetQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="GameService/IGamePlay/GetQuestionResponse" message="tns:IGamePlay_GetQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AnswerQuestion">
+      <wsdl:input wsaw:Action="GameService/IGamePlay/AnswerQuestion" message="tns:IGamePlay_AnswerQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="GameService/IGamePlay/AnswerQuestionResponse" message="tns:IGamePlay_AnswerQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendMessage">
+      <wsdl:input wsaw:Action="GameService/IGamePlay/SendMessage" message="tns:IGamePlay_SendMessage_InputMessage" />
+      <wsdl:output wsaw:Action="GameService/IGamePlay/SendMessageResponse" message="tns:IGamePlay_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartNotify">
+      <wsdl:output wsaw:Action="GameService/IGamePlay/StartNotify" message="tns:IGamePlay_StartNotify_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="GameService/IGamePlay/StartNotifyResponse" message="tns:IGamePlay_StartNotify_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PauseNotify">
+      <wsdl:output wsaw:Action="GameService/IGamePlay/PauseNotify" message="tns:IGamePlay_PauseNotify_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="GameService/IGamePlay/PauseNotifyResponse" message="tns:IGamePlay_PauseNotify_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LeaveNotify">
+      <wsdl:output wsaw:Action="GameService/IGamePlay/LeaveNotify" message="tns:IGamePlay_LeaveNotify_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="GameService/IGamePlay/LeaveNotifyResponse" message="tns:IGamePlay_LeaveNotify_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AskQuestion">
+      <wsdl:output wsaw:Action="GameService/IGamePlay/AskQuestion" message="tns:IGamePlay_AskQuestion_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="GameService/IGamePlay/AskQuestionResponse" message="tns:IGamePlay_AskQuestion_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMessage">
+      <wsdl:output wsaw:Action="GameService/IGamePlay/ReceiveMessage" message="tns:IGamePlay_ReceiveMessage_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="GameService/IGamePlay/ReceiveMessageResponse" message="tns:IGamePlay_ReceiveMessage_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
