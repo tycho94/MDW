@@ -20,7 +20,7 @@ namespace GameClient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            //if(TriviaForm.c.GetProxy().StartGame()
         }
     }
 }

@@ -20,7 +20,6 @@ namespace GameClient
         public TriviaForm()
         {
             InitializeComponent();
-            c = new Callbacks();
         }
 
 
@@ -30,19 +29,8 @@ namespace GameClient
 
         }
 
-
-
-        public void AskQuestion(Question q)
-        {
-            throw new NotImplementedException();
-        }
-
         private void btnAns1_Click(object sender, EventArgs e)
         {
-            label1.Text = c.GetProxy().GetQuestion().question;
-            btnAns1.Text = c.GetProxy().GetQuestion().answers[0];
-            btnAns2.Text = c.GetProxy().GetQuestion().answers[1];
-            btnAns3.Text = c.GetProxy().GetQuestion().answers[2];
 
         }
 
@@ -59,6 +47,22 @@ namespace GameClient
         private void btnSendMsg_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+
+
+        //FormControl
+        public void Question(string q, List<string> ans)
+        {
+            lblQuestion.Text = q;
+            btnAns1.Text = ans[1];
+            btnAns2.Text = ans[2];
+            btnAns3.Text = ans[3];
+        }
+        public void Warning(string w)
+        {
+            lb_chat.Items.Add(w);
         }
     }
 }

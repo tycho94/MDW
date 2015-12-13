@@ -23,7 +23,7 @@ namespace GameClient.GameServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] answersField;
+        private System.Collections.Generic.List<string> answersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string questionField;
@@ -39,7 +39,7 @@ namespace GameClient.GameServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] answers {
+        public System.Collections.Generic.List<string> answers {
             get {
                 return this.answersField;
             }
@@ -85,10 +85,10 @@ namespace GameClient.GameServiceReference {
         System.Threading.Tasks.Task ConnectAsync(string clientname);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/StartGame", ReplyAction="GameService/IGamePlay/StartGameResponse")]
-        void StartGame(string clientname);
+        bool StartGame(string clientname);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/StartGame", ReplyAction="GameService/IGamePlay/StartGameResponse")]
-        System.Threading.Tasks.Task StartGameAsync(string clientname);
+        System.Threading.Tasks.Task<bool> StartGameAsync(string clientname);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/PauseGame", ReplyAction="GameService/IGamePlay/PauseGameResponse")]
         void PauseGame(string clientname);
@@ -134,7 +134,7 @@ namespace GameClient.GameServiceReference {
         void LeaveNotify();
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AskQuestion", ReplyAction="GameService/IGamePlay/AskQuestionResponse")]
-        void AskQuestion(GameClient.GameServiceReference.Question q);
+        void AskQuestion(string q, System.Collections.Generic.List<string> ans);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/ReceiveMessage", ReplyAction="GameService/IGamePlay/ReceiveMessageResponse")]
         void ReceiveMessage(string m);
@@ -176,11 +176,11 @@ namespace GameClient.GameServiceReference {
             return base.Channel.ConnectAsync(clientname);
         }
         
-        public void StartGame(string clientname) {
-            base.Channel.StartGame(clientname);
+        public bool StartGame(string clientname) {
+            return base.Channel.StartGame(clientname);
         }
         
-        public System.Threading.Tasks.Task StartGameAsync(string clientname) {
+        public System.Threading.Tasks.Task<bool> StartGameAsync(string clientname) {
             return base.Channel.StartGameAsync(clientname);
         }
         

@@ -16,7 +16,7 @@ namespace GameService
         [OperationContract(IsOneWay = true)]
         void Connect(string clientname);
         [OperationContract]
-        void StartGame(string clientname);
+        bool StartGame(string clientname);
         [OperationContract]
         void PauseGame(string clientname);
         [OperationContract]
@@ -27,9 +27,7 @@ namespace GameService
         void AnswerQuestion(string clientname, Question q, string answer);
         [OperationContract]
         void SendMessage(string message);
-        void ShuffleQuestions();
-
-        
+        void ShuffleQuestions(); 
     }
 
     public interface IGameplayCallback
@@ -41,7 +39,7 @@ namespace GameService
         [OperationContract]
         void LeaveNotify();
         [OperationContract]
-        void AskQuestion(Question q);
+        void AskQuestion(string q, List<string>ans);
         [OperationContract]
         void ReceiveMessage(string m);
     }

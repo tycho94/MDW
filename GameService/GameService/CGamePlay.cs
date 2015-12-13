@@ -15,34 +15,32 @@ namespace GameService
     {
         Timer t;
         List<Question> questions;
-        List<IGameplayCallback> clientsCallback;
         Client client1, client2;
         int questionindex;
 
         public CGamePlay()
         {
+            client1 = null;
+            client2 = null;
             questions = new List<Question>();
-            clientsCallback = new List<IGameplayCallback>();
-            List<string> tempans = new List<string>();
-            tempans.Add("Wrong");
-            tempans.Add("Wrong2");
-            questions.Add(new Question( "What is the Capital of Netherlands", tempans, "Amsterdam"));
-            tempans.Clear();
-            tempans.Add("Wrong");
-            tempans.Add("Wrong2");
-            questions.Add(new Question( "What is the Capital of France", tempans, "Paris"));
-            tempans.Clear();
-            tempans.Add("Wrong");
-            tempans.Add("Wrong2");
-            questions.Add(new Question( "What is the Capital of United Kingdom", tempans, "London"));
+            CreateQuestions();
             questionindex = 0;
         }
 
-        public void StartGame(string clientname)
+        public bool StartGame(string clientname)
         {
-            if(client1.name == clientname && client2.ready)
+            if (client1.name == clientname && client2.ready)
             {
-
+                return true;
+            }
+            else
+            if (client2.name == clientname && client1.ready)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -50,27 +48,27 @@ namespace GameService
         {
             var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
 
-                if (clientname == "Player 1")
+            if (clientname == "Player 1")
+            {
+                if (answer == q.GetRightAnswer())
                 {
-                    if(answer == q.GetRightAnswer())
-                    {
-                        
-                    }
-                }
 
-                else if (clientname == "Player 2")
+                }
+            }
+
+            else if (clientname == "Player 2")
+            {
+                if (answer == q.GetRightAnswer())
                 {
-                    if (answer == q.GetRightAnswer())
-                    {
 
-                    }
                 }
+            }
         }
 
         public void ShuffleQuestions()
         {
             Random random = new Random();
-            for(int i = questions.Count-1; i > 1; i--)
+            for (int i = questions.Count - 1; i > 1; i--)
             {
                 int k = random.Next(i + 1);
                 Question q = questions[k];
@@ -81,12 +79,17 @@ namespace GameService
 
         public Question GetQuestion()
         {
-            return questions[questionindex];
+            return questions[0];
         }
 
         public void Connect(string clientname)
         {
-            throw new NotImplementedException();
+            if (client1 == null)
+            {
+                client2 = new Client(clientname);
+            }
+            else
+                client1 = new Client(clientname);
         }
 
         public void PauseGame(string clientname)
@@ -102,6 +105,22 @@ namespace GameService
         public void SendMessage(string message)
         {
             throw new NotImplementedException();
+        }
+
+        public void CreateQuestions()
+        {
+            List<string> ansA = new List<string>();
+            ansA.Add("Wrong1");
+            ansA.Add("Wrong2");
+            questions.Add(new Question("What is the Capital of Netherlands", ansA, "Amsterdam"));
+            List<string> ansB = new List<string>();
+            ansB.Add("Wrong1");
+            ansB.Add("Wrong2");
+            questions.Add(new Question("What is the Capital of France", ansB, "Paris"));
+            List<string> ansC = new List<string>();
+            ansC.Add("Wrong1");
+            ansC.Add("Wrong2");
+            questions.Add(new Question("What is the Capital of United Kingdom", ansC, "London"));
         }
     }
 }
