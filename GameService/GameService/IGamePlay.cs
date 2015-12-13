@@ -22,7 +22,7 @@ namespace GameService
         [OperationContract]
         void FinishGame();
         [OperationContract()]
-        Question GetQuestion();
+        Question GetQuestion(int n);
         [OperationContract]
         void AnswerQuestion(string clientname, Question q, string answer);
         [OperationContract]
@@ -47,7 +47,7 @@ namespace GameService
     [DataContract]
     public class Client
     {
-        private int points;
+        public int points;
         public bool ready;
         [DataMember]
         public string name { get; set; }

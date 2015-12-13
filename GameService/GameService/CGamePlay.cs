@@ -14,14 +14,18 @@ namespace GameService
     public class CGamePlay : IGamePlay
     {
         Timer t;
-        List<Question> questions;
+         List<Question> questions;
         Client client1, client2;
         int questionindex;
+        Client winer;
+        Client loser;
 
         public CGamePlay()
         {
             client1 = null;
             client2 = null;
+            winer = null;
+            loser = null;
             questions = new List<Question>();
             CreateQuestions();
             questionindex = 0;
@@ -52,7 +56,7 @@ namespace GameService
             {
                 if (answer == q.GetRightAnswer())
                 {
-
+                    client1.incrementpoints();
                 }
             }
 
@@ -60,6 +64,7 @@ namespace GameService
             {
                 if (answer == q.GetRightAnswer())
                 {
+                    client2.incrementpoints();
 
                 }
             }
@@ -77,9 +82,9 @@ namespace GameService
             }
         }
 
-        public Question GetQuestion()
+        public Question GetQuestion(int n)
         {
-            return questions[0];
+            return questions[n];
         }
 
         public void Connect(string clientname)
@@ -99,7 +104,20 @@ namespace GameService
 
         public void FinishGame()
         {
-            throw new NotImplementedException();
+            if (client1.points > client2.points)
+            {
+                winer = client1;
+                loser = client2;
+            }
+            if (client2.points > client1.points)
+            {
+                winer = client1;
+                loser = client2;
+            }
+            else
+            {
+                
+            }
         }
 
         public void SendMessage(string message)

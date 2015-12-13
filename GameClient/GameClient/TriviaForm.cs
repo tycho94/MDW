@@ -15,11 +15,21 @@ namespace GameClient
     public partial class TriviaForm : Form
 
     {
+        GameServiceReference.GamePlayClient proxy;
         string clientname;
         static public Callbacks c;
+        int nrq;
+       
         public TriviaForm()
         {
+
+            nrq = 0;
             InitializeComponent();
+            InstanceContext context=new InstanceContext(this);
+            proxy=new GamePlayClient(context);
+            Question(proxy.GetQuestion(nrq).question, proxy.GetQuestion(nrq).answers);
+            
+
         }
 
 

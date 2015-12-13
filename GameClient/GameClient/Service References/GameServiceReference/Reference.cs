@@ -103,10 +103,10 @@ namespace GameClient.GameServiceReference {
         System.Threading.Tasks.Task FinishGameAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/GetQuestion", ReplyAction="GameService/IGamePlay/GetQuestionResponse")]
-        GameClient.GameServiceReference.Question GetQuestion();
+        GameClient.GameServiceReference.Question GetQuestion(int n);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/GetQuestion", ReplyAction="GameService/IGamePlay/GetQuestionResponse")]
-        System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> GetQuestionAsync();
+        System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> GetQuestionAsync(int n);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AnswerQuestion", ReplyAction="GameService/IGamePlay/AnswerQuestionResponse")]
         void AnswerQuestion(string clientname, GameClient.GameServiceReference.Question q, string answer);
@@ -200,12 +200,12 @@ namespace GameClient.GameServiceReference {
             return base.Channel.FinishGameAsync();
         }
         
-        public GameClient.GameServiceReference.Question GetQuestion() {
-            return base.Channel.GetQuestion();
+        public GameClient.GameServiceReference.Question GetQuestion(int n) {
+            return base.Channel.GetQuestion(n);
         }
         
-        public System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> GetQuestionAsync() {
-            return base.Channel.GetQuestionAsync();
+        public System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> GetQuestionAsync(int n) {
+            return base.Channel.GetQuestionAsync(n);
         }
         
         public void AnswerQuestion(string clientname, GameClient.GameServiceReference.Question q, string answer) {
