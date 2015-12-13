@@ -68,9 +68,6 @@
   <wsdl:message name="IGamePlay_AskQuestion_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:AskQuestion" />
   </wsdl:message>
-  <wsdl:message name="IGamePlay_AskQuestion_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:AskQuestionResponse" />
-  </wsdl:message>
   <wsdl:message name="IGamePlay_ReceiveMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMessage" />
   </wsdl:message>
@@ -119,7 +116,6 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AskQuestion">
       <wsdl:output wsaw:Action="GameService/IGamePlay/AskQuestion" message="tns:IGamePlay_AskQuestion_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="GameService/IGamePlay/AskQuestionResponse" message="tns:IGamePlay_AskQuestion_InputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMessage">
       <wsdl:output wsaw:Action="GameService/IGamePlay/ReceiveMessage" message="tns:IGamePlay_ReceiveMessage_OutputCallbackMessage" />

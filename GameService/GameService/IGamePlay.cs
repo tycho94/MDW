@@ -38,7 +38,7 @@ namespace GameService
         void PauseNotify();
         [OperationContract]
         void LeaveNotify();
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void AskQuestion(string q, List<string>ans);
         [OperationContract]
         void ReceiveMessage(string m);

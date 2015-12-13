@@ -17,6 +17,7 @@ namespace GameService
         List<Question> questions;
         Client client1, client2;
         int questionindex;
+        List<IGameplayCallback> callbacklist;
 
         public CGamePlay()
         {
@@ -25,6 +26,7 @@ namespace GameService
             questions = new List<Question>();
             CreateQuestions();
             questionindex = 0;
+            callbacklist = new List<IGameplayCallback>();
         }
 
         public bool StartGame(string clientname)
@@ -84,12 +86,20 @@ namespace GameService
 
         public void Connect(string clientname)
         {
+            IGameplayCallback callback = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
             if (client1 == null)
             {
-                client2 = new Client(clientname);
-            }
-            else
                 client1 = new Client(clientname);
+                callbacklist.Insert(0, callback);
+            }
+            else if(client2 == null)
+            {
+                client2 = new Client(clientname);
+                callbacklist.Insert(1, callback);
+            }
+
+            foreach (IGameplayCallback c in callbacklist)
+                c.AskQuestion(GetQuestion().question, GetQuestion().answers);
         }
 
         public void PauseGame(string clientname)

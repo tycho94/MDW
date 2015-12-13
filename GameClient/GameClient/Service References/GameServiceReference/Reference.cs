@@ -133,7 +133,7 @@ namespace GameClient.GameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/LeaveNotify", ReplyAction="GameService/IGamePlay/LeaveNotifyResponse")]
         void LeaveNotify();
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AskQuestion", ReplyAction="GameService/IGamePlay/AskQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/AskQuestion")]
         void AskQuestion(string q, System.Collections.Generic.List<string> ans);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/ReceiveMessage", ReplyAction="GameService/IGamePlay/ReceiveMessageResponse")]

@@ -16,22 +16,23 @@ namespace GameClient
 
     {
         string clientname;
-        static public Callbacks c;
+        public Callbacks c;
         public TriviaForm()
         {
             InitializeComponent();
+            c = new Callbacks(this);
         }
 
 
 
         private void TriviaForm_Load(object sender, EventArgs e)
         {
-
+            //should be in startform when we get the program in correct order
+            c.GetProxy().Connect("test");
         }
 
         private void btnAns1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnAns2_Click(object sender, EventArgs e)
@@ -56,9 +57,9 @@ namespace GameClient
         public void Question(string q, List<string> ans)
         {
             lblQuestion.Text = q;
-            btnAns1.Text = ans[1];
-            btnAns2.Text = ans[2];
-            btnAns3.Text = ans[3];
+            btnAns1.Text = ans[0];
+            btnAns2.Text = ans[1];
+            btnAns3.Text = ans[2];
         }
         public void Warning(string w)
         {
