@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6056b5ff-498f-42dc-ae6c-8f5316143b84" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8888/GameService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GameService.wsdl" MetadataType="Wsdl" ID="1cf91613-ac1a-4f32-bf11-8ba571a8dbab" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="99cb831a-4d31-49bd-a7ee-94740c4edbe2" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="GameService1.xsd" MetadataType="Schema" ID="c5401971-2bed-48f7-8d35-318c541fa97f" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="4168d685-fc17-485b-bd1f-72473c49cab1" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="GameService.xsd" MetadataType="Schema" ID="43ea7b2d-0733-4dd3-aa07-86f43ad9ffcf" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="b74195d0-f7ef-49fe-a2d2-e38607140edb" SourceId="1" SourceUrl="http://localhost:8888/GameService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
