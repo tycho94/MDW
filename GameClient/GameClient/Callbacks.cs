@@ -51,5 +51,23 @@ namespace GameClient
         {
             Question(q, ans);
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Callbacks
+            // 
+            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.Name = "Callbacks";
+            this.Load += new System.EventHandler(this.Callbacks_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void Callbacks_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

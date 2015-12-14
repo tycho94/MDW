@@ -20,7 +20,7 @@ namespace GameService
         [OperationContract]
         void PauseGame(string clientname);
         [OperationContract]
-        void FinishGame();
+        string FinishGame();
         [OperationContract()]
         Question GetQuestion(int n);
         [OperationContract]

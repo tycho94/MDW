@@ -15,20 +15,15 @@ namespace GameClient
     public partial class TriviaForm : Form
 
     {
-        GameServiceReference.GamePlayClient proxy;
         string clientname;
         static public Callbacks c;
-        int nrq;
+       
+        int nr;
        
         public TriviaForm()
         {
 
-            nrq = 0;
-            InitializeComponent();
-            InstanceContext context=new InstanceContext(this);
-            proxy=new GamePlayClient(context);
-            Question(proxy.GetQuestion(nrq).question, proxy.GetQuestion(nrq).answers);
-            
+      
 
         }
 
@@ -73,6 +68,11 @@ namespace GameClient
         public void Warning(string w)
         {
             lb_chat.Items.Add(w);
+        }
+
+        private void groupAnswers_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

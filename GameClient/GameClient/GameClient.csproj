@@ -77,6 +77,9 @@
     <Compile Include="StartForm.Designer.cs">
       <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Callbacks.resx">
+      <DependentUpon>Callbacks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EndGameForm.resx">
       <DependentUpon>EndGameForm.cs</DependentUpon>
     </EmbeddedResource>

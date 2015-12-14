@@ -22,5 +22,10 @@ namespace GameClient
         {
             //if(TriviaForm.c.GetProxy().StartGame()
         }
+
+        private void StartForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

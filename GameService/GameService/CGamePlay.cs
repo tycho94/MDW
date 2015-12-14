@@ -102,21 +102,19 @@ namespace GameService
             throw new NotImplementedException();
         }
 
-        public void FinishGame()
+        public string FinishGame()
         {
             if (client1.points > client2.points)
             {
-                winer = client1;
-                loser = client2;
+                return "client 1 win game";
             }
             if (client2.points > client1.points)
             {
-                winer = client1;
-                loser = client2;
+                return "client 2 win game";
             }
             else
             {
-                
+                return " It is draw";
             }
         }
 
