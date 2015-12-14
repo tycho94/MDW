@@ -15,19 +15,19 @@ namespace GameService
     {
         [OperationContract(IsOneWay = true)]
         void Connect(string clientname);
-        [OperationContract]
-        bool StartGame(string clientname);
+        [OperationContract(IsOneWay = true)]
+        void StartGame(string clientname);
         [OperationContract]
         void PauseGame(string clientname);
         [OperationContract]
         void FinishGame();
-        [OperationContract()]
+        [OperationContract]
+        void AnswerQuestion(string clientname, string answer);
+        [OperationContract]
+        void SendMessage(string clientname, string message);
+
+        void ShuffleQuestions();
         Question GetQuestion();
-        [OperationContract]
-        void AnswerQuestion(string clientname, Question q, string answer);
-        [OperationContract]
-        void SendMessage(string message);
-        void ShuffleQuestions(); 
     }
 
     public interface IGameplayCallback

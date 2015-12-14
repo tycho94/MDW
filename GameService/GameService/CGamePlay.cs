@@ -25,46 +25,32 @@ namespace GameService
             client2 = null;
             questions = new List<Question>();
             CreateQuestions();
+            ShuffleQuestions();
             questionindex = 0;
             callbacklist = new List<IGameplayCallback>();
         }
 
-        public bool StartGame(string clientname)
+        public void StartGame(string clientname)
         {
-            if (client1.name == clientname && client2.ready)
+            if (client1.name == clientname)
             {
-                return true;
-            }
-            else
-            if (client2.name == clientname && client1.ready)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
+                foreach (IGameplayCallback c in callbacklist)
+                {
+                    c.AskQuestion(GetQuestion().question, GetQuestion().answers);
+                }
             }
         }
 
-        public void AnswerQuestion(string clientname, Question q, string answer)
+        public void AnswerQuestion(string clientname, string answer)
         {
-            var connection = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
-
-            if (clientname == "Player 1")
+            if (client1.name == clientname)
             {
-                if (answer == q.GetRightAnswer())
+                if (GetQuestion().GetRightAnswer() == answer)
                 {
-
+                    client1.incrementpoints();
                 }
             }
-
-            else if (clientname == "Player 2")
-            {
-                if (answer == q.GetRightAnswer())
-                {
-
-                }
-            }
+            return;
         }
 
         public void ShuffleQuestions()
@@ -81,7 +67,7 @@ namespace GameService
 
         public Question GetQuestion()
         {
-            return questions[0];
+            return questions[questionindex];
         }
 
         public void Connect(string clientname)
@@ -92,19 +78,25 @@ namespace GameService
                 client1 = new Client(clientname);
                 callbacklist.Insert(0, callback);
             }
-            else if(client2 == null)
+            else if (client2 == null)
             {
                 client2 = new Client(clientname);
                 callbacklist.Insert(1, callback);
             }
-
-            foreach (IGameplayCallback c in callbacklist)
-                c.AskQuestion(GetQuestion().question, GetQuestion().answers);
         }
+
 
         public void PauseGame(string clientname)
         {
-            throw new NotImplementedException();
+            if (client1.name == clientname)
+            {
+                callbacklist[1].PauseNotify();
+            }
+            else
+                if (client2.name == clientname)
+            {
+                callbacklist[0].PauseNotify();
+            }
         }
 
         public void FinishGame()
@@ -112,7 +104,7 @@ namespace GameService
             throw new NotImplementedException();
         }
 
-        public void SendMessage(string message)
+        public void SendMessage(string clientname, string message)
         {
             throw new NotImplementedException();
         }
