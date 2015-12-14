@@ -4,7 +4,6 @@
     <xsd:schema targetNamespace="GameService/Imports">
       <xsd:import namespace="GameService" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/GameService" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
@@ -13,9 +12,6 @@
   </wsdl:message>
   <wsdl:message name="IGamePlay_StartGame_InputMessage">
     <wsdl:part name="parameters" element="tns:StartGame" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_StartGame_OutputMessage">
-    <wsdl:part name="parameters" element="tns:StartGameResponse" />
   </wsdl:message>
   <wsdl:message name="IGamePlay_PauseGame_InputMessage">
     <wsdl:part name="parameters" element="tns:PauseGame" />
@@ -28,12 +24,6 @@
   </wsdl:message>
   <wsdl:message name="IGamePlay_FinishGame_OutputMessage">
     <wsdl:part name="parameters" element="tns:FinishGameResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_GetQuestion_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetQuestion" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_GetQuestion_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetQuestionResponse" />
   </wsdl:message>
   <wsdl:message name="IGamePlay_AnswerQuestion_InputMessage">
     <wsdl:part name="parameters" element="tns:AnswerQuestion" />
@@ -68,9 +58,6 @@
   <wsdl:message name="IGamePlay_AskQuestion_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:AskQuestion" />
   </wsdl:message>
-  <wsdl:message name="IGamePlay_AskQuestion_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:AskQuestionResponse" />
-  </wsdl:message>
   <wsdl:message name="IGamePlay_ReceiveMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMessage" />
   </wsdl:message>
@@ -83,7 +70,6 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartGame">
       <wsdl:input wsaw:Action="GameService/IGamePlay/StartGame" message="tns:IGamePlay_StartGame_InputMessage" />
-      <wsdl:output wsaw:Action="GameService/IGamePlay/StartGameResponse" message="tns:IGamePlay_StartGame_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PauseGame">
       <wsdl:input wsaw:Action="GameService/IGamePlay/PauseGame" message="tns:IGamePlay_PauseGame_InputMessage" />
@@ -92,10 +78,6 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FinishGame">
       <wsdl:input wsaw:Action="GameService/IGamePlay/FinishGame" message="tns:IGamePlay_FinishGame_InputMessage" />
       <wsdl:output wsaw:Action="GameService/IGamePlay/FinishGameResponse" message="tns:IGamePlay_FinishGame_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetQuestion">
-      <wsdl:input wsaw:Action="GameService/IGamePlay/GetQuestion" message="tns:IGamePlay_GetQuestion_InputMessage" />
-      <wsdl:output wsaw:Action="GameService/IGamePlay/GetQuestionResponse" message="tns:IGamePlay_GetQuestion_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AnswerQuestion">
       <wsdl:input wsaw:Action="GameService/IGamePlay/AnswerQuestion" message="tns:IGamePlay_AnswerQuestion_InputMessage" />
@@ -119,7 +101,6 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AskQuestion">
       <wsdl:output wsaw:Action="GameService/IGamePlay/AskQuestion" message="tns:IGamePlay_AskQuestion_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="GameService/IGamePlay/AskQuestionResponse" message="tns:IGamePlay_AskQuestion_InputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMessage">
       <wsdl:output wsaw:Action="GameService/IGamePlay/ReceiveMessage" message="tns:IGamePlay_ReceiveMessage_OutputCallbackMessage" />

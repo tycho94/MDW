@@ -32,13 +32,11 @@ namespace GameService
 
         public void StartGame(string clientname)
         {
-            if (client1.name == clientname)
-            {
                 foreach (IGameplayCallback c in callbacklist)
                 {
                     c.AskQuestion(GetQuestion().question, GetQuestion().answers);
                 }
-            }
+            
         }
 
         public void AnswerQuestion(string clientname, string answer)

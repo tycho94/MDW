@@ -163,8 +163,7 @@
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.lb_chat);
             this.Name = "TriviaForm";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.TriviaForm_Load);
+            this.Text = "TriviaForm";
             this.groupQuestion.ResumeLayout(false);
             this.groupQuestion.PerformLayout();
             this.groupAnswers.ResumeLayout(false);

@@ -14,9 +14,10 @@ namespace GameClient
         [STAThread]
         static void Main()
         {
+            Callbacks c = new Callbacks();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TriviaForm());
+            Application.Run(new StartForm(ref c));
         }
     }
 }

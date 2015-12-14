@@ -13,35 +13,28 @@ using GameClient.GameServiceReference;
 namespace GameClient
 {
     public partial class TriviaForm : Form
-
     {
-        string clientname;
-        static public Callbacks c;
-        public TriviaForm()
+        public string clientname;
+        private Callbacks c;
+        public TriviaForm(ref Callbacks call)
         {
             InitializeComponent();
-        }
-
-
-
-        private void TriviaForm_Load(object sender, EventArgs e)
-        {
-
+            c = call;
         }
 
         private void btnAns1_Click(object sender, EventArgs e)
         {
-
+            c.proxy.AnswerQuestion(clientname, btnAns1.Text);
         }
 
         private void btnAns2_Click(object sender, EventArgs e)
         {
-
+            c.proxy.AnswerQuestion(clientname, btnAns2.Text);
         }
 
         private void btnAns3_Click(object sender, EventArgs e)
         {
-
+            c.proxy.AnswerQuestion(clientname, btnAns3.Text);
         }
 
         private void btnSendMsg_Click(object sender, EventArgs e)
@@ -56,9 +49,9 @@ namespace GameClient
         public void Question(string q, List<string> ans)
         {
             lblQuestion.Text = q;
-            btnAns1.Text = ans[1];
-            btnAns2.Text = ans[2];
-            btnAns3.Text = ans[3];
+            btnAns1.Text = ans[0];
+            btnAns2.Text = ans[1];
+            btnAns3.Text = ans[2];
         }
         public void Warning(string w)
         {

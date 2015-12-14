@@ -28,33 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnConnect = new System.Windows.Forms.Button();
+            this.tbClientName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btnStart
             // 
-            this.button1.Location = new System.Drawing.Point(87, 147);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 55);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Start Game";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnStart.Location = new System.Drawing.Point(88, 148);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(105, 55);
+            this.btnStart.TabIndex = 1;
+            this.btnStart.Text = "Start Game";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(88, 148);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(105, 55);
+            this.btnConnect.TabIndex = 2;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
+            // tbClientName
+            // 
+            this.tbClientName.Location = new System.Drawing.Point(88, 86);
+            this.tbClientName.Name = "tbClientName";
+            this.tbClientName.Size = new System.Drawing.Size(100, 20);
+            this.tbClientName.TabIndex = 3;
+            this.tbClientName.Text = "Maja";
             // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.tbClientName);
+            this.Controls.Add(this.btnConnect);
+            this.Controls.Add(this.btnStart);
             this.Name = "StartForm";
             this.Text = "StartForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.TextBox tbClientName;
     }
 }

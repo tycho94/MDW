@@ -13,14 +13,30 @@ namespace GameClient
 {
     public partial class StartForm : Form
     {
-        public StartForm()
+        Callbacks c;
+        public StartForm(ref Callbacks c)
         {
             InitializeComponent();
+            this.c = c;
+            btnStart.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnConnect_Click(object sender, EventArgs e)
         {
-            //if(TriviaForm.c.GetProxy().StartGame()
+            c.proxy.Connect(tbClientName.Text);
+            btnConnect.Visible = false;
+            btnStart.Visible = true;
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            TriviaForm t = new TriviaForm(ref c);
+            t.clientname = tbClientName.Text;
+            c.SetTriviaForm(ref t);
+            c.proxy.StartGame(tbClientName.Text);
+            t.Show();
+            
+            Hide();
         }
     }
 }

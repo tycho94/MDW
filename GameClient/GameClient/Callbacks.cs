@@ -12,19 +12,20 @@ using GameClient.GameServiceReference;
 
 namespace GameClient
 {
-    public class Callbacks : TriviaForm, IGamePlayCallback
+    public class Callbacks : IGamePlayCallback
     {
-        private GamePlayClient proxy;
+        public GamePlayClient proxy;
+        private TriviaForm triviaform;
 
-        public Callbacks(TriviaForm form)
+        public Callbacks()
         {
             InstanceContext GameClientCallbackInstance = new InstanceContext(this);
             proxy = new GamePlayClient(GameClientCallbackInstance);
         }
 
-        public GamePlayClient GetProxy()
+        public void SetTriviaForm(ref TriviaForm form)
         {
-            return proxy;
+            triviaform = form;
         }
 
         public void StartNotify()
@@ -34,22 +35,22 @@ namespace GameClient
 
         public void PauseNotify()
         {
-            Warning("The game will pause briefly between questions");
+            triviaform.Warning("The game will pause briefly between questions");
         }
 
         public void LeaveNotify()
         {
-            Warning("The other player has left. You won!");
+            triviaform.Warning("The other player has left. You won!");
         }
 
         public void ReceiveMessage(string m)
         {
-            Warning(m);
+            triviaform.Warning(m);
         }
 
         public void AskQuestion(string q, List<string> ans)
         {
-            Question(q, ans);
+            triviaform.Question(q, ans);
         }
     }
 }

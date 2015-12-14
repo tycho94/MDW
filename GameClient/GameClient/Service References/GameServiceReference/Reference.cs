@@ -9,70 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace GameClient.GameServiceReference {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Question", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
-    [System.SerializableAttribute()]
-    public partial class Question : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<string> answersField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string questionField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<string> answers {
-            get {
-                return this.answersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.answersField, value) != true)) {
-                    this.answersField = value;
-                    this.RaisePropertyChanged("answers");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string question {
-            get {
-                return this.questionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.questionField, value) != true)) {
-                    this.questionField = value;
-                    this.RaisePropertyChanged("question");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="GameService", ConfigurationName="GameServiceReference.IGamePlay", CallbackContract=typeof(GameClient.GameServiceReference.IGamePlayCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
@@ -84,11 +21,11 @@ namespace GameClient.GameServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/Connect")]
         System.Threading.Tasks.Task ConnectAsync(string clientname);
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/StartGame", ReplyAction="GameService/IGamePlay/StartGameResponse")]
-        bool StartGame(string clientname);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/StartGame")]
+        void StartGame(string clientname);
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/StartGame", ReplyAction="GameService/IGamePlay/StartGameResponse")]
-        System.Threading.Tasks.Task<bool> StartGameAsync(string clientname);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/StartGame")]
+        System.Threading.Tasks.Task StartGameAsync(string clientname);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/PauseGame", ReplyAction="GameService/IGamePlay/PauseGameResponse")]
         void PauseGame(string clientname);
@@ -102,23 +39,17 @@ namespace GameClient.GameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/FinishGame", ReplyAction="GameService/IGamePlay/FinishGameResponse")]
         System.Threading.Tasks.Task FinishGameAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/GetQuestion", ReplyAction="GameService/IGamePlay/GetQuestionResponse")]
-        GameClient.GameServiceReference.Question GetQuestion();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/GetQuestion", ReplyAction="GameService/IGamePlay/GetQuestionResponse")]
-        System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> GetQuestionAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AnswerQuestion", ReplyAction="GameService/IGamePlay/AnswerQuestionResponse")]
+        void AnswerQuestion(string clientname, string answer);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AnswerQuestion", ReplyAction="GameService/IGamePlay/AnswerQuestionResponse")]
-        void AnswerQuestion(string clientname, GameClient.GameServiceReference.Question q, string answer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AnswerQuestion", ReplyAction="GameService/IGamePlay/AnswerQuestionResponse")]
-        System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, GameClient.GameServiceReference.Question q, string answer);
+        System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, string answer);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/SendMessage", ReplyAction="GameService/IGamePlay/SendMessageResponse")]
-        void SendMessage(string message);
+        void SendMessage(string clientname, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/SendMessage", ReplyAction="GameService/IGamePlay/SendMessageResponse")]
-        System.Threading.Tasks.Task SendMessageAsync(string message);
+        System.Threading.Tasks.Task SendMessageAsync(string clientname, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -133,7 +64,7 @@ namespace GameClient.GameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/LeaveNotify", ReplyAction="GameService/IGamePlay/LeaveNotifyResponse")]
         void LeaveNotify();
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AskQuestion", ReplyAction="GameService/IGamePlay/AskQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/AskQuestion")]
         void AskQuestion(string q, System.Collections.Generic.List<string> ans);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/ReceiveMessage", ReplyAction="GameService/IGamePlay/ReceiveMessageResponse")]
@@ -176,11 +107,11 @@ namespace GameClient.GameServiceReference {
             return base.Channel.ConnectAsync(clientname);
         }
         
-        public bool StartGame(string clientname) {
-            return base.Channel.StartGame(clientname);
+        public void StartGame(string clientname) {
+            base.Channel.StartGame(clientname);
         }
         
-        public System.Threading.Tasks.Task<bool> StartGameAsync(string clientname) {
+        public System.Threading.Tasks.Task StartGameAsync(string clientname) {
             return base.Channel.StartGameAsync(clientname);
         }
         
@@ -200,28 +131,20 @@ namespace GameClient.GameServiceReference {
             return base.Channel.FinishGameAsync();
         }
         
-        public GameClient.GameServiceReference.Question GetQuestion() {
-            return base.Channel.GetQuestion();
+        public void AnswerQuestion(string clientname, string answer) {
+            base.Channel.AnswerQuestion(clientname, answer);
         }
         
-        public System.Threading.Tasks.Task<GameClient.GameServiceReference.Question> GetQuestionAsync() {
-            return base.Channel.GetQuestionAsync();
+        public System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, string answer) {
+            return base.Channel.AnswerQuestionAsync(clientname, answer);
         }
         
-        public void AnswerQuestion(string clientname, GameClient.GameServiceReference.Question q, string answer) {
-            base.Channel.AnswerQuestion(clientname, q, answer);
+        public void SendMessage(string clientname, string message) {
+            base.Channel.SendMessage(clientname, message);
         }
         
-        public System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, GameClient.GameServiceReference.Question q, string answer) {
-            return base.Channel.AnswerQuestionAsync(clientname, q, answer);
-        }
-        
-        public void SendMessage(string message) {
-            base.Channel.SendMessage(message);
-        }
-        
-        public System.Threading.Tasks.Task SendMessageAsync(string message) {
-            return base.Channel.SendMessageAsync(message);
+        public System.Threading.Tasks.Task SendMessageAsync(string clientname, string message) {
+            return base.Channel.SendMessageAsync(clientname, message);
         }
     }
 }
