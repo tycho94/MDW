@@ -16,7 +16,9 @@ namespace GameService
         [OperationContract(IsOneWay = true)]
         void Connect(string clientname);
         [OperationContract(IsOneWay = true)]
-        void StartGame(string clientname);
+        void StartGame();
+        [OperationContract]
+        bool CheckStart(string clientname);
         [OperationContract]
         void PauseGame(string clientname);
         [OperationContract]

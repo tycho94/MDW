@@ -13,6 +13,12 @@
   <wsdl:message name="IGamePlay_StartGame_InputMessage">
     <wsdl:part name="parameters" element="tns:StartGame" />
   </wsdl:message>
+  <wsdl:message name="IGamePlay_CheckStart_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckStart" />
+  </wsdl:message>
+  <wsdl:message name="IGamePlay_CheckStart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckStartResponse" />
+  </wsdl:message>
   <wsdl:message name="IGamePlay_PauseGame_InputMessage">
     <wsdl:part name="parameters" element="tns:PauseGame" />
   </wsdl:message>
@@ -70,6 +76,10 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartGame">
       <wsdl:input wsaw:Action="GameService/IGamePlay/StartGame" message="tns:IGamePlay_StartGame_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckStart">
+      <wsdl:input wsaw:Action="GameService/IGamePlay/CheckStart" message="tns:IGamePlay_CheckStart_InputMessage" />
+      <wsdl:output wsaw:Action="GameService/IGamePlay/CheckStartResponse" message="tns:IGamePlay_CheckStart_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PauseGame">
       <wsdl:input wsaw:Action="GameService/IGamePlay/PauseGame" message="tns:IGamePlay_PauseGame_InputMessage" />

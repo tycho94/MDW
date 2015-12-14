@@ -30,13 +30,14 @@ namespace GameClient
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            TriviaForm t = new TriviaForm(ref c);
-            t.clientname = tbClientName.Text;
-            c.SetTriviaForm(ref t);
-            c.proxy.StartGame(tbClientName.Text);
-            t.Show();
-            
-            Hide();
+            if (c.proxy.CheckStart(tbClientName.Text)){
+                TriviaForm t = new TriviaForm(ref c);
+                t.clientname = tbClientName.Text;
+                c.SetTriviaForm(ref t);
+                t.Show();
+                Hide();
+                c.proxy.StartGame();
+            }
         }
     }
 }

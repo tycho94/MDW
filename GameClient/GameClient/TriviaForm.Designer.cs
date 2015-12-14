@@ -41,6 +41,7 @@
             this.btnLeave = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.lb_chat = new System.Windows.Forms.ListBox();
+            this.tbMessage = new System.Windows.Forms.TextBox();
             this.groupQuestion.SuspendLayout();
             this.groupAnswers.SuspendLayout();
             this.SuspendLayout();
@@ -150,11 +151,20 @@
             this.lb_chat.Size = new System.Drawing.Size(407, 95);
             this.lb_chat.TabIndex = 16;
             // 
+            // tbMessage
+            // 
+            this.tbMessage.Location = new System.Drawing.Point(54, 381);
+            this.tbMessage.Name = "tbMessage";
+            this.tbMessage.Size = new System.Drawing.Size(207, 20);
+            this.tbMessage.TabIndex = 22;
+            this.tbMessage.Text = "abcba";
+            // 
             // TriviaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 413);
+            this.Controls.Add(this.tbMessage);
             this.Controls.Add(this.lb_game_score);
             this.Controls.Add(this.groupQuestion);
             this.Controls.Add(this.groupAnswers);
@@ -168,6 +178,7 @@
             this.groupQuestion.PerformLayout();
             this.groupAnswers.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -185,6 +196,7 @@
         private System.Windows.Forms.Button btnLeave;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.ListBox lb_chat;
+        private System.Windows.Forms.TextBox tbMessage;
     }
 }
 

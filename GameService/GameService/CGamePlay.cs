@@ -29,15 +29,57 @@ namespace GameService
             questionindex = 0;
             callbacklist = new List<IGameplayCallback>();
         }
-
-        public void StartGame(string clientname)
+        /// <summary>
+        /// checks if both clients are ready to start and handles the outcome
+        /// </summary>
+        /// <param name="clientname">the client that wants to start</param>
+        public bool CheckStart(string clientname)
         {
-                foreach (IGameplayCallback c in callbacklist)
+            if (client1 != null && client2 != null)
+            {
+                if (client1.name == clientname && client2.ready)
                 {
-                    c.AskQuestion(GetQuestion().question, GetQuestion().answers);
+                    return true;
                 }
-            
+                else if (client1.name == clientname && !client2.ready)
+                {
+                    callbacklist[1].StartNotify();
+                    client1.ready = true;
+                    return false;
+                }
+                else if (client2.name == clientname && client1.ready)
+                {
+                    return true;
+                }
+                else
+                {
+                    callbacklist[0].StartNotify();
+                    client2.ready = true;
+                    return false;
+                }
+
+            }
+            else
+                return false;
+
+
+
         }
+
+        /// <summary>
+        /// actually starts the game
+        /// </summary>
+        public void StartGame()
+        {
+            ShuffleQuestions();
+            questionindex = 0;
+            foreach (IGameplayCallback c in callbacklist)
+            {
+                c.AskQuestion(GetQuestion().question, GetQuestion().answers);
+            }
+        }
+
+
 
         public void AnswerQuestion(string clientname, string answer)
         {
@@ -48,7 +90,16 @@ namespace GameService
                     client1.incrementpoints();
                 }
             }
-            return;
+            else
+            {
+                if (client2.name == clientname)
+                {
+                    if (GetQuestion().GetRightAnswer() == answer)
+                    {
+                        client2.incrementpoints();
+                    }
+                }
+            }
         }
 
         public void ShuffleQuestions()
@@ -104,7 +155,14 @@ namespace GameService
 
         public void SendMessage(string clientname, string message)
         {
-            throw new NotImplementedException();
+            if (client1.name == clientname)
+            {
+                callbacklist[1].ReceiveMessage(message);
+            }
+            if (client2.name == clientname)
+            {
+                callbacklist[0].ReceiveMessage(message);
+            }
         }
 
         public void CreateQuestions()

@@ -22,10 +22,16 @@ namespace GameClient.GameServiceReference {
         System.Threading.Tasks.Task ConnectAsync(string clientname);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/StartGame")]
-        void StartGame(string clientname);
+        void StartGame();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/StartGame")]
-        System.Threading.Tasks.Task StartGameAsync(string clientname);
+        System.Threading.Tasks.Task StartGameAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/CheckStart", ReplyAction="GameService/IGamePlay/CheckStartResponse")]
+        bool CheckStart(string clientname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/CheckStart", ReplyAction="GameService/IGamePlay/CheckStartResponse")]
+        System.Threading.Tasks.Task<bool> CheckStartAsync(string clientname);
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/PauseGame", ReplyAction="GameService/IGamePlay/PauseGameResponse")]
         void PauseGame(string clientname);
@@ -107,12 +113,20 @@ namespace GameClient.GameServiceReference {
             return base.Channel.ConnectAsync(clientname);
         }
         
-        public void StartGame(string clientname) {
-            base.Channel.StartGame(clientname);
+        public void StartGame() {
+            base.Channel.StartGame();
         }
         
-        public System.Threading.Tasks.Task StartGameAsync(string clientname) {
-            return base.Channel.StartGameAsync(clientname);
+        public System.Threading.Tasks.Task StartGameAsync() {
+            return base.Channel.StartGameAsync();
+        }
+        
+        public bool CheckStart(string clientname) {
+            return base.Channel.CheckStart(clientname);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckStartAsync(string clientname) {
+            return base.Channel.CheckStartAsync(clientname);
         }
         
         public void PauseGame(string clientname) {

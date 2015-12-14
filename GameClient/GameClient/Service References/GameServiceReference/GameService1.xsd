@@ -10,8 +10,20 @@
   </xs:element>
   <xs:element name="StartGame">
     <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckStart">
+    <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="clientname" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckStartResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckStartResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

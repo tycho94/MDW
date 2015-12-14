@@ -39,7 +39,8 @@ namespace GameClient
 
         private void btnSendMsg_Click(object sender, EventArgs e)
         {
-
+            c.proxy.SendMessage(clientname, tbMessage.Text);
+            tbMessage.Clear();
         }
 
 
