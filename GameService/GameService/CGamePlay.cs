@@ -8,7 +8,7 @@ using System.Timers;
 
 namespace GameService
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single, IncludeExceptionDetailInFaults = true)]
 
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class CGamePlay : IGamePlay
@@ -32,11 +32,50 @@ namespace GameService
 
         public void StartGame(string clientname)
         {
-                foreach (IGameplayCallback c in callbacklist)
+            if (client1.name == clientname)
+            {
+                client1.ready = true;
+                if (client2 != null)
                 {
-                    c.AskQuestion(GetQuestion().question, GetQuestion().answers);
+                    if (!client2.ready)
+                    {
+                        callbacklist[1].StartNotify();
+
+                    }
+                    else
+                    {
+                        foreach (IGameplayCallback c in callbacklist)
+                        {
+                            c.StartClients();
+                        }
+
+                    }
                 }
-            
+            }
+            if (client2 != null)
+            {
+                if (client2.name == clientname)
+                {
+                    client2.ready = true;
+                    if (client1 != null)
+                    {
+                        if (!client1.ready)
+                        {
+                            callbacklist[0].StartNotify();
+
+                        }
+                        else
+                        {
+                            foreach (IGameplayCallback c in callbacklist)
+                            {
+                                c.StartClients();
+                                c.AskQuestion(questions[questionindex].question, questions[questionindex].answers);
+                            }
+
+                        }
+                    }
+                }
+            }
         }
 
         public void AnswerQuestion(string clientname, string answer)
@@ -129,6 +168,12 @@ namespace GameService
             ansC.Add("Wrong1");
             ansC.Add("Wrong2");
             questions.Add(new Question("What is the Capital of United Kingdom", ansC, "London"));
+        }
+
+        public void AskClientQuestion()
+        {
+            foreach (IGameplayCallback c in callbacklist)
+                c.AskQuestion(questions[questionindex].question, questions[questionindex].answers);
         }
     }
 }

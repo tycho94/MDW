@@ -37,6 +37,9 @@
   <wsdl:message name="IGamePlay_SendMessage_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendMessageResponse" />
   </wsdl:message>
+  <wsdl:message name="IGamePlay_AskClientQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AskClientQuestion" />
+  </wsdl:message>
   <wsdl:message name="IGamePlay_StartNotify_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:StartNotify" />
   </wsdl:message>
@@ -64,6 +67,9 @@
   <wsdl:message name="IGamePlay_ReceiveMessage_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMessageResponse" />
   </wsdl:message>
+  <wsdl:message name="IGamePlay_StartClients_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StartClients" />
+  </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IGamePlay">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Connect">
       <wsdl:input wsaw:Action="GameService/IGamePlay/Connect" message="tns:IGamePlay_Connect_InputMessage" />
@@ -87,6 +93,9 @@
       <wsdl:input wsaw:Action="GameService/IGamePlay/SendMessage" message="tns:IGamePlay_SendMessage_InputMessage" />
       <wsdl:output wsaw:Action="GameService/IGamePlay/SendMessageResponse" message="tns:IGamePlay_SendMessage_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AskClientQuestion">
+      <wsdl:input wsaw:Action="GameService/IGamePlay/AskClientQuestion" message="tns:IGamePlay_AskClientQuestion_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartNotify">
       <wsdl:output wsaw:Action="GameService/IGamePlay/StartNotify" message="tns:IGamePlay_StartNotify_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="GameService/IGamePlay/StartNotifyResponse" message="tns:IGamePlay_StartNotify_InputCallbackMessage" />
@@ -105,6 +114,9 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMessage">
       <wsdl:output wsaw:Action="GameService/IGamePlay/ReceiveMessage" message="tns:IGamePlay_ReceiveMessage_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="GameService/IGamePlay/ReceiveMessageResponse" message="tns:IGamePlay_ReceiveMessage_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartClients">
+      <wsdl:output wsaw:Action="GameService/IGamePlay/StartClients" message="tns:IGamePlay_StartClients_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

@@ -50,6 +50,12 @@ namespace GameClient.GameServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/SendMessage", ReplyAction="GameService/IGamePlay/SendMessageResponse")]
         System.Threading.Tasks.Task SendMessageAsync(string clientname, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/AskClientQuestion")]
+        void AskClientQuestion();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/AskClientQuestion")]
+        System.Threading.Tasks.Task AskClientQuestionAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +75,9 @@ namespace GameClient.GameServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/ReceiveMessage", ReplyAction="GameService/IGamePlay/ReceiveMessageResponse")]
         void ReceiveMessage(string m);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/StartClients")]
+        void StartClients();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -145,6 +154,14 @@ namespace GameClient.GameServiceReference {
         
         public System.Threading.Tasks.Task SendMessageAsync(string clientname, string message) {
             return base.Channel.SendMessageAsync(clientname, message);
+        }
+        
+        public void AskClientQuestion() {
+            base.Channel.AskClientQuestion();
+        }
+        
+        public System.Threading.Tasks.Task AskClientQuestionAsync() {
+            return base.Channel.AskClientQuestionAsync();
         }
     }
 }

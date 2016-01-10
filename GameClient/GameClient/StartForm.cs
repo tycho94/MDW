@@ -19,11 +19,13 @@ namespace GameClient
             InitializeComponent();
             this.c = c;
             btnStart.Visible = false;
+            c.SetStartForm(this);
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
             c.proxy.Connect(tbClientName.Text);
+            tbClientName.Enabled = false;
             btnConnect.Visible = false;
             btnStart.Visible = true;
         }
@@ -32,11 +34,11 @@ namespace GameClient
         {
             TriviaForm t = new TriviaForm(ref c);
             t.clientname = tbClientName.Text;
-            c.SetTriviaForm(ref t);
+            c.SetTriviaForm(t);
             c.proxy.StartGame(tbClientName.Text);
-            t.Show();
-            
-            Hide();
+
+            //c.proxy.AskClientQuestion();
+
         }
     }
 }
