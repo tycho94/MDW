@@ -8,7 +8,7 @@ using System.Text;
 namespace GameService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract(   Namespace = "GameService",
+    [ServiceContract(Namespace = "GameService",
                         CallbackContract = typeof(IGameplayCallback),
                         SessionMode = SessionMode.Required)]
     public interface IGamePlay
@@ -25,6 +25,8 @@ namespace GameService
         void AnswerQuestion(string clientname, string answer);
         [OperationContract]
         void SendMessage(string clientname, string message);
+        [OperationContract(IsOneWay = true)]
+        void AskClientQuestion();
 
         void ShuffleQuestions();
         Question GetQuestion();
@@ -39,11 +41,13 @@ namespace GameService
         [OperationContract]
         void LeaveNotify();
         [OperationContract(IsOneWay = true)]
-        void AskQuestion(string q, List<string>ans);
+        void AskQuestion(string q, List<string> ans);
         [OperationContract]
         void ReceiveMessage(string m);
+        [OperationContract(IsOneWay = true)]
+        void StartClients();
     }
-    
+
     [DataContract]
     public class Client
     {
@@ -56,11 +60,11 @@ namespace GameService
             this.name = name;
             points = 0;
         }
-        public void incrementpoints() 
+        public void incrementpoints()
         {
             points++;
         }
-        
+
     }
     [DataContract]
     public class Question

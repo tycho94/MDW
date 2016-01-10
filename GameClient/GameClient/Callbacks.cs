@@ -17,6 +17,7 @@ namespace GameClient
         public GamePlayClient proxy;
         private TriviaForm triviaform;
         private StartForm startform;
+        private EndGameForm endform;
 
         public Callbacks()
         {
@@ -24,18 +25,18 @@ namespace GameClient
             proxy = new GamePlayClient(GameClientCallbackInstance);
         }
 
-        public void SetTriviaForm(ref TriviaForm form)
+        public void SetTriviaForm(TriviaForm form)
         {
             triviaform = form;
         }
 
-        public void SetStartForm(ref StartForm form)
+        public void SetStartForm(StartForm form)
         {
             startform = form;
         }
-        public void Set(ref StartForm form)
+        public void SetEndGameForm(EndGameForm form)
         {
-            startform = form;
+            endform = form;
         }
 
         public void StartNotify()
@@ -61,6 +62,12 @@ namespace GameClient
         public void AskQuestion(string q, List<string> ans)
         {
             triviaform.Question(q, ans);
+        }
+
+        public void StartClients()
+        {
+            startform.Hide();
+            triviaform.Show();
         }
     }
 }

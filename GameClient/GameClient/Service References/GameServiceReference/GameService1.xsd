@@ -63,6 +63,11 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="AskClientQuestion">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="StartNotify">
     <xs:complexType>
       <xs:sequence />
@@ -109,6 +114,11 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceiveMessageResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClients">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
