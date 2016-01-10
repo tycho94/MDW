@@ -45,10 +45,10 @@ namespace GameClient.GameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AnswerQuestion", ReplyAction="GameService/IGamePlay/AnswerQuestionResponse")]
         System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, string answer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/SendMessage", ReplyAction="GameService/IGamePlay/SendMessageResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/SendMessage")]
         void SendMessage(string clientname, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/SendMessage", ReplyAction="GameService/IGamePlay/SendMessageResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/SendMessage")]
         System.Threading.Tasks.Task SendMessageAsync(string clientname, string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/AskClientQuestion")]
@@ -73,7 +73,7 @@ namespace GameClient.GameServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/AskQuestion")]
         void AskQuestion(string q, System.Collections.Generic.List<string> ans);
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/ReceiveMessage", ReplyAction="GameService/IGamePlay/ReceiveMessageResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/ReceiveMessage")]
         void ReceiveMessage(string m);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/StartClients")]

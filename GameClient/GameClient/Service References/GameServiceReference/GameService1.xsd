@@ -58,11 +58,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SendMessageResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="AskClientQuestion">
     <xs:complexType>
       <xs:sequence />
@@ -111,11 +106,6 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="m" nillable="true" type="xs:string" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ReceiveMessageResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="StartClients">

@@ -23,7 +23,7 @@ namespace GameService
         void FinishGame();
         [OperationContract]
         void AnswerQuestion(string clientname, string answer);
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void SendMessage(string clientname, string message);
         [OperationContract(IsOneWay = true)]
         void AskClientQuestion();
@@ -42,7 +42,7 @@ namespace GameService
         void LeaveNotify();
         [OperationContract(IsOneWay = true)]
         void AskQuestion(string q, List<string> ans);
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void ReceiveMessage(string m);
         [OperationContract(IsOneWay = true)]
         void StartClients();
