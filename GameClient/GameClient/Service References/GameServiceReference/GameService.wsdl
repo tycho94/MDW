@@ -34,9 +34,6 @@
   <wsdl:message name="IGamePlay_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
-  <wsdl:message name="IGamePlay_SendMessage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
-  </wsdl:message>
   <wsdl:message name="IGamePlay_AskClientQuestion_InputMessage">
     <wsdl:part name="parameters" element="tns:AskClientQuestion" />
   </wsdl:message>
@@ -64,9 +61,6 @@
   <wsdl:message name="IGamePlay_ReceiveMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMessage" />
   </wsdl:message>
-  <wsdl:message name="IGamePlay_ReceiveMessage_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReceiveMessageResponse" />
-  </wsdl:message>
   <wsdl:message name="IGamePlay_StartClients_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:StartClients" />
   </wsdl:message>
@@ -91,7 +85,6 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendMessage">
       <wsdl:input wsaw:Action="GameService/IGamePlay/SendMessage" message="tns:IGamePlay_SendMessage_InputMessage" />
-      <wsdl:output wsaw:Action="GameService/IGamePlay/SendMessageResponse" message="tns:IGamePlay_SendMessage_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AskClientQuestion">
       <wsdl:input wsaw:Action="GameService/IGamePlay/AskClientQuestion" message="tns:IGamePlay_AskClientQuestion_InputMessage" />
@@ -113,7 +106,6 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMessage">
       <wsdl:output wsaw:Action="GameService/IGamePlay/ReceiveMessage" message="tns:IGamePlay_ReceiveMessage_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="GameService/IGamePlay/ReceiveMessageResponse" message="tns:IGamePlay_ReceiveMessage_InputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartClients">
       <wsdl:output wsaw:Action="GameService/IGamePlay/StartClients" message="tns:IGamePlay_StartClients_OutputCallbackMessage" />

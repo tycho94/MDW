@@ -142,15 +142,9 @@ namespace GameService
 
         public void SendMessage(string clientname, string message)
         {
-
-            if (client1.name == clientname)
+            foreach (IGameplayCallback c in callbacklist)
             {
-                callbacklist[1].ReceiveMessage(message);
-            }
-            else
-                if (client2.name == clientname)
-            {
-                callbacklist[0].ReceiveMessage(message);
+                c.ReceiveMessage(DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + " " + clientname + ": " + message);
             }
         }
 
