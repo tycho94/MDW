@@ -28,60 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.btLeave = new System.Windows.Forms.Button();
+            this.btRestart = new System.Windows.Forms.Button();
+            this.pbWinLose = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWinLose)).BeginInit();
             this.SuspendLayout();
             // 
-            // button2
+            // btLeave
             // 
-            this.button2.Location = new System.Drawing.Point(167, 157);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(105, 76);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Leave Game";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btLeave.Location = new System.Drawing.Point(167, 157);
+            this.btLeave.Name = "btLeave";
+            this.btLeave.Size = new System.Drawing.Size(105, 76);
+            this.btLeave.TabIndex = 5;
+            this.btLeave.Text = "Leave Game";
+            this.btLeave.UseVisualStyleBackColor = true;
+            this.btLeave.Click += new System.EventHandler(this.btLeave_Click);
             // 
-            // button1
+            // btRestart
             // 
-            this.button1.Location = new System.Drawing.Point(12, 157);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 76);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Restart Game";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btRestart.Location = new System.Drawing.Point(12, 157);
+            this.btRestart.Name = "btRestart";
+            this.btRestart.Size = new System.Drawing.Size(105, 76);
+            this.btRestart.TabIndex = 4;
+            this.btRestart.Text = "Restart Game";
+            this.btRestart.UseVisualStyleBackColor = true;
+            this.btRestart.Click += new System.EventHandler(this.btRestart_Click);
             // 
-            // pictureBox1
+            // pbWinLose
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(60, 28);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(145, 98);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pbWinLose.Location = new System.Drawing.Point(60, 28);
+            this.pbWinLose.Name = "pbWinLose";
+            this.pbWinLose.Size = new System.Drawing.Size(145, 98);
+            this.pbWinLose.TabIndex = 3;
+            this.pbWinLose.TabStop = false;
             // 
             // EndGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btLeave);
+            this.Controls.Add(this.btRestart);
+            this.Controls.Add(this.pbWinLose);
             this.Name = "EndGameForm";
             this.Text = "EndGameForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWinLose)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btLeave;
+        private System.Windows.Forms.Button btRestart;
+        private System.Windows.Forms.PictureBox pbWinLose;
     }
 }

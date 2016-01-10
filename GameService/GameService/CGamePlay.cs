@@ -40,7 +40,6 @@ namespace GameService
                     if (!client2.ready)
                     {
                         callbacklist[1].StartNotify();
-
                     }
                     else
                     {
@@ -48,7 +47,6 @@ namespace GameService
                         {
                             c.StartClients();
                         }
-
                     }
                 }
             }
@@ -62,7 +60,6 @@ namespace GameService
                         if (!client1.ready)
                         {
                             callbacklist[0].StartNotify();
-
                         }
                         else
                         {
@@ -71,7 +68,6 @@ namespace GameService
                                 c.StartClients();
                                 c.AskQuestion(questions[questionindex].question, questions[questionindex].answers);
                             }
-
                         }
                     }
                 }
