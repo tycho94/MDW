@@ -48,7 +48,6 @@ namespace GameService
                     client1.incrementpoints();
                 }
             }
-            return;
         }
 
         public void ShuffleQuestions()
@@ -104,7 +103,16 @@ namespace GameService
 
         public void SendMessage(string clientname, string message)
         {
-            throw new NotImplementedException();
+
+            if (client1.name == clientname)
+            {
+                callbacklist[1].ReceiveMessage(message);
+            }
+            else
+                if (client2.name == clientname)
+            {
+                callbacklist[0].ReceiveMessage(message);
+            }
         }
 
         public void CreateQuestions()

@@ -16,6 +16,7 @@ namespace GameClient
     {
         public GamePlayClient proxy;
         private TriviaForm triviaform;
+        private StartForm startform;
 
         public Callbacks()
         {
@@ -26,6 +27,15 @@ namespace GameClient
         public void SetTriviaForm(ref TriviaForm form)
         {
             triviaform = form;
+        }
+
+        public void SetStartForm(ref StartForm form)
+        {
+            startform = form;
+        }
+        public void Set(ref StartForm form)
+        {
+            startform = form;
         }
 
         public void StartNotify()
