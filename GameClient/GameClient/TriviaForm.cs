@@ -53,6 +53,14 @@ namespace GameClient
         //FormControl
         public void Question(string q, List<string> ans)
         {
+            Random random = new Random();
+            for (int i = ans.Count - 1; i > 1; i--)
+            {
+                int k = random.Next(i + 1);
+                string a = ans[k];
+                ans[k] = ans[i];
+                ans[i] = a;
+            }
             lblQuestion.Text = q;
             btnAns1.Text = ans[0];
             btnAns2.Text = ans[1];
@@ -62,11 +70,5 @@ namespace GameClient
         {
             lb_chat.Items.Add(w);
         }
-
-        private void TriviaForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

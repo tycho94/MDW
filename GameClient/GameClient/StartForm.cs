@@ -36,13 +36,9 @@ namespace GameClient
             t.clientname = tbClientName.Text;
             c.SetTriviaForm(t);
             c.proxy.StartGame(tbClientName.Text);
+            btnStart.Enabled = false;
 
             //c.proxy.AskClientQuestion();
-
-        }
-
-        private void StartForm_Load(object sender, EventArgs e)
-        {
 
         }
     }

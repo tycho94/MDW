@@ -19,7 +19,6 @@ namespace GameService
         Client client1, client2;
         int questionindex;
         List<IGameplayCallback> callbacklist;
-        int userCouter=0;
 
         public CGamePlay()
         {
@@ -108,11 +107,6 @@ namespace GameService
                     client2.ready = false;
                 }
             }
-            MessageBox.Show(questionindex.ToString());
-            
-               
-        
-          
         }
 
         public void ShuffleQuestions()
@@ -177,16 +171,16 @@ namespace GameService
         public void CreateQuestions()
         {
             List<string> ansA = new List<string>();
-            ansA.Add("Wrong1");
-            ansA.Add("Wrong2");
+            ansA.Add("London");
+            ansA.Add("Paris");
             questions.Add(new Question("What is the Capital of Netherlands", ansA, "Amsterdam"));
             List<string> ansB = new List<string>();
-            ansB.Add("Wrong1");
-            ansB.Add("Wrong2");
+            ansB.Add("London");
+            ansB.Add("Amsterdam");
             questions.Add(new Question("What is the Capital of France", ansB, "Paris"));
             List<string> ansC = new List<string>();
-            ansC.Add("Wrong1");
-            ansC.Add("Wrong2");
+            ansC.Add("Amsterdam");
+            ansC.Add("Paris");
             questions.Add(new Question("What is the Capital of United Kingdom", ansC, "London"));
         }
 
@@ -195,7 +189,6 @@ namespace GameService
             foreach (IGameplayCallback c in callbacklist)
             {
                 c.AskQuestion(questions[questionindex].question, questions[questionindex].answers);
-                MessageBox.Show("here");
             }
         }
     }

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameService", "GameService\GameService.csproj", "{AAEB8D77-ABD6-4967-8028-3A092E7E1144}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameClient", "..\GameClient\GameClient\GameClient.csproj", "{1F323300-CF3C-4011-84C7-26D8DBCEE01D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDummy", "DebugDummy\DebugDummy.csproj", "{9BED625C-32D1-4DDC-A14A-1D918ABFD8FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,9 @@ Global
 		{1F323300-CF3C-4011-84C7-26D8DBCEE01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F323300-CF3C-4011-84C7-26D8DBCEE01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F323300-CF3C-4011-84C7-26D8DBCEE01D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BED625C-32D1-4DDC-A14A-1D918ABFD8FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BED625C-32D1-4DDC-A14A-1D918ABFD8FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BED625C-32D1-4DDC-A14A-1D918ABFD8FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

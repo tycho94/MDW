@@ -39,10 +39,10 @@ namespace GameClient.GameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/FinishGame", ReplyAction="GameService/IGamePlay/FinishGameResponse")]
         System.Threading.Tasks.Task FinishGameAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AnswerQuestion", ReplyAction="GameService/IGamePlay/AnswerQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/AnswerQuestion")]
         void AnswerQuestion(string clientname, string answer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/AnswerQuestion", ReplyAction="GameService/IGamePlay/AnswerQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/AnswerQuestion")]
         System.Threading.Tasks.Task AnswerQuestionAsync(string clientname, string answer);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/SendMessage")]

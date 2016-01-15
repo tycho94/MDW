@@ -28,9 +28,6 @@
   <wsdl:message name="IGamePlay_AnswerQuestion_InputMessage">
     <wsdl:part name="parameters" element="tns:AnswerQuestion" />
   </wsdl:message>
-  <wsdl:message name="IGamePlay_AnswerQuestion_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AnswerQuestionResponse" />
-  </wsdl:message>
   <wsdl:message name="IGamePlay_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
@@ -81,7 +78,6 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AnswerQuestion">
       <wsdl:input wsaw:Action="GameService/IGamePlay/AnswerQuestion" message="tns:IGamePlay_AnswerQuestion_InputMessage" />
-      <wsdl:output wsaw:Action="GameService/IGamePlay/AnswerQuestionResponse" message="tns:IGamePlay_AnswerQuestion_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendMessage">
       <wsdl:input wsaw:Action="GameService/IGamePlay/SendMessage" message="tns:IGamePlay_SendMessage_InputMessage" />

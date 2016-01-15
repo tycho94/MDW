@@ -21,7 +21,7 @@ namespace GameService
         void PauseGame(string clientname);
         [OperationContract]
         void FinishGame();
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void AnswerQuestion(string clientname, string answer);
         [OperationContract(IsOneWay = true)]
         void SendMessage(string clientname, string message);
@@ -53,14 +53,12 @@ namespace GameService
     {
         private int points;
         public bool ready;
-        public bool answered;
         [DataMember]
         public string name { get; set; }
         public Client(string name)
         {
             this.name = name;
             points = 0;
-            answered = false;
         }
         public void incrementpoints()
         {

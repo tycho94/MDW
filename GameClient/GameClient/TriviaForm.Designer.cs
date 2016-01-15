@@ -191,7 +191,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TriviaForm";
             this.Text = "TriviaForm";
-            this.Load += new System.EventHandler(this.TriviaForm_Load);
             this.groupQuestion.ResumeLayout(false);
             this.groupQuestion.PerformLayout();
             this.groupAnswers.ResumeLayout(false);
