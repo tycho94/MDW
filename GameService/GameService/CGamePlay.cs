@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Timers;
+using System.Windows.Forms;
 
 namespace GameService
 {
@@ -13,7 +14,7 @@ namespace GameService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class CGamePlay : IGamePlay
     {
-        Timer t;
+        //Timer t;
         List<Question> questions;
         Client client1, client2;
         int questionindex;
@@ -84,22 +85,30 @@ namespace GameService
 
         public void AnswerQuestion(string clientname, string answer)
         {
-                if (client1.name == clientname)
+            if (client1.name==clientname)
+            {
+                client1.ready=true;
+                if(client2.ready==true)
                 {
-                    client1.ready=true;
-                   
+                    questionindex++;
+                    AskClientQuestion();
+                    client1.ready=false;
+                    client2.ready=false;
                 }
-               if (client2.name == clientname)
-                {
-                    client2.ready = true;
-                    
-                }
-               if (client1.ready == true && client2.ready == true)
-               {
 
-                   questionindex++;
-                   AskClientQuestion();
-               }
+            }
+            if (client2.name == clientname)
+            {
+                client2.ready = true;
+                if (client1.ready ==true)
+                {
+                    questionindex++;
+                    AskClientQuestion();
+                    client1.ready = false;
+                    client2.ready = false;
+                }
+            }
+            MessageBox.Show(questionindex.ToString());
             
                
         
