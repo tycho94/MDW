@@ -18,6 +18,7 @@ namespace GameService
         Client client1, client2;
         int questionindex;
         List<IGameplayCallback> callbacklist;
+        int userCouter=0;
 
         public CGamePlay()
         {
@@ -46,7 +47,10 @@ namespace GameService
                         foreach (IGameplayCallback c in callbacklist)
                         {
                             c.StartClients();
+                            c.AskQuestion(questions[questionindex].question, questions[questionindex].answers);
                         }
+                        client1.ready = false;
+                        client2.ready = false;
                     }
                 }
             }
@@ -67,7 +71,11 @@ namespace GameService
                             {
                                 c.StartClients();
                                 c.AskQuestion(questions[questionindex].question, questions[questionindex].answers);
+                                
                             }
+                            client1.ready = false;
+                            client2.ready = false;
+                           
                         }
                     }
                 }
@@ -76,13 +84,26 @@ namespace GameService
 
         public void AnswerQuestion(string clientname, string answer)
         {
-            if (client1.name == clientname)
-            {
-                if (GetQuestion().GetRightAnswer() == answer)
+                if (client1.name == clientname)
                 {
-                    client1.incrementpoints();
+                    client1.ready=true;
+                   
                 }
-            }
+               if (client2.name == clientname)
+                {
+                    client2.ready = true;
+                    
+                }
+               if (client1.ready == true && client2.ready == true)
+               {
+
+                   questionindex++;
+                   AskClientQuestion();
+               }
+            
+               
+        
+          
         }
 
         public void ShuffleQuestions()
