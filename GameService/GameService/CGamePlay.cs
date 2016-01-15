@@ -193,7 +193,10 @@ namespace GameService
         public void AskClientQuestion()
         {
             foreach (IGameplayCallback c in callbacklist)
+            {
                 c.AskQuestion(questions[questionindex].question, questions[questionindex].answers);
+                MessageBox.Show("here");
+            }
         }
     }
 }
