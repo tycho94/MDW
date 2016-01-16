@@ -27,5 +27,10 @@ namespace GameClient
         {
 
         }
+
+        public void Result(string m)
+        {
+            lblFinish.Text = m;
+        }
     }
 }

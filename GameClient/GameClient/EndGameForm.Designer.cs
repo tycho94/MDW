@@ -30,8 +30,7 @@
         {
             this.btLeave = new System.Windows.Forms.Button();
             this.btRestart = new System.Windows.Forms.Button();
-            this.pbWinLose = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbWinLose)).BeginInit();
+            this.lblFinish = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btLeave
@@ -54,26 +53,29 @@
             this.btRestart.UseVisualStyleBackColor = true;
             this.btRestart.Click += new System.EventHandler(this.btRestart_Click);
             // 
-            // pbWinLose
+            // lblFinish
             // 
-            this.pbWinLose.Location = new System.Drawing.Point(60, 28);
-            this.pbWinLose.Name = "pbWinLose";
-            this.pbWinLose.Size = new System.Drawing.Size(145, 98);
-            this.pbWinLose.TabIndex = 3;
-            this.pbWinLose.TabStop = false;
+            this.lblFinish.AutoSize = true;
+            this.lblFinish.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFinish.Location = new System.Drawing.Point(106, 58);
+            this.lblFinish.Name = "lblFinish";
+            this.lblFinish.Size = new System.Drawing.Size(72, 29);
+            this.lblFinish.TabIndex = 6;
+            this.lblFinish.Text = "result";
+            this.lblFinish.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // EndGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.lblFinish);
             this.Controls.Add(this.btLeave);
             this.Controls.Add(this.btRestart);
-            this.Controls.Add(this.pbWinLose);
             this.Name = "EndGameForm";
             this.Text = "EndGameForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pbWinLose)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -81,6 +83,6 @@
 
         private System.Windows.Forms.Button btLeave;
         private System.Windows.Forms.Button btRestart;
-        private System.Windows.Forms.PictureBox pbWinLose;
+        private System.Windows.Forms.Label lblFinish;
     }
 }

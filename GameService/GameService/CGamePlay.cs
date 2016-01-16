@@ -16,29 +16,29 @@ namespace GameService
     {
         //Timer t;
         List<Question> questions;
-        Client client1, client2;
-        int questionindex;
+        Client client0, client1;
+        int qi;
         List<IGameplayCallback> callbacklist;
 
         public CGamePlay()
         {
+            client0 = null;
             client1 = null;
-            client2 = null;
             questions = new List<Question>();
             CreateQuestions();
             ShuffleQuestions();
-            questionindex = 0;
+            qi = 0;
             callbacklist = new List<IGameplayCallback>();
         }
 
         public void StartGame(string clientname)
         {
-            if (client1.name == clientname)
+            if (client0.name == clientname)
             {
-                client1.ready = true;
-                if (client2 != null)
+                client0.ready = true;
+                if (client1 != null)
                 {
-                    if (!client2.ready)
+                    if (!client1.ready)
                     {
                         callbacklist[1].StartNotify();
                     }
@@ -47,21 +47,21 @@ namespace GameService
                         foreach (IGameplayCallback c in callbacklist)
                         {
                             c.StartClients();
-                            c.AskQuestion(questions[questionindex].question, questions[questionindex].answers);
                         }
+                        AskClientQuestion();
+                        client0.ready = false;
                         client1.ready = false;
-                        client2.ready = false;
                     }
                 }
             }
-            if (client2 != null)
+            if (client1 != null)
             {
-                if (client2.name == clientname)
+                if (client1.name == clientname)
                 {
-                    client2.ready = true;
-                    if (client1 != null)
+                    client1.ready = true;
+                    if (client0 != null)
                     {
-                        if (!client1.ready)
+                        if (!client0.ready)
                         {
                             callbacklist[0].StartNotify();
                         }
@@ -70,12 +70,11 @@ namespace GameService
                             foreach (IGameplayCallback c in callbacklist)
                             {
                                 c.StartClients();
-                                c.AskQuestion(questions[questionindex].question, questions[questionindex].answers);
-                                
+
                             }
+                            AskClientQuestion();
+                            client0.ready = false;
                             client1.ready = false;
-                            client2.ready = false;
-                           
                         }
                     }
                 }
@@ -84,29 +83,50 @@ namespace GameService
 
         public void AnswerQuestion(string clientname, string answer)
         {
-            if (client1.name==clientname)
+            if (client0.name == clientname)
             {
-                client1.ready=true;
-                if(client2.ready==true)
+                client0.ready = true;
+                if (answer == questions[qi - 1].GetRightAnswer())
+                    client0.incrementpoints();
+                if (qi <= 4)
                 {
-                    questionindex++;
-                    AskClientQuestion();
-                    client1.ready=false;
-                    client2.ready=false;
-                }
+                    if (client1.ready == true)
+                    {
+                        AskClientQuestion();
+                        if (client0.ready && client1.ready)
+                        {
+                            callbacklist[0].ReceiveMessage("Score - You: " + client0.GetPoints() + "\tOpponent: " + client1.GetPoints());
+                            callbacklist[1].ReceiveMessage("Score - You: " + client1.GetPoints() + "\tOpponent: " + client0.GetPoints());
+                        }
+                        client0.ready = false;
+                        client1.ready = false;
+                    }
 
-            }
-            if (client2.name == clientname)
-            {
-                client2.ready = true;
-                if (client1.ready ==true)
-                {
-                    questionindex++;
-                    AskClientQuestion();
-                    client1.ready = false;
-                    client2.ready = false;
                 }
             }
+            if (client1.name == clientname)
+            {
+                client1.ready = true;
+                if (answer == questions[qi - 1].GetRightAnswer())
+                    client1.incrementpoints();
+                if (qi <= 4)
+                {
+                    if (client0.ready == true)
+                    {
+                        AskClientQuestion();
+                        if (client0.ready && client1.ready)
+                        {
+                            callbacklist[0].ReceiveMessage("Score - You: " + client0.GetPoints() + "\tOpponent: " + client1.GetPoints());
+                            callbacklist[1].ReceiveMessage("Score - You: " + client1.GetPoints() + "\tOpponent: " + client0.GetPoints());
+                        }
+                        client0.ready = false;
+                        client1.ready = false;
+                    }
+                }
+            }
+
+            if (qi >= 4 && (client0.ready && client1.ready))
+                FinishGame();
         }
 
         public void ShuffleQuestions()
@@ -123,20 +143,20 @@ namespace GameService
 
         public Question GetQuestion()
         {
-            return questions[questionindex];
+            return questions[qi];
         }
 
         public void Connect(string clientname)
         {
             IGameplayCallback callback = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
-            if (client1 == null)
+            if (client0 == null)
             {
-                client1 = new Client(clientname);
+                client0 = new Client(clientname);
                 callbacklist.Insert(0, callback);
             }
-            else if (client2 == null)
+            else if (client1 == null)
             {
-                client2 = new Client(clientname);
+                client1 = new Client(clientname);
                 callbacklist.Insert(1, callback);
             }
         }
@@ -144,12 +164,12 @@ namespace GameService
 
         public void PauseGame(string clientname)
         {
-            if (client1.name == clientname)
+            if (client0.name == clientname)
             {
                 callbacklist[1].PauseNotify();
             }
             else
-                if (client2.name == clientname)
+                if (client1.name == clientname)
             {
                 callbacklist[0].PauseNotify();
             }
@@ -157,7 +177,21 @@ namespace GameService
 
         public void FinishGame()
         {
-            throw new NotImplementedException();
+            if (client0.GetPoints() == client1.GetPoints())
+            {
+                foreach (IGameplayCallback c in callbacklist)
+                    c.FinishNotify(1);
+            }
+            if (client0.GetPoints() > client1.GetPoints())
+            {
+                callbacklist[0].FinishNotify(2);
+                callbacklist[1].FinishNotify(0);
+            }
+            if (client0.GetPoints() < client1.GetPoints())
+            {
+                callbacklist[0].FinishNotify(0);
+                callbacklist[1].FinishNotify(2);
+            }
         }
 
         public void SendMessage(string clientname, string message)
@@ -168,28 +202,48 @@ namespace GameService
             }
         }
 
-        public void CreateQuestions()
-        {
-            List<string> ansA = new List<string>();
-            ansA.Add("London");
-            ansA.Add("Paris");
-            questions.Add(new Question("What is the Capital of Netherlands", ansA, "Amsterdam"));
-            List<string> ansB = new List<string>();
-            ansB.Add("London");
-            ansB.Add("Amsterdam");
-            questions.Add(new Question("What is the Capital of France", ansB, "Paris"));
-            List<string> ansC = new List<string>();
-            ansC.Add("Amsterdam");
-            ansC.Add("Paris");
-            questions.Add(new Question("What is the Capital of United Kingdom", ansC, "London"));
-        }
+
 
         public void AskClientQuestion()
         {
+            List<string> ans = questions[qi].answers;
+            Random random = new Random();
+            for (int i = ans.Count - 1; i > 1; i--)
+            {
+                int k = random.Next(i + 1);
+                string a = ans[k];
+                ans[k] = ans[i];
+                ans[i] = a;
+            }
             foreach (IGameplayCallback c in callbacklist)
             {
-                c.AskQuestion(questions[questionindex].question, questions[questionindex].answers);
+                c.AskQuestion(questions[qi].question, ans);
             }
+            qi++;
+        }
+
+        public void CreateQuestions()
+        {
+            List<string> ans = new List<string>();
+            ans.Add("London");
+            ans.Add("Paris");
+            questions.Add(new Question("What is the Capital of Netherlands", ans, "Amsterdam"));
+            ans.Clear();
+            ans.Add("1");
+            ans.Add("3");
+            questions.Add(new Question("How much is 1+1", ans, "2"));
+            ans.Clear();
+            ans.Add("12");
+            ans.Add("10");
+            questions.Add(new Question("What comes after 1-1-2-3-5-8-?", ans, "13"));
+            ans.Clear();
+            ans.Add("H3O");
+            ans.Add("HO2");
+            questions.Add(new Question("Which one is water?", ans, "H2O"));
+            ans.Clear();
+            ans.Add("Washington DC");
+            ans.Add("Chicago");
+            questions.Add(new Question("Where is the World Trade Center", ans, "New York City"));
         }
     }
 }

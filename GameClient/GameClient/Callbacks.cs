@@ -41,7 +41,7 @@ namespace GameClient
 
         public void StartNotify()
         {
-            MessageBox.Show("The other player wants to play a game with you");
+            //MessageBox.Show("The other player wants to play a game with you");
         }
 
         public void PauseNotify()
@@ -68,6 +68,20 @@ namespace GameClient
         {
             startform.Hide();
             triviaform.Show();
+        }
+
+        public void FinishNotify(int result)
+        {
+            endform = new EndGameForm();
+            triviaform.Hide();
+            endform.Show();
+
+            if (result == 0)
+                endform.Result("You Lost!");
+            if (result == 1)
+                endform.Result("It's a draw!");
+            if (result == 2)
+                endform.Result("You win!");
         }
     }
 }

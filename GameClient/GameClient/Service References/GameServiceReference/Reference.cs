@@ -78,6 +78,9 @@ namespace GameClient.GameServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/StartClients")]
         void StartClients();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/FinishNotify")]
+        void FinishNotify(int result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

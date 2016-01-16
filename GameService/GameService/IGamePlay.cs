@@ -46,6 +46,16 @@ namespace GameService
         void ReceiveMessage(string m);
         [OperationContract(IsOneWay = true)]
         void StartClients();
+        /// <summary>
+        /// Lets the client know who won
+        /// </summary>
+        /// <param name="result">
+        /// 0 = lost
+        /// 1 = draw
+        /// 2 = win
+        /// </param>
+        [OperationContract(IsOneWay = true)]
+        void FinishNotify(int result);
     }
 
     [DataContract]
@@ -64,15 +74,22 @@ namespace GameService
         {
             points++;
         }
-
+        public int GetPoints()
+        {
+            return points;
+        }
     }
     [DataContract]
     public class Question
     {
         public Question(string qst, List<string> answ, string rAnswer)
         {
+            answers = new List<string>();
+            foreach (string a in answ)
+            {
+                answers.Add(a);
+            }
             question = qst;
-            answers = answ;
             rightAnswer = rAnswer;
             answers.Add(rightAnswer);
         }
