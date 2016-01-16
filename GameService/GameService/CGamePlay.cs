@@ -180,17 +180,17 @@ namespace GameService
             if (client0.GetPoints() == client1.GetPoints())
             {
                 foreach (IGameplayCallback c in callbacklist)
-                    c.FinishNotify(1);
+                    c.FinishNotify(1, client0.GetPoints(), client1.GetPoints());
             }
             if (client0.GetPoints() > client1.GetPoints())
             {
-                callbacklist[0].FinishNotify(2);
-                callbacklist[1].FinishNotify(0);
+                callbacklist[0].FinishNotify(2, client0.GetPoints(), client1.GetPoints());
+                callbacklist[1].FinishNotify(0, client1.GetPoints(), client0.GetPoints());
             }
             if (client0.GetPoints() < client1.GetPoints())
             {
-                callbacklist[0].FinishNotify(0);
-                callbacklist[1].FinishNotify(2);
+                callbacklist[0].FinishNotify(0, client0.GetPoints(), client1.GetPoints());
+                callbacklist[1].FinishNotify(2, client1.GetPoints(), client0.GetPoints());
             }
         }
 

@@ -57,12 +57,12 @@
             // 
             this.lblFinish.AutoSize = true;
             this.lblFinish.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFinish.Location = new System.Drawing.Point(106, 58);
+            this.lblFinish.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblFinish.Location = new System.Drawing.Point(7, 61);
             this.lblFinish.Name = "lblFinish";
             this.lblFinish.Size = new System.Drawing.Size(72, 29);
             this.lblFinish.TabIndex = 6;
             this.lblFinish.Text = "result";
-            this.lblFinish.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // EndGameForm
             // 

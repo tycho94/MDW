@@ -55,7 +55,7 @@ namespace GameService
         /// 2 = win
         /// </param>
         [OperationContract(IsOneWay = true)]
-        void FinishNotify(int result);
+        void FinishNotify(int result, int yourpoints, int theirpoints);
     }
 
     [DataContract]

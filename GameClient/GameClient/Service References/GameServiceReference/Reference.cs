@@ -80,7 +80,7 @@ namespace GameClient.GameServiceReference {
         void StartClients();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/FinishNotify")]
-        void FinishNotify(int result);
+        void FinishNotify(int result, int yourpoints, int theirpoints);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

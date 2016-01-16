@@ -70,18 +70,18 @@ namespace GameClient
             triviaform.Show();
         }
 
-        public void FinishNotify(int result)
+        public void FinishNotify(int result, int yourpoints, int theirpoints)
         {
             endform = new EndGameForm();
             triviaform.Hide();
             endform.Show();
 
             if (result == 0)
-                endform.Result("You Lost!");
+                endform.Result("You Lost! Score: " +yourpoints+ " vs "+theirpoints);
             if (result == 1)
-                endform.Result("It's a draw!");
+                endform.Result("It's a draw! Score: " + yourpoints + " vs " + theirpoints);
             if (result == 2)
-                endform.Result("You win!");
+                endform.Result("You win! Score: " + yourpoints + " vs " + theirpoints);
         }
     }
 }
