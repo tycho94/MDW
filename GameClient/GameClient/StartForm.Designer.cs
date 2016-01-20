@@ -36,7 +36,7 @@
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(117, 182);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(140, 68);
             this.btnStart.TabIndex = 1;
@@ -47,7 +47,7 @@
             // btnConnect
             // 
             this.btnConnect.Location = new System.Drawing.Point(117, 182);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(4);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(140, 68);
             this.btnConnect.TabIndex = 2;
@@ -58,7 +58,7 @@
             // tbClientName
             // 
             this.tbClientName.Location = new System.Drawing.Point(117, 106);
-            this.tbClientName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbClientName.Margin = new System.Windows.Forms.Padding(4);
             this.tbClientName.Name = "tbClientName";
             this.tbClientName.Size = new System.Drawing.Size(132, 22);
             this.tbClientName.TabIndex = 3;
@@ -72,9 +72,10 @@
             this.Controls.Add(this.tbClientName);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.btnStart);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StartForm";
             this.Text = "StartForm";
+            this.Load += new System.EventHandler(this.StartForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

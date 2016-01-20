@@ -58,6 +58,10 @@ namespace GameClient
         {
             lb_chat.Items.Add(w);
         }
+        public Callbacks getcall()
+        {
+            return c;
+        }
         private void btnDisable()
         {
             btnAns1.Enabled = false;

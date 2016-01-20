@@ -179,18 +179,18 @@ namespace GameService
         {
             if (client0.GetPoints() == client1.GetPoints())
             {
-                foreach (IGameplayCallback c in callbacklist)
-                    c.FinishNotify(1, client0.GetPoints(), client1.GetPoints());
+                callbacklist[0].FinishNotify(2, client0.GetPoints(), client1.GetPoints(),client0.name);
+                callbacklist[1].FinishNotify(0, client1.GetPoints(), client0.GetPoints(),client1.name);
             }
             if (client0.GetPoints() > client1.GetPoints())
             {
-                callbacklist[0].FinishNotify(2, client0.GetPoints(), client1.GetPoints());
-                callbacklist[1].FinishNotify(0, client1.GetPoints(), client0.GetPoints());
+                callbacklist[0].FinishNotify(2, client0.GetPoints(), client1.GetPoints(),client0.name);
+                callbacklist[1].FinishNotify(0, client1.GetPoints(), client0.GetPoints(),client1.name);
             }
             if (client0.GetPoints() < client1.GetPoints())
             {
-                callbacklist[0].FinishNotify(0, client0.GetPoints(), client1.GetPoints());
-                callbacklist[1].FinishNotify(2, client1.GetPoints(), client0.GetPoints());
+                callbacklist[0].FinishNotify(0, client0.GetPoints(), client1.GetPoints(),client0.name);
+                callbacklist[1].FinishNotify(2, client1.GetPoints(), client0.GetPoints(),client1.name);
             }
         }
 
@@ -220,6 +220,63 @@ namespace GameService
                 c.AskQuestion(questions[qi].question, ans);
             }
             qi++;
+        }
+
+
+        public void reStartGame(string clientname)
+        {
+            if (client0.name == clientname)
+            {
+                client0.ready = true;
+                if (client1 != null)
+                {
+                    if (!client1.ready)
+                    {
+                        callbacklist[1].reStartNotify();
+                    }
+                    else
+                    {
+                        foreach (IGameplayCallback c in callbacklist)
+                        {
+                            c.StartClients();
+                        }
+                        qi = 0;
+                        client0.reloadPoints();
+                        client1.reloadPoints();
+                        AskClientQuestion();
+                        client0.ready = false;
+                        client1.ready = false;
+                    }
+                }
+            }
+            if (client1 != null)
+            {
+                if (client1.name == clientname)
+                {
+                    client1.ready = true;
+                    if (client0 != null)
+                    {
+                        if (!client0.ready)
+                        {
+                            callbacklist[0].reStartNotify();
+                        }
+                        else
+                        {
+                            foreach (IGameplayCallback c in callbacklist)
+                            {
+                                c.StartClients();
+
+                            }
+                            qi = 0;
+                            client0.reloadPoints();
+                            client1.reloadPoints();
+                            AskClientQuestion();
+                            client0.ready = false;
+                            client1.ready = false;
+                        }
+                    }
+                }
+            }
         }
 
         public void CreateQuestions()

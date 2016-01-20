@@ -41,5 +41,10 @@ namespace GameClient
             //c.proxy.AskClientQuestion();
 
         }
+
+        private void StartForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

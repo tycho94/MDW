@@ -17,6 +17,8 @@ namespace GameService
         void Connect(string clientname);
         [OperationContract(IsOneWay = true)]
         void StartGame(string clientname);
+        [OperationContract(IsOneWay = true)]
+        void reStartGame(string clientname);
         [OperationContract]
         void PauseGame(string clientname);
         [OperationContract]
@@ -37,6 +39,8 @@ namespace GameService
         [OperationContract]
         void StartNotify();
         [OperationContract]
+        void reStartNotify();
+        [OperationContract]
         void PauseNotify();
         [OperationContract]
         void LeaveNotify();
@@ -55,7 +59,7 @@ namespace GameService
         /// 2 = win
         /// </param>
         [OperationContract(IsOneWay = true)]
-        void FinishNotify(int result, int yourpoints, int theirpoints);
+        void FinishNotify(int result, int yourpoints, int theirpoints,string thisclient);
     }
 
     [DataContract]
@@ -77,6 +81,10 @@ namespace GameService
         public int GetPoints()
         {
             return points;
+        }
+        public void reloadPoints()
+        {
+            this.points = 0;
         }
     }
     [DataContract]

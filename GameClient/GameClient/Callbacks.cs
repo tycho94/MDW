@@ -41,9 +41,12 @@ namespace GameClient
 
         public void StartNotify()
         {
-            //MessageBox.Show("The other player wants to play a game with you");
+            MessageBox.Show("The other player wants to play a game with you");
         }
-
+        public void reStartNotify()
+        {
+            MessageBox.Show("The other player wants to play a gameagain with you again");
+        }
         public void PauseNotify()
         {
             triviaform.Warning("The game will pause briefly between questions");
@@ -70,9 +73,9 @@ namespace GameClient
             triviaform.Show();
         }
 
-        public void FinishNotify(int result, int yourpoints, int theirpoints)
+        public void FinishNotify(int result, int yourpoints, int theirpoints,string thisclient)
         {
-            endform = new EndGameForm();
+            endform = new EndGameForm(triviaform.getcall(),thisclient);
             triviaform.Hide();
             endform.Show();
 

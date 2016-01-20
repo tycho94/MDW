@@ -15,6 +15,13 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="reStartGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="clientname" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="PauseGame">
     <xs:complexType>
       <xs:sequence>
@@ -68,6 +75,16 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="reStartNotify">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="reStartNotifyResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="PauseNotify">
     <xs:complexType>
       <xs:sequence />
@@ -114,6 +131,7 @@
         <xs:element minOccurs="0" name="result" type="xs:int" />
         <xs:element minOccurs="0" name="yourpoints" type="xs:int" />
         <xs:element minOccurs="0" name="theirpoints" type="xs:int" />
+        <xs:element minOccurs="0" name="thisclient" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
