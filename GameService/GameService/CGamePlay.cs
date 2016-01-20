@@ -70,7 +70,6 @@ namespace GameService
                             foreach (IGameplayCallback c in callbacklist)
                             {
                                 c.StartClients();
-
                             }
                             AskClientQuestion();
                             client0.ready = false;
@@ -124,7 +123,6 @@ namespace GameService
                     }
                 }
             }
-
             if (qi >= 4 && (client0.ready && client1.ready))
                 FinishGame();
         }
@@ -153,11 +151,15 @@ namespace GameService
             {
                 client0 = new Client(clientname);
                 callbacklist.Insert(0, callback);
+                OperationContext.Current.Channel.Faulted += new EventHandler(Channel_Faulted);
+                OperationContext.Current.Channel.Closed += new EventHandler(Channel_Faulted);
             }
             else if (client1 == null)
             {
                 client1 = new Client(clientname);
                 callbacklist.Insert(1, callback);
+                OperationContext.Current.Channel.Faulted += new EventHandler(Channel_Faulted);
+                OperationContext.Current.Channel.Closed += new EventHandler(Channel_Faulted);
             }
         }
 
@@ -179,19 +181,22 @@ namespace GameService
         {
             if (client0.GetPoints() == client1.GetPoints())
             {
-                callbacklist[0].FinishNotify(2, client0.GetPoints(), client1.GetPoints(),client0.name);
-                callbacklist[1].FinishNotify(0, client1.GetPoints(), client0.GetPoints(),client1.name);
+                callbacklist[0].FinishNotify(2, client0.GetPoints(), client1.GetPoints());
+                callbacklist[1].FinishNotify(0, client1.GetPoints(), client0.GetPoints());
             }
             if (client0.GetPoints() > client1.GetPoints())
             {
-                callbacklist[0].FinishNotify(2, client0.GetPoints(), client1.GetPoints(),client0.name);
-                callbacklist[1].FinishNotify(0, client1.GetPoints(), client0.GetPoints(),client1.name);
+                callbacklist[0].FinishNotify(2, client0.GetPoints(), client1.GetPoints());
+                callbacklist[1].FinishNotify(0, client1.GetPoints(), client0.GetPoints());
             }
             if (client0.GetPoints() < client1.GetPoints())
             {
-                callbacklist[0].FinishNotify(0, client0.GetPoints(), client1.GetPoints(),client0.name);
-                callbacklist[1].FinishNotify(2, client1.GetPoints(), client0.GetPoints(),client1.name);
+                callbacklist[0].FinishNotify(0, client0.GetPoints(), client1.GetPoints());
+                callbacklist[1].FinishNotify(2, client1.GetPoints(), client0.GetPoints());
             }
+            qi = 0;
+            client0.ready = false;
+            client1.ready = false;
         }
 
         public void SendMessage(string clientname, string message)
@@ -201,8 +206,6 @@ namespace GameService
                 c.ReceiveMessage(DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + " " + clientname + ": " + message);
             }
         }
-
-
 
         public void AskClientQuestion()
         {
@@ -220,63 +223,6 @@ namespace GameService
                 c.AskQuestion(questions[qi].question, ans);
             }
             qi++;
-        }
-
-
-        public void reStartGame(string clientname)
-        {
-            if (client0.name == clientname)
-            {
-                client0.ready = true;
-                if (client1 != null)
-                {
-                    if (!client1.ready)
-                    {
-                        callbacklist[1].reStartNotify();
-                    }
-                    else
-                    {
-                        foreach (IGameplayCallback c in callbacklist)
-                        {
-                            c.StartClients();
-                        }
-                        qi = 0;
-                        client0.reloadPoints();
-                        client1.reloadPoints();
-                        AskClientQuestion();
-                        client0.ready = false;
-                        client1.ready = false;
-                    }
-                }
-            }
-            if (client1 != null)
-            {
-                if (client1.name == clientname)
-                {
-                    client1.ready = true;
-                    if (client0 != null)
-                    {
-                        if (!client0.ready)
-                        {
-                            callbacklist[0].reStartNotify();
-                        }
-                        else
-                        {
-                            foreach (IGameplayCallback c in callbacklist)
-                            {
-                                c.StartClients();
-
-                            }
-                            qi = 0;
-                            client0.reloadPoints();
-                            client1.reloadPoints();
-                            AskClientQuestion();
-                            client0.ready = false;
-                            client1.ready = false;
-                        }
-                    }
-                }
-            }
         }
 
         public void CreateQuestions()
@@ -301,6 +247,25 @@ namespace GameService
             ans.Add("Washington DC");
             ans.Add("Chicago");
             questions.Add(new Question("Where is the World Trade Center", ans, "New York City"));
+        }
+
+        void Channel_Faulted(object sender, EventArgs e)
+        {
+            try
+            {
+                callbacklist[0].LeaveNotify();
+            }
+            catch
+            {
+                try {
+                    callbacklist[1].LeaveNotify();
+                }
+                catch
+                {
+                    //nothing
+                }
+            }
+            Application.Exit();
         }
     }
 }

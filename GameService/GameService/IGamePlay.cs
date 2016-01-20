@@ -17,8 +17,6 @@ namespace GameService
         void Connect(string clientname);
         [OperationContract(IsOneWay = true)]
         void StartGame(string clientname);
-        [OperationContract(IsOneWay = true)]
-        void reStartGame(string clientname);
         [OperationContract]
         void PauseGame(string clientname);
         [OperationContract]
@@ -29,7 +27,6 @@ namespace GameService
         void SendMessage(string clientname, string message);
         [OperationContract(IsOneWay = true)]
         void AskClientQuestion();
-
         void ShuffleQuestions();
         Question GetQuestion();
     }
@@ -38,8 +35,6 @@ namespace GameService
     {
         [OperationContract]
         void StartNotify();
-        [OperationContract]
-        void reStartNotify();
         [OperationContract]
         void PauseNotify();
         [OperationContract]
@@ -59,7 +54,7 @@ namespace GameService
         /// 2 = win
         /// </param>
         [OperationContract(IsOneWay = true)]
-        void FinishNotify(int result, int yourpoints, int theirpoints,string thisclient);
+        void FinishNotify(int result, int yourpoints, int theirpoints);
     }
 
     [DataContract]

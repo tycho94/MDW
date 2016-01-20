@@ -15,7 +15,7 @@ namespace GameClient
     public partial class TriviaForm : Form
     {
         public string clientname;
-        private Callbacks c;
+        public Callbacks c;
         public TriviaForm(ref Callbacks call)
         {
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace GameClient
         }
 
         private void btnAns3_Click(object sender, EventArgs e)
-        { 
+        {
             c.proxy.AnswerQuestion(clientname, btnAns3.Text);
             btnDisable();
         }
@@ -58,10 +58,7 @@ namespace GameClient
         {
             lb_chat.Items.Add(w);
         }
-        public Callbacks getcall()
-        {
-            return c;
-        }
+
         private void btnDisable()
         {
             btnAns1.Enabled = false;
@@ -76,5 +73,42 @@ namespace GameClient
             btnAns3.Enabled = true;
         }
 
+        public void ResetGame()
+        {
+            lblQuestion.Text = "";
+            lb_chat.Items.Clear();
+            btnAns1.Text = "";
+            btnAns2.Text = "";
+            btnAns3.Text = "";
+        }
+
+        private void btnLeave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                c.proxy.Close();
+            }
+            catch (CommunicationException)
+            {
+                c.proxy.Abort();
+            }
+            catch (TimeoutException)
+            {
+                c.proxy.Abort();
+            }
+            catch (Exception)
+            {
+                c.proxy.Abort();
+                throw;
+            }
+            Application.Exit();
+        }
+
+        public void Disable()
+        {
+            btnDisable();
+            btnPause.Enabled = false;
+            btnSendMsg.Enabled = false;
+        }
     }
 }

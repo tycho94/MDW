@@ -13,9 +13,6 @@
   <wsdl:message name="IGamePlay_StartGame_InputMessage">
     <wsdl:part name="parameters" element="tns:StartGame" />
   </wsdl:message>
-  <wsdl:message name="IGamePlay_reStartGame_InputMessage">
-    <wsdl:part name="parameters" element="tns:reStartGame" />
-  </wsdl:message>
   <wsdl:message name="IGamePlay_PauseGame_InputMessage">
     <wsdl:part name="parameters" element="tns:PauseGame" />
   </wsdl:message>
@@ -42,12 +39,6 @@
   </wsdl:message>
   <wsdl:message name="IGamePlay_StartNotify_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:StartNotifyResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_reStartNotify_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:reStartNotify" />
-  </wsdl:message>
-  <wsdl:message name="IGamePlay_reStartNotify_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:reStartNotifyResponse" />
   </wsdl:message>
   <wsdl:message name="IGamePlay_PauseNotify_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PauseNotify" />
@@ -80,9 +71,6 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartGame">
       <wsdl:input wsaw:Action="GameService/IGamePlay/StartGame" message="tns:IGamePlay_StartGame_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="reStartGame">
-      <wsdl:input wsaw:Action="GameService/IGamePlay/reStartGame" message="tns:IGamePlay_reStartGame_InputMessage" />
-    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PauseGame">
       <wsdl:input wsaw:Action="GameService/IGamePlay/PauseGame" message="tns:IGamePlay_PauseGame_InputMessage" />
       <wsdl:output wsaw:Action="GameService/IGamePlay/PauseGameResponse" message="tns:IGamePlay_PauseGame_OutputMessage" />
@@ -103,10 +91,6 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartNotify">
       <wsdl:output wsaw:Action="GameService/IGamePlay/StartNotify" message="tns:IGamePlay_StartNotify_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="GameService/IGamePlay/StartNotifyResponse" message="tns:IGamePlay_StartNotify_InputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="reStartNotify">
-      <wsdl:output wsaw:Action="GameService/IGamePlay/reStartNotify" message="tns:IGamePlay_reStartNotify_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="GameService/IGamePlay/reStartNotifyResponse" message="tns:IGamePlay_reStartNotify_InputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PauseNotify">
       <wsdl:output wsaw:Action="GameService/IGamePlay/PauseNotify" message="tns:IGamePlay_PauseNotify_OutputCallbackMessage" />

@@ -28,24 +28,24 @@ namespace GameClient
         public void SetTriviaForm(TriviaForm form)
         {
             triviaform = form;
+            triviaform.FormClosed += new FormClosedEventHandler(FormClosed);
         }
 
         public void SetStartForm(StartForm form)
         {
             startform = form;
+            startform.FormClosed += new FormClosedEventHandler(FormClosed);
         }
+
         public void SetEndGameForm(EndGameForm form)
         {
             endform = form;
+            endform.FormClosed += new FormClosedEventHandler(FormClosed);
         }
 
         public void StartNotify()
         {
             MessageBox.Show("The other player wants to play a game with you");
-        }
-        public void reStartNotify()
-        {
-            MessageBox.Show("The other player wants to play a gameagain with you again");
         }
         public void PauseNotify()
         {
@@ -54,7 +54,16 @@ namespace GameClient
 
         public void LeaveNotify()
         {
-            triviaform.Warning("The other player has left. You won!");
+            try {
+                triviaform.Disable();
+                endform.Disable();
+                endform.Warning("The other player has left the game\nThe game will close now");
+                Application.Exit();
+            }
+            catch
+            {
+                Application.Exit();
+            }
         }
 
         public void ReceiveMessage(string m)
@@ -71,20 +80,45 @@ namespace GameClient
         {
             startform.Hide();
             triviaform.Show();
+            endform.Hide();
         }
 
-        public void FinishNotify(int result, int yourpoints, int theirpoints,string thisclient)
+        public void FinishNotify(int result, int yourpoints, int theirpoints)
         {
-            endform = new EndGameForm(triviaform.getcall(),thisclient);
             triviaform.Hide();
             endform.Show();
-
             if (result == 0)
-                endform.Result("You Lost! Score: " +yourpoints+ " vs "+theirpoints);
+                endform.Result("You Lost! Score: " + yourpoints + " vs " + theirpoints);
             if (result == 1)
                 endform.Result("It's a draw! Score: " + yourpoints + " vs " + theirpoints);
             if (result == 2)
                 endform.Result("You win! Score: " + yourpoints + " vs " + theirpoints);
+        }
+        public void Restart()
+        {
+            triviaform.ResetGame();
+            triviaform.c.proxy.StartGame(triviaform.clientname);
+        }
+        void FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                proxy.Close();
+            }
+            catch (CommunicationException)
+            {
+                proxy.Abort();
+            }
+            catch (TimeoutException)
+            {
+                proxy.Abort();
+            }
+            catch (Exception)
+            {
+                proxy.Abort();
+                throw;
+            }
+            Application.Exit();
         }
     }
 }

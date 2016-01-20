@@ -13,7 +13,7 @@ namespace GameClient
 {
     public partial class StartForm : Form
     {
-        Callbacks c;
+        public Callbacks c;
         public StartForm(ref Callbacks c)
         {
             InitializeComponent();
@@ -32,18 +32,15 @@ namespace GameClient
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            EndGameForm z = new EndGameForm(ref c, tbClientName.Text);
             TriviaForm t = new TriviaForm(ref c);
             t.clientname = tbClientName.Text;
+            c.SetEndGameForm(z);
             c.SetTriviaForm(t);
             c.proxy.StartGame(tbClientName.Text);
             btnStart.Enabled = false;
 
             //c.proxy.AskClientQuestion();
-
-        }
-
-        private void StartForm_Load(object sender, EventArgs e)
-        {
 
         }
     }

@@ -27,12 +27,6 @@ namespace GameClient.GameServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/StartGame")]
         System.Threading.Tasks.Task StartGameAsync(string clientname);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/reStartGame")]
-        void reStartGame(string clientname);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/reStartGame")]
-        System.Threading.Tasks.Task reStartGameAsync(string clientname);
-        
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/PauseGame", ReplyAction="GameService/IGamePlay/PauseGameResponse")]
         void PauseGame(string clientname);
         
@@ -70,9 +64,6 @@ namespace GameClient.GameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/StartNotify", ReplyAction="GameService/IGamePlay/StartNotifyResponse")]
         void StartNotify();
         
-        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/reStartNotify", ReplyAction="GameService/IGamePlay/reStartNotifyResponse")]
-        void reStartNotify();
-        
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/PauseNotify", ReplyAction="GameService/IGamePlay/PauseNotifyResponse")]
         void PauseNotify();
         
@@ -89,7 +80,7 @@ namespace GameClient.GameServiceReference {
         void StartClients();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/FinishNotify")]
-        void FinishNotify(int result, int yourpoints, int theirpoints, string thisclient);
+        void FinishNotify(int result, int yourpoints, int theirpoints);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -134,14 +125,6 @@ namespace GameClient.GameServiceReference {
         
         public System.Threading.Tasks.Task StartGameAsync(string clientname) {
             return base.Channel.StartGameAsync(clientname);
-        }
-        
-        public void reStartGame(string clientname) {
-            base.Channel.reStartGame(clientname);
-        }
-        
-        public System.Threading.Tasks.Task reStartGameAsync(string clientname) {
-            return base.Channel.reStartGameAsync(clientname);
         }
         
         public void PauseGame(string clientname) {

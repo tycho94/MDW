@@ -14,38 +14,56 @@ namespace GameClient
     public partial class EndGameForm : Form
     {
 
-        Callbacks c;
+        public Callbacks c;
         private string clientname;
-        public EndGameForm(Callbacks call,string Clientname)
+        public EndGameForm(ref Callbacks call, string Clientname)
         {
             InitializeComponent();
             clientname = Clientname;
             c = call;
-            
+
         }
 
         private void btLeave_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                c.proxy.Close();
+            }
+            catch (CommunicationException)
+            {
+                c.proxy.Abort();
+            }
+            catch (TimeoutException)
+            {
+                c.proxy.Abort();
+            }
+            catch (Exception)
+            {
+                c.proxy.Abort();
+                throw;
+            }
+            Application.Exit();
         }
 
         private void btRestart_Click(object sender, EventArgs e)
         {
-            TriviaForm t = new TriviaForm(ref c);
-            t.clientname = clientname;
-            c.SetTriviaForm(t);
-            c.proxy.StartGame(clientname);
-           
+            c.Restart();
         }
 
         public void Result(string m)
         {
             lblFinish.Text = m;
         }
-
-        private void EndGameForm_Load(object sender, EventArgs e)
+        
+        public void Disable()
         {
+            btRestart.Enabled = false;
+        }
 
+        public void Warning(string m)
+        {
+            MessageBox.Show(m);
         }
     }
 }

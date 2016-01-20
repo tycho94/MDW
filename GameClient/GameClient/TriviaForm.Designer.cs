@@ -48,10 +48,9 @@
             // 
             // btnAns1
             // 
-            this.btnAns1.Location = new System.Drawing.Point(11, 38);
-            this.btnAns1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAns1.Location = new System.Drawing.Point(8, 31);
             this.btnAns1.Name = "btnAns1";
-            this.btnAns1.Size = new System.Drawing.Size(248, 57);
+            this.btnAns1.Size = new System.Drawing.Size(186, 46);
             this.btnAns1.TabIndex = 0;
             this.btnAns1.Text = "button1";
             this.btnAns1.UseVisualStyleBackColor = true;
@@ -59,10 +58,9 @@
             // 
             // btnAns2
             // 
-            this.btnAns2.Location = new System.Drawing.Point(352, 38);
-            this.btnAns2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAns2.Location = new System.Drawing.Point(264, 31);
             this.btnAns2.Name = "btnAns2";
-            this.btnAns2.Size = new System.Drawing.Size(248, 57);
+            this.btnAns2.Size = new System.Drawing.Size(186, 46);
             this.btnAns2.TabIndex = 1;
             this.btnAns2.Text = "button2";
             this.btnAns2.UseVisualStyleBackColor = true;
@@ -70,10 +68,9 @@
             // 
             // btnAns3
             // 
-            this.btnAns3.Location = new System.Drawing.Point(677, 38);
-            this.btnAns3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAns3.Location = new System.Drawing.Point(508, 31);
             this.btnAns3.Name = "btnAns3";
-            this.btnAns3.Size = new System.Drawing.Size(248, 57);
+            this.btnAns3.Size = new System.Drawing.Size(186, 46);
             this.btnAns3.TabIndex = 2;
             this.btnAns3.Text = "button3";
             this.btnAns3.UseVisualStyleBackColor = true;
@@ -82,31 +79,26 @@
             // lblQuestion
             // 
             this.lblQuestion.AutoSize = true;
-            this.lblQuestion.Location = new System.Drawing.Point(28, 52);
-            this.lblQuestion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblQuestion.Location = new System.Drawing.Point(21, 42);
             this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(80, 17);
+            this.lblQuestion.Size = new System.Drawing.Size(63, 13);
             this.lblQuestion.TabIndex = 3;
             this.lblQuestion.Text = "QUESTION";
             // 
             // lb_game_score
             // 
             this.lb_game_score.FormattingEnabled = true;
-            this.lb_game_score.ItemHeight = 16;
-            this.lb_game_score.Location = new System.Drawing.Point(897, 17);
-            this.lb_game_score.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lb_game_score.Location = new System.Drawing.Point(673, 14);
             this.lb_game_score.Name = "lb_game_score";
-            this.lb_game_score.Size = new System.Drawing.Size(159, 116);
+            this.lb_game_score.Size = new System.Drawing.Size(120, 95);
             this.lb_game_score.TabIndex = 13;
             // 
             // groupQuestion
             // 
             this.groupQuestion.Controls.Add(this.lblQuestion);
-            this.groupQuestion.Location = new System.Drawing.Point(133, 14);
-            this.groupQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupQuestion.Location = new System.Drawing.Point(100, 11);
             this.groupQuestion.Name = "groupQuestion";
-            this.groupQuestion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupQuestion.Size = new System.Drawing.Size(756, 123);
+            this.groupQuestion.Size = new System.Drawing.Size(567, 100);
             this.groupQuestion.TabIndex = 21;
             this.groupQuestion.TabStop = false;
             this.groupQuestion.Text = "Question";
@@ -116,21 +108,18 @@
             this.groupAnswers.Controls.Add(this.btnAns1);
             this.groupAnswers.Controls.Add(this.btnAns2);
             this.groupAnswers.Controls.Add(this.btnAns3);
-            this.groupAnswers.Location = new System.Drawing.Point(72, 142);
-            this.groupAnswers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupAnswers.Location = new System.Drawing.Point(54, 115);
             this.groupAnswers.Name = "groupAnswers";
-            this.groupAnswers.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupAnswers.Size = new System.Drawing.Size(985, 150);
+            this.groupAnswers.Size = new System.Drawing.Size(739, 122);
             this.groupAnswers.TabIndex = 20;
             this.groupAnswers.TabStop = false;
             this.groupAnswers.Text = "Answers";
             // 
             // btnSendMsg
             // 
-            this.btnSendMsg.Location = new System.Drawing.Point(511, 437);
-            this.btnSendMsg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSendMsg.Location = new System.Drawing.Point(383, 355);
             this.btnSendMsg.Name = "btnSendMsg";
-            this.btnSendMsg.Size = new System.Drawing.Size(104, 57);
+            this.btnSendMsg.Size = new System.Drawing.Size(78, 46);
             this.btnSendMsg.TabIndex = 19;
             this.btnSendMsg.Text = "Send Message";
             this.btnSendMsg.UseVisualStyleBackColor = true;
@@ -138,20 +127,19 @@
             // 
             // btnLeave
             // 
-            this.btnLeave.Location = new System.Drawing.Point(897, 327);
-            this.btnLeave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLeave.Location = new System.Drawing.Point(673, 266);
             this.btnLeave.Name = "btnLeave";
-            this.btnLeave.Size = new System.Drawing.Size(100, 80);
+            this.btnLeave.Size = new System.Drawing.Size(75, 65);
             this.btnLeave.TabIndex = 18;
             this.btnLeave.Text = "Leave Game";
             this.btnLeave.UseVisualStyleBackColor = true;
+            this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(696, 327);
-            this.btnPause.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPause.Location = new System.Drawing.Point(522, 266);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(97, 76);
+            this.btnPause.Size = new System.Drawing.Size(73, 62);
             this.btnPause.TabIndex = 17;
             this.btnPause.Text = "Pause game";
             this.btnPause.UseVisualStyleBackColor = true;
@@ -159,27 +147,24 @@
             // lb_chat
             // 
             this.lb_chat.FormattingEnabled = true;
-            this.lb_chat.ItemHeight = 16;
-            this.lb_chat.Location = new System.Drawing.Point(72, 299);
-            this.lb_chat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lb_chat.Location = new System.Drawing.Point(54, 243);
             this.lb_chat.Name = "lb_chat";
-            this.lb_chat.Size = new System.Drawing.Size(541, 116);
+            this.lb_chat.Size = new System.Drawing.Size(407, 95);
             this.lb_chat.TabIndex = 16;
             // 
             // tbMessage
             // 
-            this.tbMessage.Location = new System.Drawing.Point(165, 454);
-            this.tbMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbMessage.Location = new System.Drawing.Point(124, 369);
             this.tbMessage.Name = "tbMessage";
-            this.tbMessage.Size = new System.Drawing.Size(243, 22);
+            this.tbMessage.Size = new System.Drawing.Size(183, 20);
             this.tbMessage.TabIndex = 22;
             this.tbMessage.Text = "message";
             // 
             // TriviaForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 508);
+            this.ClientSize = new System.Drawing.Size(834, 413);
             this.Controls.Add(this.tbMessage);
             this.Controls.Add(this.lb_game_score);
             this.Controls.Add(this.groupQuestion);
@@ -188,7 +173,6 @@
             this.Controls.Add(this.btnLeave);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.lb_chat);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TriviaForm";
             this.Text = "TriviaForm";
             this.groupQuestion.ResumeLayout(false);
