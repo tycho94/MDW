@@ -15,11 +15,11 @@ namespace GameClient.GameServiceReference {
     [System.ServiceModel.ServiceContractAttribute(Namespace="GameService", ConfigurationName="GameServiceReference.IGamePlay", CallbackContract=typeof(GameClient.GameServiceReference.IGamePlayCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IGamePlay {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/Connect")]
-        void Connect(string clientname);
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/Connect", ReplyAction="GameService/IGamePlay/ConnectResponse")]
+        bool Connect(string clientname);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/Connect")]
-        System.Threading.Tasks.Task ConnectAsync(string clientname);
+        [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/Connect", ReplyAction="GameService/IGamePlay/ConnectResponse")]
+        System.Threading.Tasks.Task<bool> ConnectAsync(string clientname);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/StartGame")]
         void StartGame(string clientname);
@@ -81,6 +81,9 @@ namespace GameClient.GameServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/FinishNotify")]
         void FinishNotify(int result, int yourpoints, int theirpoints);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/Score")]
+        void Score(string s);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,11 +114,11 @@ namespace GameClient.GameServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void Connect(string clientname) {
-            base.Channel.Connect(clientname);
+        public bool Connect(string clientname) {
+            return base.Channel.Connect(clientname);
         }
         
-        public System.Threading.Tasks.Task ConnectAsync(string clientname) {
+        public System.Threading.Tasks.Task<bool> ConnectAsync(string clientname) {
             return base.Channel.ConnectAsync(clientname);
         }
         

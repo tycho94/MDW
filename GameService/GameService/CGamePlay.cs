@@ -94,8 +94,8 @@ namespace GameService
                         AskClientQuestion();
                         if (client0.ready && client1.ready)
                         {
-                            callbacklist[0].ReceiveMessage("Score - You: " + client0.GetPoints() + "\tOpponent: " + client1.GetPoints());
-                            callbacklist[1].ReceiveMessage("Score - You: " + client1.GetPoints() + "\tOpponent: " + client0.GetPoints());
+                            callbacklist[0].Score("You: " + client0.GetPoints() + " Opponent: " + client1.GetPoints());
+                            callbacklist[1].Score("You: " + client1.GetPoints() + " Opponent: " + client0.GetPoints());
                         }
                         client0.ready = false;
                         client1.ready = false;
@@ -115,8 +115,8 @@ namespace GameService
                         AskClientQuestion();
                         if (client0.ready && client1.ready)
                         {
-                            callbacklist[0].ReceiveMessage("Score - You: " + client0.GetPoints() + "\tOpponent: " + client1.GetPoints());
-                            callbacklist[1].ReceiveMessage("Score - You: " + client1.GetPoints() + "\tOpponent: " + client0.GetPoints());
+                            callbacklist[0].Score("You: " + client0.GetPoints() + " Opponent: " + client1.GetPoints());
+                            callbacklist[1].Score("You: " + client1.GetPoints() + " Opponent: " + client0.GetPoints());
                         }
                         client0.ready = false;
                         client1.ready = false;
@@ -144,8 +144,9 @@ namespace GameService
             return questions[qi];
         }
 
-        public void Connect(string clientname)
+        public bool Connect(string clientname)
         {
+            bool returnvalue = false;
             IGameplayCallback callback = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
             if (client0 == null)
             {
@@ -156,11 +157,17 @@ namespace GameService
             }
             else if (client1 == null)
             {
+                if (client0.name == clientname)
+                {
+                    clientname = clientname + "-1";
+                    returnvalue = true;
+                }
                 client1 = new Client(clientname);
                 callbacklist.Insert(1, callback);
                 OperationContext.Current.Channel.Faulted += new EventHandler(Channel_Faulted);
                 OperationContext.Current.Channel.Closed += new EventHandler(Channel_Faulted);
             }
+            return returnvalue;
         }
 
 
@@ -195,8 +202,8 @@ namespace GameService
                 callbacklist[1].FinishNotify(2, client1.GetPoints(), client0.GetPoints());
             }
             qi = 0;
-            client0.ready = false;
-            client1.ready = false;
+            client0.Reset();
+            client1.Reset();
         }
 
         public void SendMessage(string clientname, string message)
@@ -257,7 +264,8 @@ namespace GameService
             }
             catch
             {
-                try {
+                try
+                {
                     callbacklist[1].LeaveNotify();
                 }
                 catch

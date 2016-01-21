@@ -13,8 +13,8 @@ namespace GameService
                         SessionMode = SessionMode.Required)]
     public interface IGamePlay
     {
-        [OperationContract(IsOneWay = true)]
-        void Connect(string clientname);
+        [OperationContract(IsOneWay = false)]
+        bool Connect(string clientname);
         [OperationContract(IsOneWay = true)]
         void StartGame(string clientname);
         [OperationContract]
@@ -55,6 +55,8 @@ namespace GameService
         /// </param>
         [OperationContract(IsOneWay = true)]
         void FinishNotify(int result, int yourpoints, int theirpoints);
+        [OperationContract(IsOneWay = true)]
+        void Score(string s);
     }
 
     [DataContract]
@@ -77,9 +79,10 @@ namespace GameService
         {
             return points;
         }
-        public void reloadPoints()
+        public void Reset()
         {
-            this.points = 0;
+            points = 0;
+            ready = false;
         }
     }
     [DataContract]
@@ -105,5 +108,6 @@ namespace GameService
         {
             return rightAnswer;
         }
+
     }
 }

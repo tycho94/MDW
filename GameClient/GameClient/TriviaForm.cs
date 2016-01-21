@@ -16,27 +16,35 @@ namespace GameClient
     {
         public string clientname;
         public Callbacks c;
+        public int timeleft, pauseleft;
+        string q, a1, a2, a3;
+        public bool pause = false;
+        public Timer t;
         public TriviaForm(ref Callbacks call)
         {
             InitializeComponent();
             c = call;
+            TimerGame.Interval = 1000;
         }
 
         private void btnAns1_Click(object sender, EventArgs e)
         {
             c.proxy.AnswerQuestion(clientname, btnAns1.Text);
+            TimerGame.Stop();
             btnDisable();
         }
 
         private void btnAns2_Click(object sender, EventArgs e)
         {
             c.proxy.AnswerQuestion(clientname, btnAns2.Text);
+            TimerGame.Stop();
             btnDisable();
         }
 
         private void btnAns3_Click(object sender, EventArgs e)
         {
             c.proxy.AnswerQuestion(clientname, btnAns3.Text);
+            TimerGame.Stop();
             btnDisable();
         }
 
@@ -53,10 +61,17 @@ namespace GameClient
             btnAns2.Text = ans[1];
             btnAns3.Text = ans[2];
             btnEnable();
+            timeleft = 10;
+            lblTime.Text = timeleft.ToString();
+            TimerGame.Start();
         }
         public void Warning(string w)
         {
             lb_chat.Items.Add(w);
+        }
+        public void Score(string s)
+        {
+            lb_game_score.Items.Add(s);
         }
 
         private void btnDisable()
@@ -77,6 +92,7 @@ namespace GameClient
         {
             lblQuestion.Text = "";
             lb_chat.Items.Clear();
+            lb_game_score.Items.Clear();
             btnAns1.Text = "";
             btnAns2.Text = "";
             btnAns3.Text = "";
@@ -110,5 +126,56 @@ namespace GameClient
             btnPause.Enabled = false;
             btnSendMsg.Enabled = false;
         }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            PauseGame();
+            c.proxy.PauseGame(clientname);
+        }
+
+        public void PauseGame()
+        {
+            q = lblQuestion.Text;
+            a1 = btnAns1.Text;
+            a2 = btnAns2.Text;
+            a3 = btnAns3.Text;
+            lblQuestion.Text = "Paused for 5 seconds";
+            btnAns1.Text = "";
+            btnAns2.Text = "";
+            btnAns3.Text = "";
+            TimerGame.Stop();
+
+            t = new Timer();
+            t.Interval = 1000;
+            pauseleft = 5;
+            lblTime.Text = pauseleft.ToString();
+            t.Tick += new EventHandler(t_Tick);
+            t.Start();
+        }
+        private void t_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = pauseleft.ToString();
+            if (pauseleft == 0)
+            {
+                lblTime.Text = timeleft.ToString();
+                lblQuestion.Text = q;
+                btnAns1.Text = a1;
+                btnAns2.Text = a2;
+                btnAns3.Text = a3;
+                TimerGame.Start();
+                t.Stop();
+            }
+            pauseleft--;
+        }
+
+        private void TimerGame_Tick(object sender, EventArgs e)
+        {
+            timeleft--;
+            lblTime.Text = timeleft.ToString();
+            if (timeleft == 0)
+                c.proxy.AnswerQuestion(clientname, "");
+        }
+
+
     }
 }

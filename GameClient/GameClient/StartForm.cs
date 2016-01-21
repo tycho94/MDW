@@ -24,7 +24,8 @@ namespace GameClient
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            c.proxy.Connect(tbClientName.Text);
+            if (c.proxy.Connect(tbClientName.Text))
+                tbClientName.Text = tbClientName.Text + "-1";
             tbClientName.Enabled = false;
             btnConnect.Visible = false;
             btnStart.Visible = true;

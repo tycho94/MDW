@@ -8,6 +8,13 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ConnectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ConnectResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="StartGame">
     <xs:complexType>
       <xs:sequence>
@@ -114,6 +121,13 @@
         <xs:element minOccurs="0" name="result" type="xs:int" />
         <xs:element minOccurs="0" name="yourpoints" type="xs:int" />
         <xs:element minOccurs="0" name="theirpoints" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Score">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="s" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -10,6 +10,9 @@
   <wsdl:message name="IGamePlay_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
   </wsdl:message>
+  <wsdl:message name="IGamePlay_Connect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectResponse" />
+  </wsdl:message>
   <wsdl:message name="IGamePlay_StartGame_InputMessage">
     <wsdl:part name="parameters" element="tns:StartGame" />
   </wsdl:message>
@@ -64,9 +67,13 @@
   <wsdl:message name="IGamePlay_FinishNotify_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:FinishNotify" />
   </wsdl:message>
+  <wsdl:message name="IGamePlay_Score_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Score" />
+  </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IGamePlay">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Connect">
       <wsdl:input wsaw:Action="GameService/IGamePlay/Connect" message="tns:IGamePlay_Connect_InputMessage" />
+      <wsdl:output wsaw:Action="GameService/IGamePlay/ConnectResponse" message="tns:IGamePlay_Connect_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartGame">
       <wsdl:input wsaw:Action="GameService/IGamePlay/StartGame" message="tns:IGamePlay_StartGame_InputMessage" />
@@ -111,6 +118,9 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="FinishNotify">
       <wsdl:output wsaw:Action="GameService/IGamePlay/FinishNotify" message="tns:IGamePlay_FinishNotify_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Score">
+      <wsdl:output wsaw:Action="GameService/IGamePlay/Score" message="tns:IGamePlay_Score_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

@@ -49,7 +49,7 @@ namespace GameClient
         }
         public void PauseNotify()
         {
-            triviaform.Warning("The game will pause briefly between questions");
+            triviaform.PauseGame();
         }
 
         public void LeaveNotify()
@@ -93,6 +93,10 @@ namespace GameClient
                 endform.Result("It's a draw! Score: " + yourpoints + " vs " + theirpoints);
             if (result == 2)
                 endform.Result("You win! Score: " + yourpoints + " vs " + theirpoints);
+        }
+        public void Score(string s)
+        {
+            triviaform.Score(s);
         }
         public void Restart()
         {
