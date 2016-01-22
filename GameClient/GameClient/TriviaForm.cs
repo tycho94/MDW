@@ -19,12 +19,10 @@ namespace GameClient
         public int timeleft, pauseleft;
         string q, a1, a2, a3;
         public bool pause = false;
-        public Timer t;
         public TriviaForm(ref Callbacks call)
         {
             InitializeComponent();
             c = call;
-            TimerGame.Interval = 1000;
         }
 
         private void btnAns1_Click(object sender, EventArgs e)
@@ -143,17 +141,17 @@ namespace GameClient
             btnAns1.Text = "";
             btnAns2.Text = "";
             btnAns3.Text = "";
+            btnDisable();
+            btnPause.Enabled = false;
             TimerGame.Stop();
-
-            t = new Timer();
-            t.Interval = 1000;
+            
             pauseleft = 5;
             lblTime.Text = pauseleft.ToString();
-            t.Tick += new EventHandler(t_Tick);
             t.Start();
         }
         private void t_Tick(object sender, EventArgs e)
         {
+            pauseleft--;
             lblTime.Text = pauseleft.ToString();
             if (pauseleft == 0)
             {
@@ -164,8 +162,9 @@ namespace GameClient
                 btnAns3.Text = a3;
                 TimerGame.Start();
                 t.Stop();
+                btnEnable();
+                btnPause.Enabled = true;
             }
-            pauseleft--;
         }
 
         private void TimerGame_Tick(object sender, EventArgs e)

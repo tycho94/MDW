@@ -37,6 +37,8 @@ namespace GameService
         void StartNotify();
         [OperationContract]
         void PauseNotify();
+        [OperationContract(IsOneWay = true)]
+        void AnswerNotify(bool correct);
         [OperationContract]
         void LeaveNotify();
         [OperationContract(IsOneWay = true)]

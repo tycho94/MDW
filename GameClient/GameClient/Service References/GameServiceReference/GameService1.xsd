@@ -85,6 +85,13 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="AnswerNotify">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="correct" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="LeaveNotify">
     <xs:complexType>
       <xs:sequence />

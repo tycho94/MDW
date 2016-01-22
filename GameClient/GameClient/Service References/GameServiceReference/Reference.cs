@@ -67,6 +67,9 @@ namespace GameClient.GameServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/PauseNotify", ReplyAction="GameService/IGamePlay/PauseNotifyResponse")]
         void PauseNotify();
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/AnswerNotify")]
+        void AnswerNotify(bool correct);
+        
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/LeaveNotify", ReplyAction="GameService/IGamePlay/LeaveNotifyResponse")]
         void LeaveNotify();
         

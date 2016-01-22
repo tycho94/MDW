@@ -49,6 +49,9 @@
   <wsdl:message name="IGamePlay_PauseNotify_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PauseNotifyResponse" />
   </wsdl:message>
+  <wsdl:message name="IGamePlay_AnswerNotify_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:AnswerNotify" />
+  </wsdl:message>
   <wsdl:message name="IGamePlay_LeaveNotify_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:LeaveNotify" />
   </wsdl:message>
@@ -102,6 +105,9 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PauseNotify">
       <wsdl:output wsaw:Action="GameService/IGamePlay/PauseNotify" message="tns:IGamePlay_PauseNotify_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="GameService/IGamePlay/PauseNotifyResponse" message="tns:IGamePlay_PauseNotify_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AnswerNotify">
+      <wsdl:output wsaw:Action="GameService/IGamePlay/AnswerNotify" message="tns:IGamePlay_AnswerNotify_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LeaveNotify">
       <wsdl:output wsaw:Action="GameService/IGamePlay/LeaveNotify" message="tns:IGamePlay_LeaveNotify_OutputCallbackMessage" />

@@ -43,6 +43,7 @@
             this.tbMessage = new System.Windows.Forms.TextBox();
             this.TimerGame = new System.Windows.Forms.Timer(this.components);
             this.lblTime = new System.Windows.Forms.Label();
+            this.t = new System.Windows.Forms.Timer(this.components);
             this.groupQuestion.SuspendLayout();
             this.groupAnswers.SuspendLayout();
             this.SuspendLayout();
@@ -164,6 +165,7 @@
             // 
             // TimerGame
             // 
+            this.TimerGame.Interval = 1000;
             this.TimerGame.Tick += new System.EventHandler(this.TimerGame_Tick);
             // 
             // lblTime
@@ -175,6 +177,11 @@
             this.lblTime.Size = new System.Drawing.Size(95, 29);
             this.lblTime.TabIndex = 24;
             this.lblTime.Text = "lblTime";
+            // 
+            // t
+            // 
+            this.t.Interval = 1000;
+            this.t.Tick += new System.EventHandler(this.t_Tick);
             // 
             // TriviaForm
             // 
@@ -216,6 +223,7 @@
         private System.Windows.Forms.TextBox tbMessage;
         private System.Windows.Forms.Timer TimerGame;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Timer t;
     }
 }
 

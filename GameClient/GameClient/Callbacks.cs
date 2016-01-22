@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.ServiceModel;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace GameClient
         private TriviaForm triviaform;
         private StartForm startform;
         private EndGameForm endform;
+        private SoundPlayer sp;
 
         public Callbacks()
         {
@@ -45,7 +47,7 @@ namespace GameClient
 
         public void StartNotify()
         {
-            MessageBox.Show("The other player wants to play a game with you");
+            // MessageBox.Show("The other player wants to play a game with you");
         }
         public void PauseNotify()
         {
@@ -54,7 +56,8 @@ namespace GameClient
 
         public void LeaveNotify()
         {
-            try {
+            try
+            {
                 triviaform.Disable();
                 endform.Disable();
                 endform.Warning("The other player has left the game\nThe game will close now");
@@ -123,6 +126,20 @@ namespace GameClient
                 throw;
             }
             Application.Exit();
+        }
+
+        public void AnswerNotify(bool correct)
+        {
+            if (correct)
+            {
+
+                sp = new SoundPlayer(@"..\..\resources\answer_right.wav");
+            }
+            else
+            {
+                sp = new SoundPlayer(@"..\..\resources\answer_wrong.wav");
+            }
+            sp.Play();
         }
     }
 }

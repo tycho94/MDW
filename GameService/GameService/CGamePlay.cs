@@ -82,48 +82,46 @@ namespace GameService
 
         public void AnswerQuestion(string clientname, string answer)
         {
+            int clientcallback;
+            Client c, c2;
             if (client0.name == clientname)
             {
-                client0.ready = true;
-                if (answer == questions[qi - 1].GetRightAnswer())
-                    client0.incrementpoints();
-                if (qi <= 4)
-                {
-                    if (client1.ready == true)
-                    {
-                        AskClientQuestion();
-                        if (client0.ready && client1.ready)
-                        {
-                            callbacklist[0].Score("You: " + client0.GetPoints() + " Opponent: " + client1.GetPoints());
-                            callbacklist[1].Score("You: " + client1.GetPoints() + " Opponent: " + client0.GetPoints());
-                        }
-                        client0.ready = false;
-                        client1.ready = false;
-                    }
+                c = client0;
+                c2 = client1;
+                clientcallback = 0;
+            }
+            else {
+                c = client1;
+                c2 = client0;
+                clientcallback = 1;
+            }
 
-                }
-            }
-            if (client1.name == clientname)
+            if (c.name == clientname)
             {
-                client1.ready = true;
+                c.ready = true;
                 if (answer == questions[qi - 1].GetRightAnswer())
-                    client1.incrementpoints();
+                {
+                    c.incrementpoints();
+                    callbacklist[clientcallback].AnswerNotify(true);
+                }
+                else
+                    callbacklist[clientcallback].AnswerNotify(false);
+
                 if (qi <= 4)
                 {
-                    if (client0.ready == true)
+                    if (c2.ready == true)
                     {
                         AskClientQuestion();
-                        if (client0.ready && client1.ready)
-                        {
-                            callbacklist[0].Score("You: " + client0.GetPoints() + " Opponent: " + client1.GetPoints());
-                            callbacklist[1].Score("You: " + client1.GetPoints() + " Opponent: " + client0.GetPoints());
-                        }
-                        client0.ready = false;
-                        client1.ready = false;
+
+                        callbacklist[0].Score("You: " + c.GetPoints() + " Opponent: " + c2.GetPoints());
+                        callbacklist[1].Score("You: " + c2.GetPoints() + " Opponent: " + c.GetPoints());
+
+                        c.ready = false;
+                        c2.ready = false;
                     }
                 }
             }
-            if (qi >= 4 && (client0.ready && client1.ready))
+            if (qi >= 4 && (c.ready && c2.ready))
                 FinishGame();
         }
 
