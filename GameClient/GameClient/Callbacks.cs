@@ -47,7 +47,7 @@ namespace GameClient
 
         public void StartNotify()
         {
-            // MessageBox.Show("The other player wants to play a game with you");
+             MessageBox.Show("The other player wants to play a game with you");
         }
         public void PauseNotify()
         {

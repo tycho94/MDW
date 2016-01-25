@@ -176,6 +176,11 @@ namespace GameClient
                 c.proxy.AnswerQuestion(clientname, "");
         }
 
+        private void TriviaForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

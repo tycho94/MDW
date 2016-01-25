@@ -65,5 +65,10 @@ namespace GameClient
         {
             MessageBox.Show(m);
         }
+
+        private void EndGameForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
