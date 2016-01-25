@@ -107,7 +107,7 @@ namespace GameService
                 else
                     callbacklist[clientcallback].AnswerNotify(false);
 
-                if (qi <= 4)
+                if (qi < questions.Count)
                 {
                     if (c2.ready == true)
                     {
@@ -121,7 +121,7 @@ namespace GameService
                     }
                 }
             }
-            if (qi >= 4 && (c.ready && c2.ready))
+            if (qi >= questions.Count && (c.ready && c2.ready))
                 FinishGame();
         }
 
@@ -235,11 +235,11 @@ namespace GameService
             List<string> ans = new List<string>();
             ans.Add("London");
             ans.Add("Paris");
-            questions.Add(new Question("What is the Capital of Netherlands", ans, "Amsterdam"));
+            questions.Add(new Question("What is the Capital of Netherlands?", ans, "Amsterdam"));
             ans.Clear();
             ans.Add("1");
             ans.Add("3");
-            questions.Add(new Question("How much is 1+1", ans, "2"));
+            questions.Add(new Question("How much is 1+1?", ans, "2"));
             ans.Clear();
             ans.Add("12");
             ans.Add("10");
@@ -251,7 +251,11 @@ namespace GameService
             ans.Clear();
             ans.Add("Washington DC");
             ans.Add("Chicago");
-            questions.Add(new Question("Where is the World Trade Center", ans, "New York City"));
+            questions.Add(new Question("Where is the World Trade Center?", ans, "New York City"));
+            ans.Clear();
+            ans.Add("x");
+            ans.Add("x");
+            questions.Add(new Question("x?", ans, "New York City"));
         }
 
         void Channel_Faulted(object sender, EventArgs e)

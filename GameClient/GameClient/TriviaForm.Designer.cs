@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TriviaForm));
             this.btnAns1 = new System.Windows.Forms.Button();
             this.btnAns2 = new System.Windows.Forms.Button();
             this.btnAns3 = new System.Windows.Forms.Button();
@@ -50,32 +51,35 @@
             // 
             // btnAns1
             // 
+            this.btnAns1.BackColor = System.Drawing.Color.PaleVioletRed;
             this.btnAns1.Location = new System.Drawing.Point(8, 31);
             this.btnAns1.Name = "btnAns1";
             this.btnAns1.Size = new System.Drawing.Size(186, 46);
             this.btnAns1.TabIndex = 0;
             this.btnAns1.Text = "button1";
-            this.btnAns1.UseVisualStyleBackColor = true;
+            this.btnAns1.UseVisualStyleBackColor = false;
             this.btnAns1.Click += new System.EventHandler(this.btnAns1_Click);
             // 
             // btnAns2
             // 
+            this.btnAns2.BackColor = System.Drawing.Color.YellowGreen;
             this.btnAns2.Location = new System.Drawing.Point(236, 31);
             this.btnAns2.Name = "btnAns2";
             this.btnAns2.Size = new System.Drawing.Size(186, 46);
             this.btnAns2.TabIndex = 1;
             this.btnAns2.Text = "button2";
-            this.btnAns2.UseVisualStyleBackColor = true;
+            this.btnAns2.UseVisualStyleBackColor = false;
             this.btnAns2.Click += new System.EventHandler(this.btnAns2_Click);
             // 
             // btnAns3
             // 
+            this.btnAns3.BackColor = System.Drawing.Color.Teal;
             this.btnAns3.Location = new System.Drawing.Point(466, 31);
             this.btnAns3.Name = "btnAns3";
             this.btnAns3.Size = new System.Drawing.Size(186, 46);
             this.btnAns3.TabIndex = 2;
             this.btnAns3.Text = "button3";
-            this.btnAns3.UseVisualStyleBackColor = true;
+            this.btnAns3.UseVisualStyleBackColor = false;
             this.btnAns3.Click += new System.EventHandler(this.btnAns3_Click);
             // 
             // lblQuestion
@@ -89,6 +93,8 @@
             // 
             // lb_game_score
             // 
+            this.lb_game_score.BackColor = System.Drawing.Color.Black;
+            this.lb_game_score.ForeColor = System.Drawing.SystemColors.Info;
             this.lb_game_score.FormattingEnabled = true;
             this.lb_game_score.Location = new System.Drawing.Point(586, 14);
             this.lb_game_score.Name = "lb_game_score";
@@ -119,36 +125,41 @@
             // 
             // btnSendMsg
             // 
-            this.btnSendMsg.Location = new System.Drawing.Point(326, 344);
+            this.btnSendMsg.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnSendMsg.Location = new System.Drawing.Point(326, 341);
             this.btnSendMsg.Name = "btnSendMsg";
-            this.btnSendMsg.Size = new System.Drawing.Size(93, 20);
+            this.btnSendMsg.Size = new System.Drawing.Size(93, 25);
             this.btnSendMsg.TabIndex = 19;
             this.btnSendMsg.Text = "Send";
-            this.btnSendMsg.UseVisualStyleBackColor = true;
+            this.btnSendMsg.UseVisualStyleBackColor = false;
             this.btnSendMsg.Click += new System.EventHandler(this.btnSendMsg_Click);
             // 
             // btnLeave
             // 
+            this.btnLeave.BackColor = System.Drawing.Color.Crimson;
             this.btnLeave.Location = new System.Drawing.Point(633, 273);
             this.btnLeave.Name = "btnLeave";
             this.btnLeave.Size = new System.Drawing.Size(73, 65);
             this.btnLeave.TabIndex = 18;
             this.btnLeave.Text = "Leave Game";
-            this.btnLeave.UseVisualStyleBackColor = true;
+            this.btnLeave.UseVisualStyleBackColor = false;
             this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
             // 
             // btnPause
             // 
+            this.btnPause.BackColor = System.Drawing.Color.Gold;
             this.btnPause.Location = new System.Drawing.Point(552, 273);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(73, 65);
             this.btnPause.TabIndex = 17;
             this.btnPause.Text = "Pause game";
-            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.UseVisualStyleBackColor = false;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
             // lb_chat
             // 
+            this.lb_chat.BackColor = System.Drawing.Color.Black;
+            this.lb_chat.ForeColor = System.Drawing.SystemColors.Info;
             this.lb_chat.FormattingEnabled = true;
             this.lb_chat.Location = new System.Drawing.Point(12, 243);
             this.lb_chat.Name = "lb_chat";
@@ -172,7 +183,7 @@
             // 
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(463, 287);
+            this.lblTime.Location = new System.Drawing.Point(451, 287);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(95, 29);
             this.lblTime.TabIndex = 24;
@@ -187,6 +198,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(718, 372);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.tbMessage);
@@ -197,6 +209,8 @@
             this.Controls.Add(this.btnSendMsg);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.lb_chat);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TriviaForm";
             this.Text = "Trivia";
             this.groupQuestion.ResumeLayout(false);

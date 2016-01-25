@@ -22,6 +22,7 @@ namespace GameClient
         public TriviaForm(ref Callbacks call)
         {
             InitializeComponent();
+            this.
             c = call;
         }
 
