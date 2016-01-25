@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Timers;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GameService
 {
@@ -238,7 +239,7 @@ namespace GameService
 
         public void CreateQuestions()
         {
-            List<string> ans = new List<string>();
+            /*List<string> ans = new List<string>();
             ans.Add("London");
             ans.Add("Paris");
             questions.Add(new Question("What is the Capital of Netherlands?", ans, "Amsterdam"));
@@ -258,6 +259,32 @@ namespace GameService
             ans.Add("Washington DC");
             ans.Add("Chicago");
             questions.Add(new Question("Where is the World Trade Center?", ans, "New York City"));
+            ans.Clear();
+            ans.Add("x");
+            ans.Add("x");
+            questions.Add(new Question("x?", ans, "New York City"));*/
+            string qes = string.Empty;
+            string ans = string.Empty;
+            var fileq = File.Open(@"C:\Users\Feng Zirui\Desktop\mdw\MDW\MDW\GameService\question.txt", FileMode.Open);
+            var filea = File.Open(@"C:\Users\Feng Zirui\Desktop\mdw\MDW\MDW\GameService\answers.txt", FileMode.Open);
+
+            StreamReader readerq = new StreamReader(fileq);
+            StreamReader readera = new StreamReader(filea);
+            qes = readerq.ReadLine();
+            ans = readera.ReadLine();
+            while (qes != "" && qes != null&&ans!=""&&ans!=null)
+            {
+                string[]sArry=sArry=ans.Split(',');
+                List<string> an = new List<string>();
+                an.Add(sArry[0]);
+                an.Add(sArry[1]);
+                questions.Add(new Question(qes, an, sArry[2]));
+                qes = readerq.ReadLine();
+                ans = readera.ReadLine();
+            }
+            fileq.Close();
+            filea.Close();
+            
         }
 
         void Channel_Faulted(object sender, EventArgs e)

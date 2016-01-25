@@ -52,9 +52,10 @@
             // btnAns1
             // 
             this.btnAns1.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.btnAns1.Location = new System.Drawing.Point(8, 31);
+            this.btnAns1.Location = new System.Drawing.Point(11, 38);
+            this.btnAns1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAns1.Name = "btnAns1";
-            this.btnAns1.Size = new System.Drawing.Size(186, 46);
+            this.btnAns1.Size = new System.Drawing.Size(248, 57);
             this.btnAns1.TabIndex = 0;
             this.btnAns1.Text = "button1";
             this.btnAns1.UseVisualStyleBackColor = false;
@@ -63,9 +64,10 @@
             // btnAns2
             // 
             this.btnAns2.BackColor = System.Drawing.Color.YellowGreen;
-            this.btnAns2.Location = new System.Drawing.Point(236, 31);
+            this.btnAns2.Location = new System.Drawing.Point(315, 38);
+            this.btnAns2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAns2.Name = "btnAns2";
-            this.btnAns2.Size = new System.Drawing.Size(186, 46);
+            this.btnAns2.Size = new System.Drawing.Size(248, 57);
             this.btnAns2.TabIndex = 1;
             this.btnAns2.Text = "button2";
             this.btnAns2.UseVisualStyleBackColor = false;
@@ -74,9 +76,10 @@
             // btnAns3
             // 
             this.btnAns3.BackColor = System.Drawing.Color.Teal;
-            this.btnAns3.Location = new System.Drawing.Point(466, 31);
+            this.btnAns3.Location = new System.Drawing.Point(621, 38);
+            this.btnAns3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAns3.Name = "btnAns3";
-            this.btnAns3.Size = new System.Drawing.Size(186, 46);
+            this.btnAns3.Size = new System.Drawing.Size(248, 57);
             this.btnAns3.TabIndex = 2;
             this.btnAns3.Text = "button3";
             this.btnAns3.UseVisualStyleBackColor = false;
@@ -85,9 +88,10 @@
             // lblQuestion
             // 
             this.lblQuestion.AutoSize = true;
-            this.lblQuestion.Location = new System.Drawing.Point(21, 42);
+            this.lblQuestion.Location = new System.Drawing.Point(28, 52);
+            this.lblQuestion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(63, 13);
+            this.lblQuestion.Size = new System.Drawing.Size(80, 17);
             this.lblQuestion.TabIndex = 3;
             this.lblQuestion.Text = "QUESTION";
             // 
@@ -96,17 +100,21 @@
             this.lb_game_score.BackColor = System.Drawing.Color.Black;
             this.lb_game_score.ForeColor = System.Drawing.SystemColors.Info;
             this.lb_game_score.FormattingEnabled = true;
-            this.lb_game_score.Location = new System.Drawing.Point(586, 14);
+            this.lb_game_score.ItemHeight = 16;
+            this.lb_game_score.Location = new System.Drawing.Point(781, 17);
+            this.lb_game_score.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lb_game_score.Name = "lb_game_score";
-            this.lb_game_score.Size = new System.Drawing.Size(120, 95);
+            this.lb_game_score.Size = new System.Drawing.Size(159, 116);
             this.lb_game_score.TabIndex = 13;
             // 
             // groupQuestion
             // 
             this.groupQuestion.Controls.Add(this.lblQuestion);
-            this.groupQuestion.Location = new System.Drawing.Point(12, 9);
+            this.groupQuestion.Location = new System.Drawing.Point(16, 11);
+            this.groupQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupQuestion.Name = "groupQuestion";
-            this.groupQuestion.Size = new System.Drawing.Size(567, 100);
+            this.groupQuestion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupQuestion.Size = new System.Drawing.Size(756, 123);
             this.groupQuestion.TabIndex = 21;
             this.groupQuestion.TabStop = false;
             this.groupQuestion.Text = "Question";
@@ -116,9 +124,11 @@
             this.groupAnswers.Controls.Add(this.btnAns1);
             this.groupAnswers.Controls.Add(this.btnAns2);
             this.groupAnswers.Controls.Add(this.btnAns3);
-            this.groupAnswers.Location = new System.Drawing.Point(12, 115);
+            this.groupAnswers.Location = new System.Drawing.Point(16, 142);
+            this.groupAnswers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupAnswers.Name = "groupAnswers";
-            this.groupAnswers.Size = new System.Drawing.Size(694, 122);
+            this.groupAnswers.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupAnswers.Size = new System.Drawing.Size(925, 150);
             this.groupAnswers.TabIndex = 20;
             this.groupAnswers.TabStop = false;
             this.groupAnswers.Text = "Answers";
@@ -126,9 +136,10 @@
             // btnSendMsg
             // 
             this.btnSendMsg.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnSendMsg.Location = new System.Drawing.Point(326, 341);
+            this.btnSendMsg.Location = new System.Drawing.Point(435, 420);
+            this.btnSendMsg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSendMsg.Name = "btnSendMsg";
-            this.btnSendMsg.Size = new System.Drawing.Size(93, 25);
+            this.btnSendMsg.Size = new System.Drawing.Size(124, 31);
             this.btnSendMsg.TabIndex = 19;
             this.btnSendMsg.Text = "Send";
             this.btnSendMsg.UseVisualStyleBackColor = false;
@@ -137,9 +148,10 @@
             // btnLeave
             // 
             this.btnLeave.BackColor = System.Drawing.Color.Crimson;
-            this.btnLeave.Location = new System.Drawing.Point(633, 273);
+            this.btnLeave.Location = new System.Drawing.Point(844, 336);
+            this.btnLeave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLeave.Name = "btnLeave";
-            this.btnLeave.Size = new System.Drawing.Size(73, 65);
+            this.btnLeave.Size = new System.Drawing.Size(97, 80);
             this.btnLeave.TabIndex = 18;
             this.btnLeave.Text = "Leave Game";
             this.btnLeave.UseVisualStyleBackColor = false;
@@ -148,9 +160,10 @@
             // btnPause
             // 
             this.btnPause.BackColor = System.Drawing.Color.Gold;
-            this.btnPause.Location = new System.Drawing.Point(552, 273);
+            this.btnPause.Location = new System.Drawing.Point(736, 336);
+            this.btnPause.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(73, 65);
+            this.btnPause.Size = new System.Drawing.Size(97, 80);
             this.btnPause.TabIndex = 17;
             this.btnPause.Text = "Pause game";
             this.btnPause.UseVisualStyleBackColor = false;
@@ -161,16 +174,19 @@
             this.lb_chat.BackColor = System.Drawing.Color.Black;
             this.lb_chat.ForeColor = System.Drawing.SystemColors.Info;
             this.lb_chat.FormattingEnabled = true;
-            this.lb_chat.Location = new System.Drawing.Point(12, 243);
+            this.lb_chat.ItemHeight = 16;
+            this.lb_chat.Location = new System.Drawing.Point(16, 299);
+            this.lb_chat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lb_chat.Name = "lb_chat";
-            this.lb_chat.Size = new System.Drawing.Size(407, 95);
+            this.lb_chat.Size = new System.Drawing.Size(541, 116);
             this.lb_chat.TabIndex = 16;
             // 
             // tbMessage
             // 
-            this.tbMessage.Location = new System.Drawing.Point(137, 344);
+            this.tbMessage.Location = new System.Drawing.Point(183, 423);
+            this.tbMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbMessage.Name = "tbMessage";
-            this.tbMessage.Size = new System.Drawing.Size(183, 20);
+            this.tbMessage.Size = new System.Drawing.Size(243, 22);
             this.tbMessage.TabIndex = 22;
             this.tbMessage.Text = "message";
             // 
@@ -183,9 +199,10 @@
             // 
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(451, 287);
+            this.lblTime.Location = new System.Drawing.Point(601, 353);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(95, 29);
+            this.lblTime.Size = new System.Drawing.Size(110, 36);
             this.lblTime.TabIndex = 24;
             this.lblTime.Text = "lblTime";
             // 
@@ -196,10 +213,10 @@
             // 
             // TriviaForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(718, 372);
+            this.ClientSize = new System.Drawing.Size(957, 458);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.tbMessage);
             this.Controls.Add(this.lb_game_score);
@@ -211,8 +228,10 @@
             this.Controls.Add(this.lb_chat);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TriviaForm";
             this.Text = "Trivia";
+            this.Load += new System.EventHandler(this.TriviaForm_Load);
             this.groupQuestion.ResumeLayout(false);
             this.groupQuestion.PerformLayout();
             this.groupAnswers.ResumeLayout(false);
