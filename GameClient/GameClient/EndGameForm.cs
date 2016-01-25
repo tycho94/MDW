@@ -26,24 +26,27 @@ namespace GameClient
 
         private void btLeave_Click(object sender, EventArgs e)
         {
-            try
+            if (!(MessageBox.Show("Are you sure you want to leave/exit?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No))
             {
-                c.proxy.Close();
+                try
+                {
+                    c.proxy.Close();
+                }
+                catch (CommunicationException)
+                {
+                    c.proxy.Abort();
+                }
+                catch (TimeoutException)
+                {
+                    c.proxy.Abort();
+                }
+                catch (Exception)
+                {
+                    c.proxy.Abort();
+                    throw;
+                }
+                Application.Exit();
             }
-            catch (CommunicationException)
-            {
-                c.proxy.Abort();
-            }
-            catch (TimeoutException)
-            {
-                c.proxy.Abort();
-            }
-            catch (Exception)
-            {
-                c.proxy.Abort();
-                throw;
-            }
-            Application.Exit();
         }
 
         private void btRestart_Click(object sender, EventArgs e)
@@ -64,11 +67,6 @@ namespace GameClient
         public void Warning(string m)
         {
             MessageBox.Show(m);
-        }
-
-        private void EndGameForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

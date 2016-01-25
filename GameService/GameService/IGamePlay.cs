@@ -90,16 +90,21 @@ namespace GameService
     [DataContract]
     public class Question
     {
-        public Question(string qst, List<string> answ, string rAnswer)
+        /// <summary>
+        /// Question constructor
+        /// </summary>
+        /// <param name="qst">question string</param>
+        /// <param name="ans1">ans1 string</param>
+        /// <param name="ans2">ans2 string</param>
+        /// <param name="rAnswer">rightanswer string</param>
+        public Question(string qst, string ans1, string ans2, string rAnswer)
         {
-            answers = new List<string>();
-            foreach (string a in answ)
-            {
-                answers.Add(a);
-            }
-            question = qst;
             rightAnswer = rAnswer;
+            answers = new List<string>();
+            answers.Add(ans1);
+            answers.Add(ans2);
             answers.Add(rightAnswer);
+            question = qst;
         }
         [DataMember]
         public string question { get; set; }

@@ -26,12 +26,16 @@ namespace GameService
             client0 = null;
             client1 = null;
             questions = new List<Question>();
-            CreateQuestions();
+            CreateQuestions(@"..\..\resources\question.txt");
             ShuffleQuestions();
             qi = 0;
             callbacklist = new List<IGameplayCallback>();
         }
 
+        /// <summary>
+        /// Starts the game if both clients are ready
+        /// </summary>
+        /// <param name="clientname">name of client application</param>
         public void StartGame(string clientname)
         {
             if (client0 != null)
@@ -83,7 +87,11 @@ namespace GameService
                 }
             }
         }
-
+        /// <summary>
+        /// Called by the client to answer the question, then checks answer and awards points
+        /// </summary>
+        /// <param name="clientname">clientname of your client</param>
+        /// <param name="answer">the answer you chose</param>
         public void AnswerQuestion(string clientname, string answer)
         {
             int clientcallback;
@@ -128,7 +136,9 @@ namespace GameService
             if (qi >= questions.Count && (c.ready && c2.ready))
                 FinishGame();
         }
-
+        /// <summary>
+        /// Shuffles the questionlist
+        /// </summary>
         public void ShuffleQuestions()
         {
             Random random = new Random();
@@ -141,11 +151,21 @@ namespace GameService
             }
         }
 
+        /// <summary>
+        /// returns current question
+        /// </summary>
+        /// <returns></returns>
         public Question GetQuestion()
         {
             return questions[qi];
         }
 
+        /// <summary>
+        /// Creates the clients and creates the callback
+        /// </summary>
+        /// <param name="clientname">name of the new client</param>
+        /// <param name="succes">is true if clientcreation is succes</param>
+        /// <returns></returns>
         public bool Connect(string clientname, out bool succes)
         {
             succes = false;
@@ -175,7 +195,10 @@ namespace GameService
             return returnvalue;
         }
 
-
+        /// <summary>
+        /// PauseNotify called back to right client
+        /// </summary>
+        /// <param name="clientname"></param>
         public void PauseGame(string clientname)
         {
             if (client0.name == clientname)
@@ -189,6 +212,9 @@ namespace GameService
             }
         }
 
+        /// <summary>
+        /// Identifies if it is a win/lose/draw for both clients & resets the game
+        /// </summary>
         public void FinishGame()
         {
             if (client0.GetPoints() == client1.GetPoints())
@@ -210,7 +236,11 @@ namespace GameService
             client0.Reset();
             client1.Reset();
         }
-
+        /// <summary>
+        /// sends message to both clients
+        /// </summary>
+        /// <param name="clientname">The name of the messager</param>
+        /// <param name="message">The message</param>
         public void SendMessage(string clientname, string message)
         {
             foreach (IGameplayCallback c in callbacklist)
@@ -219,6 +249,9 @@ namespace GameService
             }
         }
 
+        /// <summary>
+        /// Sends the question to both client callbacks after randomizing answer list
+        /// </summary>
         public void AskClientQuestion()
         {
             List<string> ans = questions[qi].answers;
@@ -237,56 +270,28 @@ namespace GameService
             qi++;
         }
 
-        public void CreateQuestions()
+        /// <summary>
+        /// Create the questions from a file
+        /// </summary>
+        /// <param name="filepath">the path to the file</param>
+        public void CreateQuestions(string filepath)
         {
-            /*List<string> ans = new List<string>();
-            ans.Add("London");
-            ans.Add("Paris");
-            questions.Add(new Question("What is the Capital of Netherlands?", ans, "Amsterdam"));
-            ans.Clear();
-            ans.Add("1");
-            ans.Add("3");
-            questions.Add(new Question("How much is 1+1?", ans, "2"));
-            ans.Clear();
-            ans.Add("12");
-            ans.Add("10");
-            questions.Add(new Question("What comes after 1-1-2-3-5-8-?", ans, "13"));
-            ans.Clear();
-            ans.Add("H3O");
-            ans.Add("HO2");
-            questions.Add(new Question("Which one is water?", ans, "H2O"));
-            ans.Clear();
-            ans.Add("Washington DC");
-            ans.Add("Chicago");
-            questions.Add(new Question("Where is the World Trade Center?", ans, "New York City"));
-            ans.Clear();
-            ans.Add("x");
-            ans.Add("x");
-            questions.Add(new Question("x?", ans, "New York City"));*/
-            string qes = string.Empty;
-            string ans = string.Empty;
-            var fileq = File.Open(@"C:\Users\Feng Zirui\Desktop\mdw\MDW\MDW\GameService\question.txt", FileMode.Open);
-            var filea = File.Open(@"C:\Users\Feng Zirui\Desktop\mdw\MDW\MDW\GameService\answers.txt", FileMode.Open);
-
-            StreamReader readerq = new StreamReader(fileq);
-            StreamReader readera = new StreamReader(filea);
-            qes = readerq.ReadLine();
-            ans = readera.ReadLine();
-            while (qes != "" && qes != null&&ans!=""&&ans!=null)
+            FileStream fs = File.Open(filepath, FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+            string line;
+            while ((line = sr.ReadLine()) != "EXIT")
             {
-                string[]sArry=sArry=ans.Split(',');
-                List<string> an = new List<string>();
-                an.Add(sArry[0]);
-                an.Add(sArry[1]);
-                questions.Add(new Question(qes, an, sArry[2]));
-                qes = readerq.ReadLine();
-                ans = readera.ReadLine();
+                List<string> s = line.Split(',').ToList();
+                questions.Add(new Question(s[0], s[1], s[2], s[3]));
             }
-            fileq.Close();
-            filea.Close();
-            
+            sr.Close();
+            fs.Close();
         }
-
+        /// <summary>
+        /// Method runs when a client disconnect, callback & client reset
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void Channel_Faulted(object sender, EventArgs e)
         {
             try
@@ -298,7 +303,8 @@ namespace GameService
             }
             catch
             {
-                try {
+                try
+                {
                     callbacklist[1].LeaveNotify();
                     callbacklist.RemoveAt(0);
                     client0 = null;
@@ -310,7 +316,7 @@ namespace GameService
                     client0 = null;
                     client1 = null;
                 }
-            }            
+            }
             qi = 0;
         }
     }

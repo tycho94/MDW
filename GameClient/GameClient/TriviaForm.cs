@@ -101,24 +101,27 @@ namespace GameClient
 
         private void btnLeave_Click(object sender, EventArgs e)
         {
-            try
+            if (!(MessageBox.Show("Are you sure you want to leave/exit?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No))
             {
-                c.proxy.Close();
+                try
+                {
+                    c.proxy.Close();
+                }
+                catch (CommunicationException)
+                {
+                    c.proxy.Abort();
+                }
+                catch (TimeoutException)
+                {
+                    c.proxy.Abort();
+                }
+                catch (Exception)
+                {
+                    c.proxy.Abort();
+                    throw;
+                }
+                Application.Exit();
             }
-            catch (CommunicationException)
-            {
-                c.proxy.Abort();
-            }
-            catch (TimeoutException)
-            {
-                c.proxy.Abort();
-            }
-            catch (Exception)
-            {
-                c.proxy.Abort();
-                throw;
-            }
-            Application.Exit();
         }
 
         public void Disable()
@@ -177,12 +180,5 @@ namespace GameClient
             if (timeleft == 0)
                 c.proxy.AnswerQuestion(clientname, "");
         }
-
-        private void TriviaForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
     }
 }

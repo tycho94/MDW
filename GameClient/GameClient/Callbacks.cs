@@ -44,7 +44,9 @@ namespace GameClient
             endform = form;
             endform.FormClosed += new FormClosedEventHandler(FormClosed);
         }
-
+        /// <summary>
+        /// notification that the other player wants to start
+        /// </summary>
         public void StartNotify()
         {
             MessageBox.Show("The other player wants to play a game with you");
@@ -53,7 +55,9 @@ namespace GameClient
         {
             triviaform.PauseGame();
         }
-
+        /// <summary>
+        /// Happens when the other player left, endform shows
+        /// </summary>
         public void LeaveNotify()
         {
             if (triviaform.Visible)
@@ -64,17 +68,26 @@ namespace GameClient
                 triviaform.ResetGame();
             }
         }
-
+        /// <summary>
+        /// send message to listbox
+        /// </summary>
+        /// <param name="m">the message of the server</param>
         public void ReceiveMessage(string m)
         {
             triviaform.Warning(m);
         }
-
+        /// <summary>
+        /// Send the question to triviaform
+        /// </summary>
+        /// <param name="q">question</param>
+        /// <param name="ans">answer</param>
         public void AskQuestion(string q, List<string> ans)
         {
             triviaform.Question(q, ans);
         }
-
+        /// <summary>
+        /// Start the triviaform
+        /// </summary>
         public void StartClients()
         {
             startform.Visible = false;
@@ -82,7 +95,12 @@ namespace GameClient
             triviaform.BringToFront();
             endform.Visible = false;
         }
-
+        /// <summary>
+        /// Sends the result to endform and shows endform
+        /// </summary>
+        /// <param name="result">0 = loss, 1 = draw, 2 = win</param>
+        /// <param name="yourpoints">your points of the game</param>
+        /// <param name="theirpoints">opponents points of the game</param>
         public void FinishNotify(int result, int yourpoints, int theirpoints)
         {
             triviaform.Visible = false;
@@ -95,15 +113,27 @@ namespace GameClient
             if (result == 2)
                 endform.Result("You win! Score: " + yourpoints + " vs " + theirpoints);
         }
+        /// <summary>
+        /// sends the score to triviaform
+        /// </summary>
+        /// <param name="s"></param>
         public void Score(string s)
         {
             triviaform.Score(s);
         }
+        /// <summary>
+        /// restart the game
+        /// </summary>
         public void Restart()
         {
             triviaform.ResetGame();
             triviaform.c.proxy.StartGame(triviaform.clientname);
         }
+        /// <summary>
+        /// Event called when the form is closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void FormClosed(object sender, FormClosedEventArgs e)
         {
             try
@@ -129,14 +159,11 @@ namespace GameClient
         public void AnswerNotify(bool correct)
         {
             if (correct)
-            {
-
                 sp = new SoundPlayer(@"..\..\resources\answer_right.wav");
-            }
+
             else
-            {
                 sp = new SoundPlayer(@"..\..\resources\answer_wrong.wav");
-            }
+
             sp.Play();
         }
     }

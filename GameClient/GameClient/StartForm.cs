@@ -27,7 +27,8 @@ namespace GameClient
             bool execute;
             if (c.proxy.Connect(tbClientName.Text, out execute))
                 tbClientName.Text = tbClientName.Text + "-1";
-            if (execute) {
+            if (execute)
+            {
                 tbClientName.Enabled = false;
                 btnConnect.Visible = false;
                 btnStart.Visible = true;
@@ -50,14 +51,6 @@ namespace GameClient
             c.SetTriviaForm(t);
             c.proxy.StartGame(tbClientName.Text);
             btnStart.Enabled = false;
-
-            //c.proxy.AskClientQuestion();
-
-        }
-
-        private void StartForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
