@@ -24,11 +24,21 @@ namespace GameClient
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            if (c.proxy.Connect(tbClientName.Text))
+            bool execute;
+            if (c.proxy.Connect(tbClientName.Text, out execute))
                 tbClientName.Text = tbClientName.Text + "-1";
-            tbClientName.Enabled = false;
-            btnConnect.Visible = false;
-            btnStart.Visible = true;
+            if (execute) {
+                tbClientName.Enabled = false;
+                btnConnect.Visible = false;
+                btnStart.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("2 clients already connected");
+                tbClientName.Enabled = false;
+                btnConnect.Visible = false;
+                btnStart.Visible = false;
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)

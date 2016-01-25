@@ -33,24 +33,27 @@ namespace GameService
 
         public void StartGame(string clientname)
         {
-            if (client0.name == clientname)
+            if (client0 != null)
             {
-                client0.ready = true;
-                if (client1 != null)
+                if (client0.name == clientname)
                 {
-                    if (!client1.ready)
+                    client0.ready = true;
+                    if (client1 != null)
                     {
-                        callbacklist[1].StartNotify();
-                    }
-                    else
-                    {
-                        foreach (IGameplayCallback c in callbacklist)
+                        if (!client1.ready)
                         {
-                            c.StartClients();
+                            callbacklist[1].StartNotify();
                         }
-                        AskClientQuestion();
-                        client0.ready = false;
-                        client1.ready = false;
+                        else
+                        {
+                            foreach (IGameplayCallback c in callbacklist)
+                            {
+                                c.StartClients();
+                            }
+                            AskClientQuestion();
+                            client0.ready = false;
+                            client1.ready = false;
+                        }
                     }
                 }
             }
@@ -142,8 +145,9 @@ namespace GameService
             return questions[qi];
         }
 
-        public bool Connect(string clientname)
+        public bool Connect(string clientname, out bool succes)
         {
+            succes = false;
             bool returnvalue = false;
             IGameplayCallback callback = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
             if (client0 == null)
@@ -152,6 +156,7 @@ namespace GameService
                 callbacklist.Insert(0, callback);
                 OperationContext.Current.Channel.Faulted += new EventHandler(Channel_Faulted);
                 OperationContext.Current.Channel.Closed += new EventHandler(Channel_Faulted);
+                succes = true;
             }
             else if (client1 == null)
             {
@@ -164,6 +169,7 @@ namespace GameService
                 callbacklist.Insert(1, callback);
                 OperationContext.Current.Channel.Faulted += new EventHandler(Channel_Faulted);
                 OperationContext.Current.Channel.Closed += new EventHandler(Channel_Faulted);
+                succes = true;
             }
             return returnvalue;
         }
@@ -252,10 +258,6 @@ namespace GameService
             ans.Add("Washington DC");
             ans.Add("Chicago");
             questions.Add(new Question("Where is the World Trade Center?", ans, "New York City"));
-            ans.Clear();
-            ans.Add("x");
-            ans.Add("x");
-            questions.Add(new Question("x?", ans, "New York City"));
         }
 
         void Channel_Faulted(object sender, EventArgs e)
@@ -263,19 +265,26 @@ namespace GameService
             try
             {
                 callbacklist[0].LeaveNotify();
+                callbacklist.RemoveAt(1);
+                client1 = null;
+                client0.Reset();
             }
             catch
             {
-                try
-                {
+                try {
                     callbacklist[1].LeaveNotify();
+                    callbacklist.RemoveAt(0);
+                    client0 = null;
+                    client1.Reset();
                 }
                 catch
                 {
-                    //nothing
+                    callbacklist.Clear();
+                    client0 = null;
+                    client1 = null;
                 }
-            }
-            Application.Exit();
+            }            
+            qi = 0;
         }
     }
 }

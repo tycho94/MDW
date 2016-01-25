@@ -95,6 +95,8 @@ namespace GameClient
             btnAns1.Text = "";
             btnAns2.Text = "";
             btnAns3.Text = "";
+            TimerGame.Stop();
+            t.Stop();
         }
 
         private void btnLeave_Click(object sender, EventArgs e)
@@ -145,7 +147,7 @@ namespace GameClient
             btnDisable();
             btnPause.Enabled = false;
             TimerGame.Stop();
-            
+
             pauseleft = 5;
             lblTime.Text = pauseleft.ToString();
             t.Start();

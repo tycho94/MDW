@@ -109,6 +109,9 @@
     <None Include="Service References\GameServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\GameServiceReference\GameClient.GameServiceReference.ConnectResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\GameServiceReference\GameService.wsdl" />
     <None Include="Service References\GameServiceReference\GameService1.xsd">
       <SubType>Designer</SubType>

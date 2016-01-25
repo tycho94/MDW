@@ -16,10 +16,11 @@ namespace GameClient.GameServiceReference {
     public interface IGamePlay {
         
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/Connect", ReplyAction="GameService/IGamePlay/ConnectResponse")]
-        bool Connect(string clientname);
+        GameClient.GameServiceReference.ConnectResponse Connect(GameClient.GameServiceReference.ConnectRequest request);
         
+        // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="GameService/IGamePlay/Connect", ReplyAction="GameService/IGamePlay/ConnectResponse")]
-        System.Threading.Tasks.Task<bool> ConnectAsync(string clientname);
+        System.Threading.Tasks.Task<GameClient.GameServiceReference.ConnectResponse> ConnectAsync(GameClient.GameServiceReference.ConnectRequest request);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="GameService/IGamePlay/StartGame")]
         void StartGame(string clientname);
@@ -89,6 +90,42 @@ namespace GameClient.GameServiceReference {
         void Score(string s);
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Connect", WrapperNamespace="GameService", IsWrapped=true)]
+    public partial class ConnectRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="GameService", Order=0)]
+        public string clientname;
+        
+        public ConnectRequest() {
+        }
+        
+        public ConnectRequest(string clientname) {
+            this.clientname = clientname;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ConnectResponse", WrapperNamespace="GameService", IsWrapped=true)]
+    public partial class ConnectResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="GameService", Order=0)]
+        public bool ConnectResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="GameService", Order=1)]
+        public bool succes;
+        
+        public ConnectResponse() {
+        }
+        
+        public ConnectResponse(bool ConnectResult, bool succes) {
+            this.ConnectResult = ConnectResult;
+            this.succes = succes;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IGamePlayChannel : GameClient.GameServiceReference.IGamePlay, System.ServiceModel.IClientChannel {
     }
@@ -117,12 +154,21 @@ namespace GameClient.GameServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public bool Connect(string clientname) {
-            return base.Channel.Connect(clientname);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        GameClient.GameServiceReference.ConnectResponse GameClient.GameServiceReference.IGamePlay.Connect(GameClient.GameServiceReference.ConnectRequest request) {
+            return base.Channel.Connect(request);
         }
         
-        public System.Threading.Tasks.Task<bool> ConnectAsync(string clientname) {
-            return base.Channel.ConnectAsync(clientname);
+        public bool Connect(string clientname, out bool succes) {
+            GameClient.GameServiceReference.ConnectRequest inValue = new GameClient.GameServiceReference.ConnectRequest();
+            inValue.clientname = clientname;
+            GameClient.GameServiceReference.ConnectResponse retVal = ((GameClient.GameServiceReference.IGamePlay)(this)).Connect(inValue);
+            succes = retVal.succes;
+            return retVal.ConnectResult;
+        }
+        
+        public System.Threading.Tasks.Task<GameClient.GameServiceReference.ConnectResponse> ConnectAsync(GameClient.GameServiceReference.ConnectRequest request) {
+            return base.Channel.ConnectAsync(request);
         }
         
         public void StartGame(string clientname) {

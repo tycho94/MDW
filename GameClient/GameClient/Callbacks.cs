@@ -47,7 +47,7 @@ namespace GameClient
 
         public void StartNotify()
         {
-            // MessageBox.Show("The other player wants to play a game with you");
+            MessageBox.Show("The other player wants to play a game with you");
         }
         public void PauseNotify()
         {
@@ -56,16 +56,12 @@ namespace GameClient
 
         public void LeaveNotify()
         {
-            try
+            if (triviaform.Visible)
             {
-                triviaform.Disable();
-                endform.Disable();
-                endform.Warning("The other player has left the game\nThe game will close now");
-                Application.Exit();
-            }
-            catch
-            {
-                Application.Exit();
+                triviaform.Visible = false;
+                endform.Visible = true;
+                endform.Result("The other player left.\nYou win!\nWait for another user");
+                triviaform.ResetGame();
             }
         }
 
@@ -81,15 +77,17 @@ namespace GameClient
 
         public void StartClients()
         {
-            startform.Hide();
-            triviaform.Show();
-            endform.Hide();
+            startform.Visible = false;
+            triviaform.Visible = true;
+            triviaform.BringToFront();
+            endform.Visible = false;
         }
 
         public void FinishNotify(int result, int yourpoints, int theirpoints)
         {
-            triviaform.Hide();
-            endform.Show();
+            triviaform.Visible = false;
+            endform.Visible = true;
+            endform.BringToFront();
             if (result == 0)
                 endform.Result("You Lost! Score: " + yourpoints + " vs " + theirpoints);
             if (result == 1)

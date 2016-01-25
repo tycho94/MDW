@@ -14,7 +14,7 @@ namespace GameService
     public interface IGamePlay
     {
         [OperationContract(IsOneWay = false)]
-        bool Connect(string clientname);
+        bool Connect(string clientname, out bool succes);
         [OperationContract(IsOneWay = true)]
         void StartGame(string clientname);
         [OperationContract]
