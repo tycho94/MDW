@@ -30,19 +30,19 @@ namespace GameClient
         public void SetTriviaForm(TriviaForm form)
         {
             triviaform = form;
-            triviaform.FormClosed += new FormClosedEventHandler(FormClosed);
+            triviaform.FormClosed += new FormClosedEventHandler(Channel_Faulted);
         }
 
         public void SetStartForm(StartForm form)
         {
             startform = form;
-            startform.FormClosed += new FormClosedEventHandler(FormClosed);
+            startform.FormClosed += new FormClosedEventHandler(Channel_Faulted);
         }
 
         public void SetEndGameForm(EndGameForm form)
         {
             endform = form;
-            endform.FormClosed += new FormClosedEventHandler(FormClosed);
+            endform.FormClosed += new FormClosedEventHandler(Channel_Faulted);
         }
         /// <summary>
         /// notification that the other player wants to start
@@ -134,7 +134,7 @@ namespace GameClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void FormClosed(object sender, FormClosedEventArgs e)
+        void Channel_Faulted(object sender, FormClosedEventArgs e)
         {
             try
             {
