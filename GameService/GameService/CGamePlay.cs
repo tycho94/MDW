@@ -102,7 +102,8 @@ namespace GameService
                 c2 = client1;
                 clientcallback = 0;
             }
-            else {
+            else
+            {
                 c = client1;
                 c2 = client0;
                 clientcallback = 1;
@@ -173,6 +174,12 @@ namespace GameService
             IGameplayCallback callback = OperationContext.Current.GetCallbackChannel<IGameplayCallback>();
             if (client0 == null)
             {
+                if (client1 != null)
+                    if (client1.name == clientname)
+                    {
+                        clientname = clientname + "-1";
+                        returnvalue = true;
+                    }
                 client0 = new Client(clientname);
                 callbacklist.Insert(0, callback);
                 OperationContext.Current.Channel.Faulted += new EventHandler(Channel_Faulted);
@@ -207,9 +214,9 @@ namespace GameService
             }
             else
                 if (client1.name == clientname)
-            {
-                callbacklist[0].PauseNotify();
-            }
+                {
+                    callbacklist[0].PauseNotify();
+                }
         }
 
         /// <summary>

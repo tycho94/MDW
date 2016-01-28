@@ -42,9 +42,9 @@
             this.btnPause = new System.Windows.Forms.Button();
             this.lb_chat = new System.Windows.Forms.ListBox();
             this.tbMessage = new System.Windows.Forms.TextBox();
-            this.TimerGame = new System.Windows.Forms.Timer(this.components);
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.lblTime = new System.Windows.Forms.Label();
-            this.t = new System.Windows.Forms.Timer(this.components);
+            this.pauseTimer = new System.Windows.Forms.Timer(this.components);
             this.groupQuestion.SuspendLayout();
             this.groupAnswers.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +53,7 @@
             // 
             this.btnAns1.BackColor = System.Drawing.Color.PaleVioletRed;
             this.btnAns1.Location = new System.Drawing.Point(11, 38);
-            this.btnAns1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAns1.Margin = new System.Windows.Forms.Padding(4);
             this.btnAns1.Name = "btnAns1";
             this.btnAns1.Size = new System.Drawing.Size(248, 57);
             this.btnAns1.TabIndex = 0;
@@ -65,7 +65,7 @@
             // 
             this.btnAns2.BackColor = System.Drawing.Color.YellowGreen;
             this.btnAns2.Location = new System.Drawing.Point(315, 38);
-            this.btnAns2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAns2.Margin = new System.Windows.Forms.Padding(4);
             this.btnAns2.Name = "btnAns2";
             this.btnAns2.Size = new System.Drawing.Size(248, 57);
             this.btnAns2.TabIndex = 1;
@@ -77,7 +77,7 @@
             // 
             this.btnAns3.BackColor = System.Drawing.Color.Teal;
             this.btnAns3.Location = new System.Drawing.Point(621, 38);
-            this.btnAns3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAns3.Margin = new System.Windows.Forms.Padding(4);
             this.btnAns3.Name = "btnAns3";
             this.btnAns3.Size = new System.Drawing.Size(248, 57);
             this.btnAns3.TabIndex = 2;
@@ -102,7 +102,7 @@
             this.lb_game_score.FormattingEnabled = true;
             this.lb_game_score.ItemHeight = 16;
             this.lb_game_score.Location = new System.Drawing.Point(781, 17);
-            this.lb_game_score.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lb_game_score.Margin = new System.Windows.Forms.Padding(4);
             this.lb_game_score.Name = "lb_game_score";
             this.lb_game_score.Size = new System.Drawing.Size(159, 116);
             this.lb_game_score.TabIndex = 13;
@@ -111,9 +111,9 @@
             // 
             this.groupQuestion.Controls.Add(this.lblQuestion);
             this.groupQuestion.Location = new System.Drawing.Point(16, 11);
-            this.groupQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.groupQuestion.Name = "groupQuestion";
-            this.groupQuestion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupQuestion.Padding = new System.Windows.Forms.Padding(4);
             this.groupQuestion.Size = new System.Drawing.Size(756, 123);
             this.groupQuestion.TabIndex = 21;
             this.groupQuestion.TabStop = false;
@@ -125,9 +125,9 @@
             this.groupAnswers.Controls.Add(this.btnAns2);
             this.groupAnswers.Controls.Add(this.btnAns3);
             this.groupAnswers.Location = new System.Drawing.Point(16, 142);
-            this.groupAnswers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupAnswers.Margin = new System.Windows.Forms.Padding(4);
             this.groupAnswers.Name = "groupAnswers";
-            this.groupAnswers.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupAnswers.Padding = new System.Windows.Forms.Padding(4);
             this.groupAnswers.Size = new System.Drawing.Size(925, 150);
             this.groupAnswers.TabIndex = 20;
             this.groupAnswers.TabStop = false;
@@ -137,7 +137,7 @@
             // 
             this.btnSendMsg.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnSendMsg.Location = new System.Drawing.Point(435, 420);
-            this.btnSendMsg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSendMsg.Margin = new System.Windows.Forms.Padding(4);
             this.btnSendMsg.Name = "btnSendMsg";
             this.btnSendMsg.Size = new System.Drawing.Size(124, 31);
             this.btnSendMsg.TabIndex = 19;
@@ -149,7 +149,7 @@
             // 
             this.btnLeave.BackColor = System.Drawing.Color.Crimson;
             this.btnLeave.Location = new System.Drawing.Point(844, 336);
-            this.btnLeave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLeave.Margin = new System.Windows.Forms.Padding(4);
             this.btnLeave.Name = "btnLeave";
             this.btnLeave.Size = new System.Drawing.Size(97, 80);
             this.btnLeave.TabIndex = 18;
@@ -161,7 +161,7 @@
             // 
             this.btnPause.BackColor = System.Drawing.Color.Gold;
             this.btnPause.Location = new System.Drawing.Point(736, 336);
-            this.btnPause.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPause.Margin = new System.Windows.Forms.Padding(4);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(97, 80);
             this.btnPause.TabIndex = 17;
@@ -176,7 +176,7 @@
             this.lb_chat.FormattingEnabled = true;
             this.lb_chat.ItemHeight = 16;
             this.lb_chat.Location = new System.Drawing.Point(16, 299);
-            this.lb_chat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lb_chat.Margin = new System.Windows.Forms.Padding(4);
             this.lb_chat.Name = "lb_chat";
             this.lb_chat.Size = new System.Drawing.Size(541, 116);
             this.lb_chat.TabIndex = 16;
@@ -184,16 +184,16 @@
             // tbMessage
             // 
             this.tbMessage.Location = new System.Drawing.Point(183, 423);
-            this.tbMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbMessage.Margin = new System.Windows.Forms.Padding(4);
             this.tbMessage.Name = "tbMessage";
             this.tbMessage.Size = new System.Drawing.Size(243, 22);
             this.tbMessage.TabIndex = 22;
             this.tbMessage.Text = "message";
             // 
-            // TimerGame
+            // gameTimer
             // 
-            this.TimerGame.Interval = 1000;
-            this.TimerGame.Tick += new System.EventHandler(this.TimerGame_Tick);
+            this.gameTimer.Interval = 1000;
+            this.gameTimer.Tick += new System.EventHandler(this.TimerGame_Tick);
             // 
             // lblTime
             // 
@@ -206,10 +206,10 @@
             this.lblTime.TabIndex = 24;
             this.lblTime.Text = "lblTime";
             // 
-            // t
+            // pauseTimer
             // 
-            this.t.Interval = 1000;
-            this.t.Tick += new System.EventHandler(this.t_Tick);
+            this.pauseTimer.Interval = 1000;
+            this.pauseTimer.Tick += new System.EventHandler(this.pause_Tick);
             // 
             // TriviaForm
             // 
@@ -228,7 +228,7 @@
             this.Controls.Add(this.lb_chat);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TriviaForm";
             this.Text = "Trivia";
             this.groupQuestion.ResumeLayout(false);
@@ -253,9 +253,9 @@
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.ListBox lb_chat;
         private System.Windows.Forms.TextBox tbMessage;
-        private System.Windows.Forms.Timer TimerGame;
+        private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label lblTime;
-        private System.Windows.Forms.Timer t;
+        private System.Windows.Forms.Timer pauseTimer;
     }
 }
 

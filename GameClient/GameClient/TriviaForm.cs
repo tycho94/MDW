@@ -29,21 +29,21 @@ namespace GameClient
         private void btnAns1_Click(object sender, EventArgs e)
         {
             c.proxy.AnswerQuestion(clientname, btnAns1.Text);
-            TimerGame.Stop();
+            gameTimer.Stop();
             btnDisable();
         }
 
         private void btnAns2_Click(object sender, EventArgs e)
         {
             c.proxy.AnswerQuestion(clientname, btnAns2.Text);
-            TimerGame.Stop();
+            gameTimer.Stop();
             btnDisable();
         }
 
         private void btnAns3_Click(object sender, EventArgs e)
         {
             c.proxy.AnswerQuestion(clientname, btnAns3.Text);
-            TimerGame.Stop();
+            gameTimer.Stop();
             btnDisable();
         }
 
@@ -62,7 +62,7 @@ namespace GameClient
             btnEnable();
             timeleft = 10;
             lblTime.Text = timeleft.ToString();
-            TimerGame.Start();
+            gameTimer.Start();
         }
         public void Warning(string w)
         {
@@ -95,8 +95,8 @@ namespace GameClient
             btnAns1.Text = "";
             btnAns2.Text = "";
             btnAns3.Text = "";
-            TimerGame.Stop();
-            t.Stop();
+            gameTimer.Stop();
+            pauseTimer.Stop();
         }
 
         private void btnLeave_Click(object sender, EventArgs e)
@@ -149,13 +149,13 @@ namespace GameClient
             btnAns3.Text = "";
             btnDisable();
             btnPause.Enabled = false;
-            TimerGame.Stop();
+            gameTimer.Stop();
 
             pauseleft = 5;
             lblTime.Text = pauseleft.ToString();
-            t.Start();
+            pauseTimer.Start();
         }
-        private void t_Tick(object sender, EventArgs e)
+        private void pause_Tick(object sender, EventArgs e)
         {
             pauseleft--;
             lblTime.Text = pauseleft.ToString();
@@ -166,8 +166,8 @@ namespace GameClient
                 btnAns1.Text = a1;
                 btnAns2.Text = a2;
                 btnAns3.Text = a3;
-                TimerGame.Start();
-                t.Stop();
+                gameTimer.Start();
+                pauseTimer.Stop();
                 btnEnable();
                 btnPause.Enabled = true;
             }
